@@ -28,6 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+# Prevent Django from using default User
+AUTH_USER_MODEL = 'accounts.User'
+
 # Application definition
 
 INSTALLED_APPS = [
