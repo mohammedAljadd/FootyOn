@@ -1,3 +1,5 @@
 project planning
 venv
 footyon/db.sqlite3
+__pycache__/
+*.py[cod]
