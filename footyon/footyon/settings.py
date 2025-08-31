@@ -83,10 +83,24 @@ WSGI_APPLICATION = 'footyon.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'footyondb',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
+
+# After a successful login, Django's built-in LoginView will redirect here.
+# Set this to the URL name or path you want users to go to instead of the default '/accounts/profile/'.
+LOGIN_REDIRECT_URL = 'home'
+
+# After logout, redirect users to the homepage (or any page you prefer).
+LOGOUT_REDIRECT_URL = 'home'
+
+
 
 
 # Password validation
