@@ -1,5 +1,6 @@
 from django.db import models
 from participation.models import Participation
+import calendar
 
 class Match(models.Model):
     date = models.DateField()
@@ -14,6 +15,11 @@ class Match(models.Model):
     def __str__(self):
         return f"{self.location_name} on {self.date}"
     
+    def save(self, *args, **kwargs):
+        # Automatically set the day of the week from the date
+        if self.date:
+            self.day_of_week = calendar.day_name[self.date.weekday()]
+        super().save(*args, **kwargs)
 
     def spots_left(self):
         """Calculate remaining spots based on current participation"""

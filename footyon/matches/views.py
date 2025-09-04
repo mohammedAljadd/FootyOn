@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Match
 from django.contrib.auth.decorators import user_passes_test
 from datetime import date
+from .forms import MatchForm
+
 
 def is_admin(user):
     return user.is_superuser
@@ -21,3 +23,15 @@ def manage_matches(request):
         m.is_past = m.date < today
 
     return render(request, 'matches/manage_matches.html', {'matches': matches})
+
+
+def create_match(request):
+    if request.method == "POST":
+        form = MatchForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("matches:manage")  # back to manage matches page
+    else:
+        form = MatchForm()
+
+    return render(request, "matches/create_match.html", {"form": form})
