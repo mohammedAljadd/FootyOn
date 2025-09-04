@@ -39,14 +39,17 @@ def create_match(request):
     return render(request, "matches/create_match.html", {"form": form})
 
 
+from django.urls import reverse
+
 def view_match(request, match_id):
     match = get_object_or_404(Match, id=match_id)
-    
-    # Get all participants for this match
     participants = Participation.objects.filter(match=match)
+    previous_url = request.META.get('HTTP_REFERER', None)
 
     context = {
         'match': match,
         'participants': participants,
+        'previous_url': previous_url,
+        'default_home': reverse('home'),
     }
     return render(request, 'matches/view_match.html', context)

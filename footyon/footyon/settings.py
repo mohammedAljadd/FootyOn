@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-_@wv$lkm!22(h21lz)m8#8-0onpwe7%a-6yq-i&ke@2^4mdu0j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.22', '127.0.0.1']
 
 
 # Prevent Django from using default User
