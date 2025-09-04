@@ -5,4 +5,49 @@
 {% block content %}
 <h1>Welcome to Football Match Organizer</h1>
 <p>Check upcoming matches and your stats.</p>
+
+<hr>
+
+{% if user.is_authenticated %}
+    <h2>Upcoming Matches</h2>
+    <table class="table table-striped table-hover mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Date</th>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Location</th>
+                <th>Max Players</th>
+                <th>Spots Left</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for match in upcoming_matches %}
+                <tr>
+                    <td>{{ match.date }}</td>
+                    <td>{{ match.day_of_week }}</td>
+                    <td>{{ match.time }}</td>
+                    <td>{{ match.location_name }}</td>
+                    <td>{{ match.max_players }}</td>
+                    <td>{{ match.spots_left }}</td>
+                    <td>
+                        <a href="#" class="btn btn-success btn-sm">Join</a>
+                        <a href="#" class="btn btn-warning btn-sm">Leave</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center">No upcoming matches found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% else %}
+    <div class="alert alert-info mt-3">
+        Please <a href="{% url 'signup' %}">register</a> or <a href="{% url 'login' %}">login</a> to see and join upcoming matches.
+    </div>
+{% endif %}
+
 {% endblock %}
