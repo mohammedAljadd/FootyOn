@@ -3,57 +3,179 @@
 {% block title %}Match Details{% endblock %}
 
 {% block content %}
-<h2 class="mb-4">Match Details</h2>
+<div class="row">
+    <div class="col-12">
+        <h2 class="h3 mb-4">Match Details</h2>
+    </div>
+</div>
 
-<ul class="list-group mb-4">
-    <li class="list-group-item"><strong>Date:</strong> {{ match.date }}</li>
-    <li class="list-group-item"><strong>Day:</strong> {{ match.day_of_week }}</li>
-    <li class="list-group-item"><strong>Time:</strong> {{ match.time }}</li>
-    <li class="list-group-item"><strong>Location:</strong> {{ match.location_name }}</li>
-    <li class="list-group-item"><strong>Max Players:</strong> {{ match.max_players }}</li>
-    <li class="list-group-item"><strong>Spots Left:</strong> {{ match.spots_left }}</li>
-</ul>
+<div class="row">
+    <div class="col-12 col-md-6">
+        <ul class="list-group mb-4">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Date:</strong> 
+                <span class="text-muted">{{ match.date }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Day:</strong> 
+                <span class="text-muted">{{ match.day_of_week }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Time:</strong> 
+                <span class="text-muted">{{ match.time }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Location:</strong> 
+                <span class="text-muted">{{ match.location_name }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Max Players:</strong> 
+                <span class="text-muted">{{ match.max_players }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Spots Left:</strong> 
+                <span class="text-muted">{{ match.spots_left }}</span>
+            </li>
+        </ul>
+    </div>
+</div>
 
-<h3 class="mb-3">Participants</h3>
-<table class="table table-striped mb-4">
-    <thead>
-        <tr>
-            <th>Username</th>
-            <th>Status</th>
-            <th>No-show</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for p in participants %}
-            <tr>
-                <td>{{ p.user.username }}</td>
-                <td>{{ p.status }}</td>
-                <td>
-                    {% if p.is_no_show %}
-                        Yes ({{ p.no_show_reason }})
-                    {% else %}
-                        No
-                    {% endif %}
-                </td>
-            </tr>
-        {% empty %}
-            <tr>
-                <td colspan="3" class="text-center">No participants yet.</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="row">
+    <div class="col-12">
+        <h3 class="h4 mb-3">Participants</h3>
+        
+        <div class="table-responsive">
+            <table class="table table-striped mb-4">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Status</th>
+                        <th>No-show</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in participants %}
+                        <tr>
+                            <td data-label="Username">{{ p.user.username }}</td>
+                            <td data-label="Status">
+                                <span class="badge {% if p.status == 'joined' %}bg-success{% elif p.status == 'maybe' %}bg-warning{% else %}bg-secondary{% endif %}">
+                                    {{ p.status }}
+                                </span>
+                            </td>
+                            <td data-label="No-show">
+                                {% if p.is_no_show %}
+                                    <span class="badge bg-danger">Yes ({{ p.no_show_reason }})</span>
+                                {% else %}
+                                    <span class="badge bg-success">No</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="3" class="text-center">No participants yet.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 {% if match.location_google_maps_embed_url %}
-<div class="d-flex justify-content-center my-4" style="height: 400px;">
-    <div style="width: 100%; max-width: 800px; height: 100%;">
-        {{ match.location_google_maps_embed_url|safe }}
+<div class="row">
+    <div class="col-12">
+        <h4 class="h5 mb-3">Location Map</h4>
+        <div class="map-container mb-4">
+            <div class="map-wrapper">
+                {{ match.location_google_maps_embed_url|safe }}
+            </div>
+        </div>
     </div>
 </div>
 {% endif %}
 
-<div class="text-center mt-5">
-    <a href="{{ previous_url|default:default_home }}" class="btn btn-secondary">Back</a>
+<div class="row">
+    <div class="col-12 text-center">
+        <a href="{{ previous_url|default:default_home }}" class="btn btn-secondary btn-lg">
+            <i class="bi bi-arrow-left me-2"></i>Back
+        </a>
+    </div>
 </div>
+
+<style>
+    /* Map container styles */
+    .map-container {
+        position: relative;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    
+    .map-wrapper {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        overflow: hidden;
+        border-radius: 0.5rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+    
+    .map-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 0.5rem;
+    }
+    
+    /* Mobile-specific styles */
+    @media (max-width: 768px) {
+        .list-group-item {
+            padding: 0.75rem;
+            font-size: 0.95rem;
+        }
+        
+        .table-responsive {
+            border: none;
+        }
+        
+        .table th,
+        .table td {
+            padding: 0.5rem 0.25rem;
+            font-size: 0.9rem;
+        }
+        
+        .table th {
+            font-size: 0.8rem;
+        }
+        
+        .badge {
+            font-size: 0.75rem;
+        }
+        
+        /* Adjust map height for mobile */
+        .map-wrapper {
+            padding-bottom: 75%; /* Taller aspect ratio for mobile */
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .list-group-item {
+            padding: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .btn-lg {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+        }
+        
+        .map-wrapper {
+            padding-bottom: 100%; /* Even taller for very small screens */
+        }
+    }
+</style>
 
 {% endblock %}
