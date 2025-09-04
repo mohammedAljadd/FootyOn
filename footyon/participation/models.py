@@ -13,7 +13,7 @@ class Participation(models.Model):
         ('last_minute', 'Last Minute'),
     ]
 
-    player = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     match = models.ForeignKey('matches.Match', on_delete=models.CASCADE)  # string , avoid reference circular import
 
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='joined')

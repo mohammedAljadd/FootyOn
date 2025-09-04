@@ -9,6 +9,11 @@ def home(request):
     """
 
     upcoming_matches = Match.objects.filter(date__gte=date.today()).order_by('date', 'time')
+
+    if request.user.is_authenticated:
+        for match in upcoming_matches:
+            participation = Participation.objects.filter(user=request.user, match=match).first()
+            match.user_participation = participation
     
     context = {
         'upcoming_matches': upcoming_matches,
