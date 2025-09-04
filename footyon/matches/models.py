@@ -7,7 +7,8 @@ class Match(models.Model):
     time = models.TimeField(null=True, blank=True)
     day_of_week = models.CharField(max_length=10)
     location_name = models.CharField(max_length=100)
-    location_google_maps_url = models.TextField(blank=True, null=True)
+    location_google_maps_url = models.TextField(blank=True, null=True)  # user-provided URL
+    location_google_maps_embed_url = models.TextField(blank=True, null=True)  # store embeddable URL
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     max_players = models.PositiveIntegerField(default=12)

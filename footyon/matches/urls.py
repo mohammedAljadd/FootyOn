@@ -10,4 +10,5 @@ urlpatterns = [
     # Admin: manage all matches
     path('manage/', views.manage_matches, name='manage'),
     path('create/', views.create_match, name='create_match'),
+    path('<int:match_id>/', views.view_match, name='view_match'),
 ]

@@ -32,14 +32,19 @@
                     <td>{{ match.max_players }}</td>
                     <td>{{ match.spots_left }}</td>
                     <td>
-                        {% comment %} Show one button: Join if not joined, Leave if already joined {% endcomment %}
-                        {% if match.user_participation and match.user_participation.status == 'joined' %}
-                            <a href="{% url 'leave_match' match.id %}" class="btn btn-warning btn-sm">Leave</a>
-                        {% else %}
-                            <a href="{% url 'join_match' match.id %}" class="btn btn-success btn-sm">Join</a>
-                        {% endif %}
+                    <!-- View button -->
+                    <a href="{% url 'matches:view_match' match.id %}" class="btn btn-primary btn-sm me-1">
+                        <i class="bi bi-eye me-1"></i> View
+                    </a>
 
-                    </td>
+                    <!-- Join/Leave button -->
+                    {% if match.user_participation and match.user_participation.status == 'joined' %}
+                        <a href="{% url 'leave_match' match.id %}" class="btn btn-warning btn-sm">Leave</a>
+                    {% else %}
+                        <a href="{% url 'join_match' match.id %}" class="btn btn-success btn-sm">Join</a>
+                    {% endif %}
+                </td>
+
                 </tr>
             {% empty %}
                 <tr>

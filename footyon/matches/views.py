@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Match
 from django.contrib.auth.decorators import user_passes_test
 from datetime import date
 from .forms import MatchForm
+from django.shortcuts import render, get_object_or_404
+from .models import Match
+from participation.models import Participation
 
 
 def is_admin(user):
@@ -35,3 +37,16 @@ def create_match(request):
         form = MatchForm()
 
     return render(request, "matches/create_match.html", {"form": form})
+
+
+def view_match(request, match_id):
+    match = get_object_or_404(Match, id=match_id)
+    
+    # Get all participants for this match
+    participants = Participation.objects.filter(match=match)
+
+    context = {
+        'match': match,
+        'participants': participants,
+    }
+    return render(request, 'matches/view_match.html', context)
