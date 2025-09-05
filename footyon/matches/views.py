@@ -43,12 +43,20 @@ from django.urls import reverse
 
 def view_match(request, match_id):
     match = get_object_or_404(Match, id=match_id)
-    participants = Participation.objects.filter(match=match)
     previous_url = request.META.get('HTTP_REFERER', None)
+
+
+    # Active participants for everyone
+    active_participants = Participation.objects.filter(match=match, status='joined')
+
+    # Left participants for admins only
+    left_participants = Participation.objects.filter(match=match).exclude(status='joined') if request.user.is_superuser else []
+
 
     context = {
         'match': match,
-        'participants': participants,
+        'active_participants': active_participants,
+        'left_participants': left_participants,
         'previous_url': previous_url,
         'default_home': reverse('home'),
     }

@@ -42,25 +42,27 @@
 
 <div class="row">
     <div class="col-12">
-        <h3 class="h4 mb-3">Participants</h3>
-        
+        <h3 class="h4 mb-3">Active Participants</h3>
         <div class="table-responsive">
             <table class="table table-striped mb-4">
                 <thead>
                     <tr>
                         <th>Username</th>
                         <th>Status</th>
+                        <th>Time</th>
                         <th>No-show</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
-                    {% for p in participants %}
+                    {% for p in active_participants %}
                         <tr>
                             <td data-label="Username">{{ p.user.username }}</td>
                             <td data-label="Status">
-                                <span class="badge {% if p.status == 'joined' %}bg-success{% elif p.status == 'maybe' %}bg-warning{% else %}bg-secondary{% endif %}">
-                                    {{ p.status }}
-                                </span>
+                                <span class="badge bg-success">{{ p.status }}</span>
+                            </td>
+                            <td data-label="Time">
+                                <span class="badge bg-primary">{{ p.status_time }}</span>
                             </td>
                             <td data-label="No-show">
                                 {% if p.is_no_show %}
@@ -69,10 +71,11 @@
                                     <span class="badge bg-success">No</span>
                                 {% endif %}
                             </td>
+                           
                         </tr>
                     {% empty %}
                         <tr>
-                            <td colspan="3" class="text-center">No participants yet.</td>
+                            <td colspan="4" class="text-center">No active participants yet.</td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -80,6 +83,51 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-12">
+        <h3 class="h4 mb-3">Left Participants</h3>
+        <div class="table-responsive">
+            <table class="table table-striped mb-4">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Status</th>
+                        <th>Time</th>
+                        <th>No-show</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in left_participants %}
+                        <tr>
+                            <td data-label="Username">{{ p.user.username }}</td>
+                            <td data-label="Status">
+                                <span class="badge bg-secondary">{{ p.status }}</span>
+                            </td>
+                            <td data-label="Time">
+                                <span class="badge bg-primary">{{ p.status_time }}</span>
+                            </td>
+                            <td data-label="No-show">
+                                {% if p.is_no_show %}
+                                    <span class="badge bg-danger">Yes ({{ p.no_show_reason }})</span>
+                                {% else %}
+                                    <span class="badge bg-success">No</span>
+                                {% endif %}
+                            </td>
+                            
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center">No participants have left yet.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
 
 {% if match.location_google_maps_embed_url %}
 <div class="row">

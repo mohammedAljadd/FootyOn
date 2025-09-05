@@ -29,4 +29,4 @@ class Participation(models.Model):
     )
 
     def __str__(self):
-        return f"{self.player} - {self.match} ({self.status})"
+        return f"{self.user} - {self.match} ({self.status})"
