@@ -5,6 +5,10 @@ from .forms import MatchForm
 from django.shortcuts import render, get_object_or_404
 from .models import Match
 from participation.models import Participation
+from PIL import Image, ImageDraw, ImageFont
+from django.shortcuts import get_object_or_404, redirect
+from django.http import HttpResponse
+import io
 
 
 def is_admin(user):
@@ -93,3 +97,133 @@ def delete_match(request, match_id):
         match.delete()
         return redirect('matches:manage')
     return render(request, 'matches/delete_match.html', {'match': match})
+
+
+
+def download_match_image(request, match_id):
+    match = get_object_or_404(Match, id=match_id)
+    participants = match.participation_set.filter(status='joined')
+    max_players = match.max_players
+    spots_left = match.spots_left
+
+    # --- Image dimensions ---
+    width, height = 800, 50 + max(max_players, len(participants)) * 35 + 400  # dynamic height
+    image = Image.new('RGB', (width, height), color='#f8f9fa')
+    draw = ImageDraw.Draw(image)
+
+    # --- Fonts ---
+    try:
+        title_font = ImageFont.truetype('arialbd.ttf', 28)  # bold title
+        header_font = ImageFont.truetype('arialbd.ttf', 22)  # bold header
+        text_font = ImageFont.truetype('arial.ttf', 18)
+        small_font = ImageFont.truetype('arial.ttf', 16)
+    except IOError:
+        title_font = ImageFont.load_default()
+        header_font = ImageFont.load_default()
+        text_font = ImageFont.load_default()
+        small_font = ImageFont.load_default()
+
+    # --- Background gradient effect ---
+    for i in range(height):
+        color_intensity = int(248 + (i / height) * 7)  # subtle gradient
+        draw.line([(0, i), (width, i)], fill=(color_intensity, color_intensity + 1, color_intensity + 2))
+
+    # --- Header section with background ---
+    header_height = 80
+    draw.rectangle([0, 0, width, header_height], fill='#28a745')
+    draw.rectangle([0, header_height, width, header_height + 2], fill='#1e7e34')  # border
+    
+    # Title
+    draw.text((width//2 - 150, 25), "FOOTBALL MATCH", font=title_font, fill="#ffffff")
+    
+    # --- Match info section with card-like background ---
+    y = header_height + 30
+    info_width = width - 100
+    info_height = 200
+    draw.rectangle([50, y, 50 + info_width, y + info_height], fill="#ffffff", outline="#dee2e6", width=2)
+    draw.rectangle([50, y, 50 + info_width, y + 40], fill="#e9ecef")
+    
+    # Section title
+    draw.text((70, y + 10), "MATCH DETAILS", font=header_font, fill="#495057")
+    
+    # Match info with text-based icons and better spacing
+    info_y = y + 60
+    draw.text((70, info_y), f"Date: {match.day_of_week}, {match.date}", font=text_font, fill="#212529")
+    info_y += 35
+    draw.text((70, info_y), f"Time: {match.time or 'TBD'}", font=text_font, fill="#212529")
+    info_y += 35
+    draw.text((70, info_y), f"Location: {match.location_name}", font=text_font, fill="#212529")
+    info_y += 35
+    draw.text((70, info_y), f"Players: {max_players} total • {spots_left} spots left", font=text_font, fill="#28a745" if spots_left > 0 else "#dc3545")
+
+    # --- Participants section ---
+    y = header_height + info_height + 50
+    draw.rectangle([50, y, 50 + info_width, y + 40], fill="#e9ecef")
+    draw.text((70, y + 10), "PARTICIPANTS", font=header_font, fill="#495057")
+    
+    # Participants list with alternating background
+    y += 50
+    for idx, p in enumerate(participants, start=1):
+        if idx % 2 == 0:
+            draw.rectangle([50, y - 5, 50 + info_width, y + 30], fill="#f8f9fa")
+        draw.text((70, y), f"{idx:2d}. {p.user.username}", font=text_font, fill="#212529")
+        y += 35
+
+    # Empty slots with different styling
+    for idx in range(len(participants)+1, max_players+1):
+        if idx % 2 == 0:
+            draw.rectangle([50, y - 5, 50 + info_width, y + 30], fill="#f8f9fa")
+        draw.text((70, y), f"{idx:2d}. ---", font=small_font, fill="#6c757d")
+        y += 35
+
+    # --- Footer ---
+    footer_y = height - 40
+    draw.rectangle([0, footer_y, width, height], fill="#343a40")
+    draw.text((width//2 - 100, footer_y + 10), "Join this match on FootyOn!", font=small_font, fill="#ffffff")
+
+    # --- Return image as downloadable file ---
+    buffer = io.BytesIO()
+    image.save(buffer, format='PNG')
+    buffer.seek(0)
+    response = HttpResponse(buffer, content_type='image/png')
+    response['Content-Disposition'] = f'attachment; filename=match_{match.id}.png'
+    return response
+
+
+def share_on_whatsapp(request, match_id):
+    """Generate WhatsApp sharing URL with match details"""
+    match = get_object_or_404(Match, id=match_id)
+    
+    # Create the message text
+    message = f"""⚽ *Football Match Alert!*
+
+📅 *{match.day_of_week}, {match.date}*
+🕐 *Time:* {match.time or 'TBD'}
+🏟️ *Location:* {match.location_name}
+👥 *Players:* {match.max_players} total • {match.spots_left} spots left
+
+Join this match on FootyOn!
+{request.build_absolute_uri(f'/matches/{match_id}/')}"""
+    
+    # URL encode the message
+    import urllib.parse
+    encoded_message = urllib.parse.quote(message)
+    
+    # Create WhatsApp URL
+    whatsapp_url = f"https://wa.me/?text={encoded_message}"
+    
+    # Redirect to WhatsApp
+    return redirect(whatsapp_url)
+
+
+def share_with_image_instructions(request, match_id):
+    """Show instructions for sharing image on WhatsApp"""
+    match = get_object_or_404(Match, id=match_id)
+    
+    context = {
+        'match': match,
+        'image_url': request.build_absolute_uri(f'/matches/share_image/{match_id}/'),
+        'match_url': request.build_absolute_uri(f'/matches/{match_id}/'),
+    }
+    
+    return render(request, 'matches/share_instructions.html', context)

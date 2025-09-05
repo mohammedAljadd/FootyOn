@@ -13,4 +13,7 @@ urlpatterns = [
     path('<int:match_id>/', views.view_match, name='view_match'),
     path('<int:match_id>/edit/', views.edit_match, name='edit_match'),
     path('<int:match_id>/delete/', views.delete_match, name='delete_match'),
+    path('share_image/<int:match_id>/', views.download_match_image, name='share_image'),
+    path('<int:match_id>/share_whatsapp/', views.share_on_whatsapp, name='share_whatsapp'),
+    path('<int:match_id>/share_image_guide/', views.share_with_image_instructions, name='share_image_guide'),
 ]

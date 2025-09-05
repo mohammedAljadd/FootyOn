@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Share Match Image{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="h3 mb-4">Share Match Image on WhatsApp</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-6">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">📱 How to Share Image on WhatsApp</h5>
+            </div>
+            <div class="card-body">
+                <ol class="mb-4">
+                    <li class="mb-2">
+                        <strong>Download the image:</strong>
+                        <a href="{{ image_url }}" class="btn btn-sm btn-primary ms-2" download>
+                            <i class="bi bi-download me-1"></i>Download Image
+                        </a>
+                    </li>
+                    <li class="mb-2">Open WhatsApp on your phone</li>
+                    <li class="mb-2">Go to the chat where you want to share</li>
+                    <li class="mb-2">Tap the attachment icon (📎)</li>
+                    <li class="mb-2">Select "Gallery" or "Photos"</li>
+                    <li class="mb-2">Choose the downloaded image</li>
+                    <li class="mb-2">Add a caption with the match link if desired</li>
+                    <li class="mb-2">Send the message</li>
+                </ol>
+                
+                <div class="alert alert-info">
+                    <strong>💡 Tip:</strong> You can also copy the match link and paste it in the caption:
+                    <br><code class="mt-2 d-block">{{ match_url }}</code>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-12 col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">⚽ Match Preview</h5>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-3">
+                    <img src="{{ image_url }}" alt="Match Image" class="img-fluid border rounded" style="max-height: 300px;">
+                </div>
+                
+                <div class="d-grid gap-2">
+                    <a href="{{ image_url }}" class="btn btn-success" download>
+                        <i class="bi bi-download me-2"></i>Download Image
+                    </a>
+                    <a href="{% url 'matches:share_whatsapp' match.id %}" class="btn btn-outline-success" target="_blank">
+                        <i class="bi bi-whatsapp me-2"></i>Share Text Only
+                    </a>
+                    <a href="{% url 'matches:view_match' match.id %}" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left me-2"></i>Back to Match
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="alert alert-warning">
+            <h6><i class="bi bi-info-circle me-2"></i>Why can't we share images directly?</h6>
+            <p class="mb-0">
+                WhatsApp Web API doesn't support sharing images directly via URL parameters. 
+                The image needs to be downloaded first and then shared manually through the WhatsApp app.
+                This is a limitation of WhatsApp's sharing system, not our application.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
