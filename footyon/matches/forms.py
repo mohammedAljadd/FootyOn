@@ -23,3 +23,14 @@ class MatchForm(forms.ModelForm):
         }
 
 
+
+    # ensures the admin cannot reduce max_players below the number of joined participants.
+    def clean_max_players(self):
+        max_players = self.cleaned_data.get('max_players')
+        if self.instance.pk:  # editing existing match
+            joined_count = self.instance.participation_set.filter(status='joined').count()
+            if max_players < joined_count:
+                raise forms.ValidationError(
+                    f"Cannot set max players below current joined count ({joined_count})."
+                )
+        return max_players

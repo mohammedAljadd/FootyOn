@@ -61,3 +61,35 @@ def view_match(request, match_id):
         'default_home': reverse('home'),
     }
     return render(request, 'matches/view_match.html', context)
+
+
+def edit_match(request, match_id):
+    match = get_object_or_404(Match, id=match_id)
+    joined_count = Participation.objects.filter(match=match, status='joined').count()
+
+    if request.method == 'POST':
+        form = MatchForm(request.POST, instance=match)
+        if form.is_valid():
+            form.save()  # No add_error
+            return redirect('matches:manage')
+    else:
+        form = MatchForm(instance=match)
+
+    return render(
+        request,
+        'matches/edit_match.html',
+        {
+            'form': form,
+            'match': match,
+            'joined_count': joined_count,
+        }
+    )
+
+
+
+def delete_match(request, match_id):
+    match = get_object_or_404(Match, id=match_id)
+    if request.method == 'POST':
+        match.delete()
+        return redirect('matches:manage')
+    return render(request, 'matches/delete_match.html', {'match': match})
