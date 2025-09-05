@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Mark No-Show{% endblock %}
+
+{% block content %}
+<h2>Mark {{ participation.user.username }} as No-Show</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-danger">Mark No-Show</button>
+    <a href="{% url 'matches:view_match' participation.match.id %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

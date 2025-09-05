@@ -227,3 +227,6 @@ def share_with_image_instructions(request, match_id):
     }
     
     return render(request, 'matches/share_instructions.html', context)
+
+
+
