@@ -6,5 +6,7 @@ urlpatterns = [
     path('leave/<int:match_id>/', views.leave_match, name='leave_match'),
     path('no_show/<int:participation_id>/', views.mark_no_show, name='mark_no_show'),
     path('remove_no_show/<int:participation_id>/', views.remove_no_show, name='remove_no_show'),
+    path('remove_participant/<int:participation_id>/', views.remove_participant, name='remove_participant'),
+    path('<int:participation_id>/restore/', views.restore_participant, name='restore_participant'),
 
 ]

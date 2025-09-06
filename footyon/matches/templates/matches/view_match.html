@@ -65,7 +65,7 @@
                         <th>Time</th>
                         <th>No-show</th>
                         <th>Mark No-show</th>
-                        
+                        <th>Remove From List</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -104,10 +104,21 @@
                                     {% endif %}
                                 {% endif %}
                             </td>
+
+                            <td>
+                                {% if user.is_superuser and not p.removed and p.status == 'joined' %}
+                                    <a href="{% url 'remove_participant' p.id %}" 
+                                    class="btn btn-outline-danger btn-sm"
+                                    onclick="return confirm('Are you sure you want to remove {{ p.user.username }}?');">
+                                        <i class="bi bi-person-x"></i> Remove
+                                    </a>
+                                {% endif %}
+                            </td>
+
                         </tr>
                     {% empty %}
                         <tr>
-                            <td colspan="5" class="text-center">No active participants yet.</td>
+                            <td colspan="6" class="text-center">No active participants yet.</td>
                         </tr>
                     {% endfor %}
                     
@@ -167,6 +178,8 @@
                                     {% endif %}
                                 {% endif %}
                             </td>
+
+                          
                             
                         </tr>
                     {% empty %}
@@ -181,7 +194,78 @@
 </div>
 
 
+<div class="row">
+    <div class="col-12">
+        <h3 class="h4 mb-3">Removed Participants</h3>
+        <div class="table-responsive">
+            <table class="table table-striped mb-4">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Status</th>
+                        <th>Time</th>
+                        <th>No-show</th>
+                        <th>Mark No-show</th>
+                        <th>Add Back To List</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in removed_participants %}
+                        <tr>
+                            <td data-label="Username">{{ p.user.username }}</td>
+                            <td data-label="Status">
+                                <span class="badge bg-success">{{ p.status }}</span>
+                            </td>
+                            <td data-label="Time">
+                                <span class="badge bg-primary">{{ p.status_time }}</span>
+                            </td>
+                            <td data-label="No-show">
+                                {% if p.is_no_show %}
+                                    {% if p.no_show_reason == 'excused' %}
+                                        <span class="badge bg-success">Yes (Excused)</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">Yes ({{ p.no_show_reason|capfirst }})</span>
+                                    {% endif %}
+                                {% else %}
+                                    <span class="badge bg-success">No</span>
+                                {% endif %}
+                            </td>
 
+
+                            <td>
+                                {% if user.is_superuser %}
+                                    {% if not p.is_no_show %}
+                                        <a href="{% url 'mark_no_show' p.id %}" class="btn btn-danger btn-sm">
+                                            <i class="bi bi-exclamation-triangle me-1"></i> Mark No-Show
+                                        </a>
+                                    {% else %}
+                                        <a href="{% url 'remove_no_show' p.id %}" class="btn btn-warning btn-sm">
+                                            <i class="bi bi-x-circle me-1"></i> Remove No-Show
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                            
+                            <td>
+                                <a href="{% url 'restore_participant' p.id %}" 
+                                class="btn btn-outline-success btn-sm"
+                                onclick="return confirm('Add back {{ p.user.username }}?');">
+                                    <i class="bi bi-person-check"></i> Add Back
+                                </a>
+                            </td>
+
+                            
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center">No participants have left yet.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% if match.location_google_maps_embed_url %}
 <div class="row">
     <div class="col-12">

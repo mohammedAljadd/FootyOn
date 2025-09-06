@@ -75,3 +75,34 @@ def remove_no_show(request, participation_id):
 
     # Redirect back to the match view
     return redirect('matches:view_match', match_id=participation.match.id)
+
+
+from django.utils import timezone
+from django.contrib import messages
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)  # Only admin
+def remove_participant(request, participation_id):
+    participation = get_object_or_404(Participation, id=participation_id)
+    participation.removed = True
+    participation.removed_time = timezone.now()
+    participation.status = 'joined' # because status_time is not changed, we leave this as joined, convenient
+    participation.save()
+
+    messages.success(request, f"{participation.user.username} has been removed from the match.")
+    return redirect('matches:view_match', match_id=participation.match.id)
+
+
+def restore_participant(request, participation_id):
+    participation = get_object_or_404(Participation, id=participation_id)
+
+    if not request.user.is_superuser:
+        messages.error(request, "You don’t have permission to restore participants.")
+        return redirect('matches:view_match', match_id=participation.match.id)
+
+    participation.removed = False
+    participation.removed_time = None
+    participation.save()
+
+    messages.success(request, f"{participation.user.username} was added back to the match.")
+    return redirect('matches:view_match', match_id=participation.match.id)

@@ -51,16 +51,20 @@ def view_match(request, match_id):
 
 
     # Active participants for everyone
-    active_participants = Participation.objects.filter(match=match, status='joined')
+    active_participants = Participation.objects.filter(match=match, status='joined', removed=False)
 
     # Left participants for admins only
-    left_participants = Participation.objects.filter(match=match).exclude(status='joined') if request.user.is_superuser else []
+    left_participants = Participation.objects.filter(match=match, status='left', removed=False) if request.user.is_superuser else []
 
+    # Removed participants for admins only
+    removed_participants = Participation.objects.filter(match=match, removed=True) if request.user.is_superuser else []
 
+    
     context = {
         'match': match,
         'active_participants': active_participants,
         'left_participants': left_participants,
+        'removed_participants': removed_participants,
         'previous_url': previous_url,
         'default_home': reverse('home'),
     }

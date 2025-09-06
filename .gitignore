@@ -4,3 +4,4 @@ footyon/db.sqlite3
 *.pyc
 __pycache__/
 *.py[cod]
+pass_generator.py
