@@ -28,5 +28,10 @@ class Participation(models.Model):
         max_length=20, choices=NO_SHOW_REASON_CHOICES, null=True, blank=True
     )
 
+    # Track attendance: mark participants who actually show up to the match.
+    # This makes it easy to determine no-shows without manually checking.
+    is_present = models.BooleanField(default=False)
+
+
     def __str__(self):
         return f"{self.user} - {self.match} ({self.status})"

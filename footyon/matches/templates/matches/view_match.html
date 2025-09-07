@@ -67,6 +67,7 @@
                         {% if user.is_superuser %}
                         <th>Mark No-show</th>
                         <th>Remove From List</th>
+                        <th>Mark Present</th>
                         {% endif %}
                     </tr>
                 </thead>
@@ -82,6 +83,7 @@
                             </td>
 
                             <td data-label="No-show">
+
                                 {% if p.is_no_show %}
                                     {% if p.no_show_reason == 'excused' %}
                                         <span class="badge bg-success">Yes (Excused)</span>
@@ -97,13 +99,18 @@
                             <td>
                                 {% if p.status != 'left' %}
                                     {% if not p.is_no_show %}
-                                        <a href="{% url 'mark_no_show' p.id %}" class="btn btn-danger btn-sm">
+                                        <a href="{% url 'mark_no_show' p.id %}" class="btn {% if p.is_present %}btn-secondary disabled{% else %}btn-danger{% endif %} btn-sm"
+   {% if p.is_present %}aria-disabled="true"{% endif %}
                                             <i class="bi bi-exclamation-triangle me-1"></i> Mark No-Show
                                         </a>
                                     {% else %}
-                                        <a href="{% url 'remove_no_show' p.id %}" class="btn btn-warning btn-sm">
-                                            <i class="bi bi-x-circle me-1"></i> Remove No-Show
-                                        </a>
+                                        <a href="{% url 'remove_no_show' p.id %}" 
+   class="btn btn-warning btn-sm {% if p.is_present %}btn-secondary{% endif %}"
+   {% if p.is_present %}onclick="return false;" aria-disabled="true"{% endif %}>
+    <i class="bi bi-x-circle me-1"></i> Remove No-Show
+</a>
+
+
                                     {% endif %}
                                 {% endif %}
                             </td>
@@ -117,6 +124,20 @@
                                     </a>
                                 {% endif %}
                             </td>
+
+                            <td>
+                                {% if user.is_superuser %}
+                                    {% if not p.is_present %}
+                                        <a href="{% url 'mark_present' p.id %}" class="btn {% if p.is_no_show %}btn-secondary disabled{% else %}btn-success{% endif %} btn-sm"
+                                           {% if p.is_no_show %}aria-disabled="true"{% endif %}>
+                                            Mark Present
+                                        </a>
+                                    {% else %}
+                                        <a href="{% url 'remove_present' p.id %}" class="btn btn-warning btn-sm">Remove Present</a>
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+
                             {% endif %}
 
                         </tr>

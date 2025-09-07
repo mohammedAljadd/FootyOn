@@ -92,7 +92,8 @@ def remove_participant(request, participation_id):
     messages.success(request, f"{participation.user.username} has been removed from the match.")
     return redirect('matches:view_match', match_id=participation.match.id)
 
-
+@login_required
+@user_passes_test(lambda u: u.is_superuser)  # Only admin
 def restore_participant(request, participation_id):
     participation = get_object_or_404(Participation, id=participation_id)
 
@@ -105,4 +106,25 @@ def restore_participant(request, participation_id):
     participation.save()
 
     messages.success(request, f"{participation.user.username} was added back to the match.")
+    return redirect('matches:view_match', match_id=participation.match.id)
+
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)  # Only admin
+def mark_present(request, participation_id):
+    """Mark a participant as present."""
+    participation = get_object_or_404(Participation, id=participation_id)
+    participation.is_present = True
+    participation.save()
+    # Redirect back to match view
+    return redirect('matches:view_match', match_id=participation.match.id)
+
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)  # Only admin
+def remove_present(request, participation_id):
+    """Remove the present mark if admin made a mistake."""
+    participation = get_object_or_404(Participation, id=participation_id)
+    participation.is_present = False
+    participation.save()
     return redirect('matches:view_match', match_id=participation.match.id)
