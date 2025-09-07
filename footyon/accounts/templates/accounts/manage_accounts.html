@@ -30,18 +30,18 @@
                 <td>{{ user.username }}</td>
                 <td></td>
                 <td>
-                    {% if user.is_active %}
-                        <span class="badge bg-success">Active</span>
-                    {% else %}
+                    {% if user.is_disabled %}
                         <span class="badge bg-danger">Disabled</span>
+                    {% else %}
+                        <span class="badge bg-success">Active</span>
                     {% endif %}
                 </td>
                 <td>{{ user.date_joined|date:"Y-m-d" }}</td>
                 <td>
                     {% if user != request.user %}
                         <a href="{% url 'toggle_account_status' user.id %}"
-                           class="btn {% if user.is_active %}btn-danger{% else %}btn-success{% endif %} btn-sm">
-                            {% if user.is_active %}Deactivate{% else %}Activate{% endif %}
+                           class="btn {% if user.is_disabled %}btn-danger{% else %}btn-success{% endif %} btn-sm">
+                            {% if user.is_disabled %}Activate{% else %}Deactivate{% endif %}
                         </a>
                     {% else %}
                         <span class="text-muted">N/A</span>

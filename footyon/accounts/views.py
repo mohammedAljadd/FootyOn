@@ -22,7 +22,7 @@ def is_admin(user):
 
 @user_passes_test(is_admin)
 def manage_accounts(request):
-    users = User.objects.all().order_by("-is_active", "username")
+    users = User.objects.all().order_by("username")
     return render(request, "accounts/manage_accounts.html", {"users": users})
 
 @user_passes_test(is_admin)
@@ -34,12 +34,12 @@ def toggle_account_status(request, user_id):
         messages.error(request, "You cannot deactivate your own account.")
         return redirect("manage_accounts")
 
-    user.is_active = not user.is_active
+    user.is_disabled = not user.is_disabled
     user.save()
 
-    if user.is_active:
-        messages.success(request, f"✅ {user.username} has been activated.")
-    else:
+    if user.is_disabled:
         messages.warning(request, f"🚫 {user.username} has been deactivated.")
+    else:
+        messages.success(request, f"✅ {user.username} has been activated.")
 
     return redirect("manage_accounts")
