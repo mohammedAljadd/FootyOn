@@ -40,7 +40,7 @@
                 <td>
                     {% if user != request.user %}
                         <a href="{% url 'toggle_account_status' user.id %}"
-                           class="btn {% if user.is_disabled %}btn-danger{% else %}btn-success{% endif %} btn-sm">
+                           class="btn {% if user.is_disabled %}btn-success{% else %}btn-danger{% endif %} btn-sm">
                             {% if user.is_disabled %}Activate{% else %}Deactivate{% endif %}
                         </a>
                     {% else %}

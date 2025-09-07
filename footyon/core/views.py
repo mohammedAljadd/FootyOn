@@ -2,7 +2,9 @@ from django.shortcuts import render
 from datetime import date
 from matches.models import Match
 from participation.models import Participation
+from accounts.decorators import active_user_required
 
+@active_user_required
 def home(request):
     """
     Home page view: shows upcoming matches and Join/Leave buttons

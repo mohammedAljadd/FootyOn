@@ -5,10 +5,11 @@ from .forms import NoShowForm
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import user_passes_test
-
+from accounts.decorators import active_user_required
 
 
 @login_required
+@active_user_required
 def join_match(request, match_id):
     match = get_object_or_404(Match, id=match_id)
 
@@ -28,6 +29,7 @@ def join_match(request, match_id):
 
 
 @login_required
+@active_user_required
 def leave_match(request, match_id):
     match = get_object_or_404(Match, id=match_id)
     try:

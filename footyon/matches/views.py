@@ -9,7 +9,8 @@ from PIL import Image, ImageDraw, ImageFont
 from django.shortcuts import get_object_or_404, redirect
 from django.http import HttpResponse
 import io
-
+from accounts.decorators import *
+from django.urls import reverse
 
 def is_admin(user):
     return user.is_superuser
@@ -30,7 +31,7 @@ def manage_matches(request):
 
     return render(request, 'matches/manage_matches.html', {'matches': matches})
 
-
+@user_passes_test(is_admin)
 def create_match(request):
     if request.method == "POST":
         form = MatchForm(request.POST)
@@ -43,8 +44,7 @@ def create_match(request):
     return render(request, "matches/create_match.html", {"form": form})
 
 
-from django.urls import reverse
-
+@active_user_required
 def view_match(request, match_id):
     match = get_object_or_404(Match, id=match_id)
     previous_url = request.META.get('HTTP_REFERER', None)
@@ -70,7 +70,7 @@ def view_match(request, match_id):
     }
     return render(request, 'matches/view_match.html', context)
 
-
+@user_passes_test(is_admin)
 def edit_match(request, match_id):
     match = get_object_or_404(Match, id=match_id)
     joined_count = Participation.objects.filter(match=match, status='joined').count()
@@ -94,7 +94,7 @@ def edit_match(request, match_id):
     )
 
 
-
+@user_passes_test(is_admin)
 def delete_match(request, match_id):
     match = get_object_or_404(Match, id=match_id)
     if request.method == 'POST':
@@ -103,7 +103,7 @@ def delete_match(request, match_id):
     return render(request, 'matches/delete_match.html', {'match': match})
 
 
-
+@active_user_required
 def download_match_image(request, match_id):
     match = get_object_or_404(Match, id=match_id)
     participants = match.participation_set.filter(status='joined')
@@ -193,7 +193,7 @@ def download_match_image(request, match_id):
     response['Content-Disposition'] = f'attachment; filename=match_{match.id}.png'
     return response
 
-
+@active_user_required
 def share_on_whatsapp(request, match_id):
     """Generate WhatsApp sharing URL with match details"""
     match = get_object_or_404(Match, id=match_id)
