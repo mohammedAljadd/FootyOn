@@ -106,6 +106,7 @@ def stats_dashboard(request):
 
     context = {
         "total_matches": matches_with_attendance.count(),
+        "matches_with_attendance": matches_with_attendance,
         "avg_attendance_percent": round(avg_attendance_percent, 2),
         "user_stats": user_stats,
     }
