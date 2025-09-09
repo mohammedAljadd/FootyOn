@@ -99,7 +99,7 @@
 
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link fw-semibold px-3" href="#">
+                        <a class="nav-link fw-semibold px-3" href="{% url 'stats:dashboard' %}">
                             <i class="bi bi-bar-chart me-1"></i>Stats
                         </a>
                     </li>

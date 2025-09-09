@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Stats Dashboard{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h2 class="mb-4">📊 Stats Dashboard</h2>
+
+    <!-- Global Stats -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card shadow-sm text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Total Matches</h5>
+                    <p class="display-6">{{ total_matches }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Avg Attendance %</h5>
+                    <p class="display-6">{{ avg_attendance_percent }}%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Per User Stats -->
+    <h3>User Stats</h3>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Username</th>
+                    <th>Total Enrolled</th>
+                    <th>Total Attended</th>
+                    <th>Total Left</th>
+                    <th>Absent (Excused)</th>
+                    <th>Absent (Not Excused)</th>
+                    <th>Absent (Last Minute)</th>
+                    <th>Attendance %</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stat in user_stats %}
+                <tr>
+                    <td>{{ stat.username }}</td>
+                    <td>{{ stat.total_enrolled }}</td>
+                    <td>{{ stat.attended }} ({{ stat.perc_attended }}%)</td>
+                    <td>{{ stat.total_left }} ({{ stat.perc_left }}%)</td>
+                    <td>{{ stat.total_absent_excused }} ({{ stat.perc_absent_excused }}%)</td>
+                    <td>{{ stat.total_absent_not_excused }} ({{ stat.perc_absent_not_excused }}%)</td>
+                    <td>{{ stat.total_absent_last_minute }} ({{ stat.perc_absent_last_minute }}%)</td>
+                    <td>{{ stat.perc_attended }}%</td>
+
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8" class="text-center">No users found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
