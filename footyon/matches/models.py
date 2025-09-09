@@ -1,6 +1,7 @@
 from django.db import models
 from participation.models import Participation
 import calendar
+import uuid
 
 class Match(models.Model):
     date = models.DateField()
@@ -12,6 +13,15 @@ class Match(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     max_players = models.PositiveIntegerField(default=12)
+    
+    # New field for secure QR
+    qr_token = models.UUIDField(
+        default=uuid.uuid4,  # generate unique UUID automatically
+        unique=True,
+        editable=False,
+        null=True,  # allows existing rows without token
+        blank=True
+    )
 
     def __str__(self):
         return f"{self.location_name} on {self.date}"

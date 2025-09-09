@@ -16,6 +16,16 @@
 </div>
 
 
+{% if user.is_superuser %}
+<div class="row my-4">
+    <div class="col-12 text-center">
+        <h4>Scan to Mark Presence</h4>
+        <img src="{% url 'matches:match_qr' match.id %}" alt="Match QR Code" class="img-fluid" />
+    </div>
+</div>
+{% endif %}
+
+
 <div class="row">
     <div class="col-12">
         <h2 class="h3 mb-4">Match Details</h2>

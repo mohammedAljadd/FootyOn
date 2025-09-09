@@ -11,6 +11,7 @@ from django.http import HttpResponse
 import io
 from accounts.decorators import *
 from django.urls import reverse
+import qrcode
 
 def is_admin(user):
     return user.is_superuser
@@ -234,3 +235,15 @@ def share_with_image_instructions(request, match_id):
 
 
 
+def match_qr_code(request, match_id):
+    match = get_object_or_404(Match, id=match_id)
+
+    # Generate QR that encodes the unique token
+    qr_data = f"{request.build_absolute_uri('/')[:-1]}/matches/scan/{match.qr_token}/"
+    qr_img = qrcode.make(qr_data)
+
+    buffer = io.BytesIO()
+    qr_img.save(buffer, format="PNG")
+    buffer.seek(0)
+    print(qr_data)
+    return HttpResponse(buffer.getvalue(), content_type="image/png")
