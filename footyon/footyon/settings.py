@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-_@wv$lkm!22(h21lz)m8#8-0onpwe7%a-6yq-i&ke@2^4mdu0j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.22', '127.0.0.1']
+ALLOWED_HOSTS = ['192.168.1.22', '127.0.0.1', '0cbbe12ae368.ngrok-free.app']
 
 
 # Prevent Django from using default User
@@ -57,6 +57,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:8000",  # local dev
+    "http://localhost:8000",
+    "https://0cbbe12ae368.ngrok-free.app",  # your ngrok URL
+]
+
 
 ROOT_URLCONF = 'footyon.urls'
 

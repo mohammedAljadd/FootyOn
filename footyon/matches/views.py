@@ -235,15 +235,92 @@ def share_with_image_instructions(request, match_id):
 
 
 
-def match_qr_code(request, match_id):
+import io
+import qrcode
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from .models import Match
+
+
+@login_required
+def match_qr_display(request, match_id):
+    """Display match details with QR code for attendance."""
     match = get_object_or_404(Match, id=match_id)
+    
+    # Ensure QR token exists
+    if not match.qr_token:
+        match.save()  # This will generate the UUID
+        
+    return render(request, 'matches/match_qr_display.html', {
+        'match': match
+    })
 
-    # Generate QR that encodes the unique token
-    qr_data = f"{request.build_absolute_uri('/')[:-1]}/matches/scan/{match.qr_token}/"
-    qr_img = qrcode.make(qr_data)
 
+@login_required
+def match_qr_code(request, match_id):
+    """Generate QR code for a match."""
+    match = get_object_or_404(Match, id=match_id)
+    
+    # Ensure match has a QR token
+    if not match.qr_token:
+        # Generate token if it doesn't exist
+        import uuid
+        match.qr_token = str(uuid.uuid4())
+        match.save()
+    
+    # Create the QR code data - just the token, not full URL
+    # The frontend will handle the full URL construction
+    qr_data = match.qr_token
+    
+    # Generate QR code
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(qr_data)
+    qr.make(fit=True)
+    
+    qr_img = qr.make_image(fill_color="black", back_color="white")
+    
+    # Return as PNG
     buffer = io.BytesIO()
     qr_img.save(buffer, format="PNG")
     buffer.seek(0)
-    print(qr_data)
+    
+    return HttpResponse(buffer.getvalue(), content_type="image/png")
+
+
+# Alternative: If you want to generate QR with full URL
+@login_required
+def match_qr_code_with_url(request, match_id):
+    """Generate QR code with full URL for a match."""
+    match = get_object_or_404(Match, id=match_id)
+    
+    if not match.qr_token:
+        import uuid
+        match.qr_token = str(uuid.uuid4())
+        match.save()
+    
+    # Full URL approach
+    base_url = request.build_absolute_uri('/')[:-1]  # Remove trailing slash
+    qr_data = f"{base_url}/matches/scan/{match.qr_token}/"
+    
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(qr_data)
+    qr.make(fit=True)
+    
+    qr_img = qr.make_image(fill_color="black", back_color="white")
+    
+    buffer = io.BytesIO()
+    qr_img.save(buffer, format="PNG")
+    buffer.seek(0)
+    
     return HttpResponse(buffer.getvalue(), content_type="image/png")

@@ -1,0 +1,407 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Scanner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .scanner-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 500px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+        
+        .scanner-section {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .camera-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        #camera {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            background: #f8f9fa;
+        }
+        
+        .camera-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border: 3px solid #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.3);
+        }
+        
+        .camera-overlay::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border: 3px solid #4CAF50;
+            border-radius: 15px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        
+        #status {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e3f2fd;
+            color: #1976d2;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .status-success {
+            background: #e8f5e8 !important;
+            color: #2e7d32 !important;
+            border-left-color: #4caf50 !important;
+        }
+        
+        .status-error {
+            background: #ffebee !important;
+            color: #c62828 !important;
+            border-left-color: #f44336 !important;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+            transform: translateY(-2px);
+        }
+        
+        .loading {
+            display: none;
+            margin: 10px 0;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .instructions {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .instructions h3 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .instructions ul {
+            color: #6c757d;
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            
+            .scanner-section {
+                padding: 20px;
+            }
+            
+            #camera {
+                height: 250px;
+            }
+            
+            .camera-overlay {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scanner-container">
+        <div class="header">
+            <h1>📱 QR Code Scanner</h1>
+            <p>Point your camera at a QR code to mark attendance</p>
+        </div>
+        
+        <div class="scanner-section">
+            <div class="camera-container">
+                <video id="camera" playsinline></video>
+                <div class="camera-overlay"></div>
+            </div>
+            
+            <div id="status">Position the QR code within the frame</div>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Processing...</p>
+            </div>
+            
+            <div class="controls">
+                <button id="startBtn" class="btn btn-primary">Start Scanner</button>
+                <button id="stopBtn" class="btn btn-secondary" style="display: none;">Stop Scanner</button>
+            </div>
+            
+            <div class="instructions">
+                <h3>Instructions:</h3>
+                <ul>
+                    <li>Click "Start Scanner" to begin</li>
+                    <li>Allow camera access when prompted</li>
+                    <li>Point your camera at the match QR code</li>
+                    <li>Keep the QR code within the green frame</li>
+                    <li>Wait for automatic detection and processing</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // QR Scanner using html5-qrcode library
+        import { Html5QrcodeScanner } from "https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js";
+        
+        const video = document.getElementById('camera');
+        const status = document.getElementById('status');
+        const loading = document.getElementById('loading');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        
+        let scanner = null;
+        let isScanning = false;
+
+        // Get CSRF token from cookie
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let cookie of cookies) {
+                    cookie = cookie.trim();
+                    if (cookie.startsWith(name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        function updateStatus(message, type = 'info') {
+            status.textContent = message;
+            status.className = '';
+            if (type === 'success') {
+                status.classList.add('status-success');
+            } else if (type === 'error') {
+                status.classList.add('status-error');
+            }
+        }
+
+        function showLoading(show) {
+            loading.style.display = show ? 'block' : 'none';
+        }
+
+        function onScanSuccess(decodedText, decodedResult) {
+            if (isScanning) {
+                isScanning = false;
+                updateStatus('QR Code detected! Processing...', 'info');
+                showLoading(true);
+
+                // Extract token from the URL if it's a full URL
+                let token = decodedText;
+                const urlMatch = decodedText.match(/\/matches\/scan\/([^\/]+)\/?$/);
+                if (urlMatch) {
+                    token = urlMatch[1];
+                }
+
+                const csrftoken = getCookie('csrftoken');
+
+                fetch("{% url 'confirm_presence' %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken
+                    },
+                    body: JSON.stringify({ qr_token: token })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    showLoading(false);
+                    if (data.success) {
+                        updateStatus(data.message, 'success');
+                        setTimeout(() => {
+                            stopScanner();
+                        }, 3000);
+                    } else {
+                        updateStatus(data.message, 'error');
+                        setTimeout(() => {
+                            isScanning = true;
+                            updateStatus('Position the QR code within the frame');
+                        }, 3000);
+                    }
+                })
+                .catch(error => {
+                    showLoading(false);
+                    updateStatus('Network error. Please try again.', 'error');
+                    console.error('Error:', error);
+                    setTimeout(() => {
+                        isScanning = true;
+                        updateStatus('Position the QR code within the frame');
+                    }, 3000);
+                });
+            }
+        }
+
+        function onScanError(errorMessage) {
+            // Don't update status for every scan error, just keep scanning
+        }
+
+        function startScanner() {
+            const config = {
+                fps: 10,
+                qrbox: { width: 250, height: 250 },
+                aspectRatio: 1.0
+            };
+
+            scanner = new Html5QrcodeScanner("camera", config);
+            
+            scanner.render(onScanSuccess, onScanError);
+            
+            isScanning = true;
+            startBtn.style.display = 'none';
+            stopBtn.style.display = 'inline-block';
+            updateStatus('Camera starting... Position QR code in frame');
+        }
+
+        function stopScanner() {
+            if (scanner) {
+                scanner.clear().then(() => {
+                    scanner = null;
+                    isScanning = false;
+                    startBtn.style.display = 'inline-block';
+                    stopBtn.style.display = 'none';
+                    updateStatus('Scanner stopped');
+                    showLoading(false);
+                }).catch(err => {
+                    console.error('Error stopping scanner:', err);
+                });
+            }
+        }
+
+        startBtn.addEventListener('click', startScanner);
+        stopBtn.addEventListener('click', stopScanner);
+
+        // Auto-start scanner when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(startScanner, 1000);
+        });
+    </script>
+</body>
+</html>

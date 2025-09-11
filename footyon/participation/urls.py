@@ -10,4 +10,7 @@ urlpatterns = [
     path('<int:participation_id>/restore/', views.restore_participant, name='restore_participant'),
     path('mark_present/<int:participation_id>/', views.mark_present, name='mark_present'),
     path('remove_present/<int:participation_id>/', views.remove_present, name='remove_present'),
+    path('scan_qr/', views.scan_qr, name='scan_qr'),
+    path('confirm_presence/', views.confirm_presence, name='confirm_presence'),
+
 ]

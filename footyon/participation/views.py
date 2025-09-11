@@ -130,3 +130,164 @@ def remove_present(request, participation_id):
     participation.is_present = False
     participation.save()
     return redirect('matches:view_match', match_id=participation.match.id)
+
+
+# participation/views.py
+import json
+from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.utils.decorators import method_decorator
+from matches.models import Match  # Adjust import as needed
+from .models import Participation
+
+
+@login_required
+@ensure_csrf_cookie
+def scan_qr(request):
+    """Page with camera to scan QR code."""
+    return render(request, 'participation/scan_qr.html')
+
+
+@login_required
+@require_POST
+def confirm_presence(request):
+    """Mark user as present via QR token."""
+    try:
+        # Parse JSON data from request body
+        data = json.loads(request.body)
+        token = data.get('qr_token')
+        
+        if not token:
+            return JsonResponse({
+                'success': False, 
+                'message': 'No QR token provided'
+            })
+        
+        # Find match by QR token
+        try:
+            match = Match.objects.get(qr_token=token)
+        except Match.DoesNotExist:
+            return JsonResponse({
+                'success': False, 
+                'message': 'Invalid QR code. Match not found.'
+            })
+        
+        # Check if match is still active/joinable
+        # Add your business logic here (e.g., time restrictions)
+        
+        # Create or update participation
+        participation, created = Participation.objects.get_or_create(
+            user=request.user, 
+            match=match,
+            defaults={'status': 'joined', 'is_present': True}
+        )
+        
+        if not created:
+            if participation.is_present:
+                return JsonResponse({
+                    'success': True, 
+                    'message': f'Already marked present for {match.title or "this match"}!'
+                })
+            participation.is_present = True
+            participation.save()
+        
+        return JsonResponse({
+            'success': True, 
+            'message': f'✅ Successfully marked present for {match.title or "this match"}!'
+        })
+    
+    except json.JSONDecodeError:
+        return JsonResponse({
+            'success': False, 
+            'message': 'Invalid request data'
+        })
+    except Exception as e:
+        # Log the error in production
+        print(f"Error in confirm_presence: {e}")
+        return JsonResponse({
+            'success': False, 
+            'message': 'An error occurred. Please try again.'
+        })
+
+
+import json
+from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.utils.decorators import method_decorator
+from matches.models import Match  # Adjust import as needed
+from .models import Participation
+
+
+@login_required
+@ensure_csrf_cookie
+def scan_qr(request):
+    """Page with camera to scan QR code."""
+    return render(request, 'participation/scan_qr.html')
+
+
+@login_required
+@require_POST
+def confirm_presence(request):
+    """Mark user as present via QR token."""
+    try:
+        # Parse JSON data from request body
+        data = json.loads(request.body)
+        token = data.get('qr_token')
+        
+        if not token:
+            return JsonResponse({
+                'success': False, 
+                'message': 'No QR token provided'
+            })
+        
+        # Find match by QR token
+        try:
+            match = Match.objects.get(qr_token=token)
+        except Match.DoesNotExist:
+            return JsonResponse({
+                'success': False, 
+                'message': 'Invalid QR code. Match not found.'
+            })
+        
+        # Check if match is still active/joinable
+        # Add your business logic here (e.g., time restrictions)
+        
+        # Create or update participation
+        participation, created = Participation.objects.get_or_create(
+            user=request.user, 
+            match=match,
+            defaults={'status': 'joined', 'is_present': True}
+        )
+        
+        if not created:
+            if participation.is_present:
+                return JsonResponse({
+                    'success': True, 
+                    'message': f'Already marked present for {match.title or "this match"}!'
+                })
+            participation.is_present = True
+            participation.save()
+        
+        return JsonResponse({
+            'success': True, 
+            'message': f'✅ Successfully marked present for {match.title or "this match"}!'
+        })
+    
+    except json.JSONDecodeError:
+        return JsonResponse({
+            'success': False, 
+            'message': 'Invalid request data'
+        })
+    except Exception as e:
+        # Log the error in production
+        print(f"Error in confirm_presence: {e}")
+        return JsonResponse({
+            'success': False, 
+            'message': 'An error occurred. Please try again.'
+        })
