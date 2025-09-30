@@ -1,0 +1,452 @@
+[
+  {
+    "model": "matches.match",
+    "pk": 1,
+    "fields": {
+      "date": "2025-08-04",
+      "time": "18:00:00",
+      "day_of_week": "Monday",
+      "location_name": "Sports Field",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10493.898219650906!2d7.200583880764323!3d43.67280736030106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd17585555555%3A0xadcff84be77756f5!2sSports%20Field!5e0!3m2!1sen!2sfr!4v1759203167192!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10493.898219650906!2d7.200583880764323!3d43.67280736030106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd17585555555%3A0xadcff84be77756f5!2sSports%20Field!5e0!3m2!1sen!2sfr!4v1759203167192!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-07-28T05:37:49Z",
+      "updated_at": "2025-07-28T06:06:49Z",
+      "max_players": 10
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 2,
+    "fields": {
+      "date": "2025-08-05",
+      "time": "20:00:00",
+      "day_of_week": "Tuesday",
+      "location_name": "Stade de l'Ouest",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-07-31T05:37:49Z",
+      "updated_at": "2025-07-31T05:54:49Z",
+      "max_players": 14
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 3,
+    "fields": {
+      "date": "2025-08-07",
+      "time": "20:00:00",
+      "day_of_week": "Thursday",
+      "location_name": "Stade de l'Ouest",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-08-04T05:37:49Z",
+      "updated_at": "2025-08-04T06:04:49Z",
+      "max_players": 16
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 4,
+    "fields": {
+      "date": "2025-08-08",
+      "time": "20:00:00",
+      "day_of_week": "Friday",
+      "location_name": "Stade de l'Ouest",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-08-06T05:37:49Z",
+      "updated_at": "2025-08-06T05:56:49Z",
+      "max_players": 12
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 5,
+    "fields": {
+      "date": "2025-08-09",
+      "time": "19:00:00",
+      "day_of_week": "Saturday",
+      "location_name": "Stade de l'Ouest",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-08-03T05:37:49Z",
+      "updated_at": "2025-08-03T05:59:49Z",
+      "max_players": 10
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 6,
+    "fields": {
+      "date": "2025-08-10",
+      "time": "20:00:00",
+      "day_of_week": "Sunday",
+      "location_name": "Stade de l'Ouest",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-08-07T05:37:49Z",
+      "updated_at": "2025-08-07T06:02:49Z",
+      "max_players": 10
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 7,
+    "fields": {
+      "date": "2025-08-11",
+      "time": "18:00:00",
+      "day_of_week": "Monday",
+      "location_name": "Stade de l'Ouest",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-08-07T05:37:49Z",
+      "updated_at": "2025-08-07T05:54:49Z",
+      "max_players": 16
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 8,
+    "fields": {
+      "date": "2025-08-12",
+      "time": "19:00:00",
+      "day_of_week": "Tuesday",
+      "location_name": "Stade de l'Ouest",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-08-08T05:37:49Z",
+      "updated_at": "2025-08-08T05:41:49Z",
+      "max_players": 14
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 9,
+    "fields": {
+      "date": "2025-08-13",
+      "time": "18:00:00",
+      "day_of_week": "Wednesday",
+      "location_name": "Sports Field",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10493.898219650906!2d7.200583880764323!3d43.67280736030106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd17585555555%3A0xadcff84be77756f5!2sSports%20Field!5e0!3m2!1sen!2sfr!4v1759203167192!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10493.898219650906!2d7.200583880764323!3d43.67280736030106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd17585555555%3A0xadcff84be77756f5!2sSports%20Field!5e0!3m2!1sen!2sfr!4v1759203167192!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-08-12T05:37:49Z",
+      "updated_at": "2025-08-12T06:00:49Z",
+      "max_players": 12
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 10,
+    "fields": {
+      "date": "2025-08-15",
+      "time": "21:00:00",
+      "day_of_week": "Friday",
+      "location_name": "Sports Field",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10493.898219650906!2d7.200583880764323!3d43.67280736030106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd17585555555%3A0xadcff84be77756f5!2sSports%20Field!5e0!3m2!1sen!2sfr!4v1759203167192!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10493.898219650906!2d7.200583880764323!3d43.67280736030106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd17585555555%3A0xadcff84be77756f5!2sSports%20Field!5e0!3m2!1sen!2sfr!4v1759203167192!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-08-13T05:37:49Z",
+      "updated_at": "2025-08-13T06:07:49Z",
+      "max_players": 14
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 11,
+    "fields": {
+      "date": "2025-08-16",
+      "time": "20:00:00",
+      "day_of_week": "Saturday",
+      "location_name": "Stade de l'Ouest",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-08-10T05:37:49Z",
+      "updated_at": "2025-08-10T05:49:49Z",
+      "max_players": 16
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 12,
+    "fields": {
+      "date": "2025-08-17",
+      "time": "18:00:00",
+      "day_of_week": "Sunday",
+      "location_name": "Sports Field",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10493.898219650906!2d7.200583880764323!3d43.67280736030106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd17585555555%3A0xadcff84be77756f5!2sSports%20Field!5e0!3m2!1sen!2sfr!4v1759203167192!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10493.898219650906!2d7.200583880764323!3d43.67280736030106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd17585555555%3A0xadcff84be77756f5!2sSports%20Field!5e0!3m2!1sen!2sfr!4v1759203167192!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-08-15T05:37:49Z",
+      "updated_at": "2025-08-15T06:00:49Z",
+      "max_players": 10
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 13,
+    "fields": {
+      "date": "2025-08-21",
+      "time": "21:00:00",
+      "day_of_week": "Thursday",
+      "location_name": "Stade Méarelli",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.776071542516!2d7.210152075658169!3d43.671298351260845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd1050d36302b%3A0x9fcb72d4a4778b66!2sStade%20M%C3%A9arelli!5e0!3m2!1sen!2sfr!4v1759203141389!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.776071542516!2d7.210152075658169!3d43.671298351260845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd1050d36302b%3A0x9fcb72d4a4778b66!2sStade%20M%C3%A9arelli!5e0!3m2!1sen!2sfr!4v1759203141389!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-08-15T05:37:49Z",
+      "updated_at": "2025-08-15T05:59:49Z",
+      "max_players": 10
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 14,
+    "fields": {
+      "date": "2025-08-23",
+      "time": "21:00:00",
+      "day_of_week": "Saturday",
+      "location_name": "Stade de l'Ouest",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-08-17T05:37:49Z",
+      "updated_at": "2025-08-17T05:43:49Z",
+      "max_players": 16
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 15,
+    "fields": {
+      "date": "2025-08-28",
+      "time": "19:00:00",
+      "day_of_week": "Thursday",
+      "location_name": "Sports Field",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10493.898219650906!2d7.200583880764323!3d43.67280736030106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd17585555555%3A0xadcff84be77756f5!2sSports%20Field!5e0!3m2!1sen!2sfr!4v1759203167192!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10493.898219650906!2d7.200583880764323!3d43.67280736030106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd17585555555%3A0xadcff84be77756f5!2sSports%20Field!5e0!3m2!1sen!2sfr!4v1759203167192!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-08-25T05:37:49Z",
+      "updated_at": "2025-08-25T06:04:49Z",
+      "max_players": 10
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 16,
+    "fields": {
+      "date": "2025-08-30",
+      "time": "18:00:00",
+      "day_of_week": "Saturday",
+      "location_name": "Stade de l'Ouest",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-08-25T05:37:49Z",
+      "updated_at": "2025-08-25T05:54:49Z",
+      "max_players": 16
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 17,
+    "fields": {
+      "date": "2025-09-03",
+      "time": "21:00:00",
+      "day_of_week": "Wednesday",
+      "location_name": "Stade Méarelli",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.776071542516!2d7.210152075658169!3d43.671298351260845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd1050d36302b%3A0x9fcb72d4a4778b66!2sStade%20M%C3%A9arelli!5e0!3m2!1sen!2sfr!4v1759203141389!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.776071542516!2d7.210152075658169!3d43.671298351260845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd1050d36302b%3A0x9fcb72d4a4778b66!2sStade%20M%C3%A9arelli!5e0!3m2!1sen!2sfr!4v1759203141389!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-08-30T05:37:49Z",
+      "updated_at": "2025-08-30T06:01:49Z",
+      "max_players": 14
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 18,
+    "fields": {
+      "date": "2025-09-05",
+      "time": "19:00:00",
+      "day_of_week": "Friday",
+      "location_name": "Stade de l'Ouest",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-09-02T05:37:49Z",
+      "updated_at": "2025-09-02T05:45:49Z",
+      "max_players": 16
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 19,
+    "fields": {
+      "date": "2025-09-06",
+      "time": "19:00:00",
+      "day_of_week": "Saturday",
+      "location_name": "Stade de l'Ouest",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-09-05T05:37:49Z",
+      "updated_at": "2025-09-05T05:40:49Z",
+      "max_players": 16
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 20,
+    "fields": {
+      "date": "2025-09-07",
+      "time": "21:00:00",
+      "day_of_week": "Sunday",
+      "location_name": "Sports Field",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10493.898219650906!2d7.200583880764323!3d43.67280736030106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd17585555555%3A0xadcff84be77756f5!2sSports%20Field!5e0!3m2!1sen!2sfr!4v1759203167192!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10493.898219650906!2d7.200583880764323!3d43.67280736030106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd17585555555%3A0xadcff84be77756f5!2sSports%20Field!5e0!3m2!1sen!2sfr!4v1759203167192!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-09-05T05:37:49Z",
+      "updated_at": "2025-09-05T05:48:49Z",
+      "max_players": 12
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 21,
+    "fields": {
+      "date": "2025-09-14",
+      "time": "21:00:00",
+      "day_of_week": "Sunday",
+      "location_name": "Stade Méarelli",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.776071542516!2d7.210152075658169!3d43.671298351260845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd1050d36302b%3A0x9fcb72d4a4778b66!2sStade%20M%C3%A9arelli!5e0!3m2!1sen!2sfr!4v1759203141389!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.776071542516!2d7.210152075658169!3d43.671298351260845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd1050d36302b%3A0x9fcb72d4a4778b66!2sStade%20M%C3%A9arelli!5e0!3m2!1sen!2sfr!4v1759203141389!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-09-08T05:37:49Z",
+      "updated_at": "2025-09-08T06:06:49Z",
+      "max_players": 10
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 22,
+    "fields": {
+      "date": "2025-09-15",
+      "time": "19:00:00",
+      "day_of_week": "Monday",
+      "location_name": "Stade Méarelli",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.776071542516!2d7.210152075658169!3d43.671298351260845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd1050d36302b%3A0x9fcb72d4a4778b66!2sStade%20M%C3%A9arelli!5e0!3m2!1sen!2sfr!4v1759203141389!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.776071542516!2d7.210152075658169!3d43.671298351260845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd1050d36302b%3A0x9fcb72d4a4778b66!2sStade%20M%C3%A9arelli!5e0!3m2!1sen!2sfr!4v1759203141389!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-09-10T05:37:49Z",
+      "updated_at": "2025-09-10T05:59:49Z",
+      "max_players": 12
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 23,
+    "fields": {
+      "date": "2025-09-22",
+      "time": "19:00:00",
+      "day_of_week": "Monday",
+      "location_name": "Stade Méarelli",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.776071542516!2d7.210152075658169!3d43.671298351260845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd1050d36302b%3A0x9fcb72d4a4778b66!2sStade%20M%C3%A9arelli!5e0!3m2!1sen!2sfr!4v1759203141389!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.776071542516!2d7.210152075658169!3d43.671298351260845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd1050d36302b%3A0x9fcb72d4a4778b66!2sStade%20M%C3%A9arelli!5e0!3m2!1sen!2sfr!4v1759203141389!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-09-16T05:37:49Z",
+      "updated_at": "2025-09-16T05:52:49Z",
+      "max_players": 10
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 24,
+    "fields": {
+      "date": "2025-09-25",
+      "time": "19:00:00",
+      "day_of_week": "Thursday",
+      "location_name": "Stade de l'Ouest",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-09-24T05:37:49Z",
+      "updated_at": "2025-09-24T05:47:49Z",
+      "max_players": 14
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 25,
+    "fields": {
+      "date": "2025-09-29",
+      "time": "21:00:00",
+      "day_of_week": "Monday",
+      "location_name": "Sports Field",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10493.898219650906!2d7.200583880764323!3d43.67280736030106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd17585555555%3A0xadcff84be77756f5!2sSports%20Field!5e0!3m2!1sen!2sfr!4v1759203167192!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10493.898219650906!2d7.200583880764323!3d43.67280736030106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd17585555555%3A0xadcff84be77756f5!2sSports%20Field!5e0!3m2!1sen!2sfr!4v1759203167192!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-09-22T05:37:49Z",
+      "updated_at": "2025-09-22T06:00:49Z",
+      "max_players": 14
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 26,
+    "fields": {
+      "date": "2025-10-06",
+      "time": "20:00:00",
+      "day_of_week": "Monday",
+      "location_name": "Sports Field",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10493.898219650906!2d7.200583880764323!3d43.67280736030106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd17585555555%3A0xadcff84be77756f5!2sSports%20Field!5e0!3m2!1sen!2sfr!4v1759203167192!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10493.898219650906!2d7.200583880764323!3d43.67280736030106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd17585555555%3A0xadcff84be77756f5!2sSports%20Field!5e0!3m2!1sen!2sfr!4v1759203167192!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-09-27T05:37:49Z",
+      "updated_at": "2025-09-27T05:54:49Z",
+      "max_players": 12
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 27,
+    "fields": {
+      "date": "2025-10-08",
+      "time": "19:00:00",
+      "day_of_week": "Wednesday",
+      "location_name": "Stade de l'Ouest",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-09-25T05:37:49Z",
+      "updated_at": "2025-09-25T05:44:49Z",
+      "max_players": 10
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 28,
+    "fields": {
+      "date": "2025-10-11",
+      "time": "18:00:00",
+      "day_of_week": "Saturday",
+      "location_name": "Stade Méarelli",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.776071542516!2d7.210152075658169!3d43.671298351260845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd1050d36302b%3A0x9fcb72d4a4778b66!2sStade%20M%C3%A9arelli!5e0!3m2!1sen!2sfr!4v1759203141389!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.776071542516!2d7.210152075658169!3d43.671298351260845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd1050d36302b%3A0x9fcb72d4a4778b66!2sStade%20M%C3%A9arelli!5e0!3m2!1sen!2sfr!4v1759203141389!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-09-29T05:37:49Z",
+      "updated_at": "2025-09-29T05:42:49Z",
+      "max_players": 12
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 29,
+    "fields": {
+      "date": "2025-10-19",
+      "time": "18:00:00",
+      "day_of_week": "Sunday",
+      "location_name": "Stade Méarelli",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.776071542516!2d7.210152075658169!3d43.671298351260845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd1050d36302b%3A0x9fcb72d4a4778b66!2sStade%20M%C3%A9arelli!5e0!3m2!1sen!2sfr!4v1759203141389!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.776071542516!2d7.210152075658169!3d43.671298351260845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd1050d36302b%3A0x9fcb72d4a4778b66!2sStade%20M%C3%A9arelli!5e0!3m2!1sen!2sfr!4v1759203141389!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-09-25T05:37:49Z",
+      "updated_at": "2025-09-25T06:06:49Z",
+      "max_players": 10
+    }
+  },
+  {
+    "model": "matches.match",
+    "pk": 30,
+    "fields": {
+      "date": "2025-10-24",
+      "time": "20:00:00",
+      "day_of_week": "Friday",
+      "location_name": "Stade Méarelli",
+      "location_google_maps_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.776071542516!2d7.210152075658169!3d43.671298351260845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd1050d36302b%3A0x9fcb72d4a4778b66!2sStade%20M%C3%A9arelli!5e0!3m2!1sen!2sfr!4v1759203141389!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "location_google_maps_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.776071542516!2d7.210152075658169!3d43.671298351260845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd1050d36302b%3A0x9fcb72d4a4778b66!2sStade%20M%C3%A9arelli!5e0!3m2!1sen!2sfr!4v1759203141389!5m2!1sen!2sfr\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "created_at": "2025-09-27T05:37:49Z",
+      "updated_at": "2025-09-27T06:07:49Z",
+      "max_players": 14
+    }
+  }
+]

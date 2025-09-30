@@ -5,6 +5,7 @@ from django.utils.timezone import now
 from django.db.models import Count, Q, F, FloatField, ExpressionWrapper, Avg
 from matches.models import Match
 from collections import defaultdict
+import datetime
 
 def stats_dashboard(request):
 
@@ -85,9 +86,20 @@ def stats_dashboard(request):
         perc_absent_not_excused = (total_absent_not_excused / total_enrolled * 100) if total_enrolled else 0
         perc_absent_last_minute = (total_absent_last_minute / total_enrolled * 100) if total_enrolled else 0
 
+
+        # score is attended / eligible_participations
+        # eligible_participations excluded the following: 
+        # no-shows is not set or excused
+        eligible_participations = [
+            p for p in participations 
+            if not (p.no_show_reason == 'excused' or (p.is_no_show == False and p.status == 'left'))
+        ]
+        score = (attended / len(eligible_participations) * 100) if total_enrolled else 0
+
         user_stats.append({
             'username': user.username,
             'total_enrolled': total_enrolled,
+            'eligible_participations' : len(eligible_participations),
             'attended': attended,
             'total_left': total_left,
             'total_absent_excused': total_absent_excused,
@@ -98,10 +110,35 @@ def stats_dashboard(request):
             'perc_absent_excused': round(perc_absent_excused, 2),
             'perc_absent_not_excused': round(perc_absent_not_excused, 2),
             'perc_absent_last_minute' : round(perc_absent_last_minute, 2), 
+            'score': 100 if int(round(score, 2)) == 100 else round(score, 2),
         })
 
-    # sort descending by perc_attended
-    user_stats = sorted(user_stats, key=lambda x: x['perc_attended'], reverse=True)
+    # Sort users by score descending
+    user_stats = sorted(user_stats, key=lambda x: x['score'], reverse=True)
+
+    # Get unique scores in descending order
+    unique_scores = sorted({u['score'] for u in user_stats}, reverse=True)
+
+    # Map scores to medals
+    score_to_medal = {}
+    if len(unique_scores) > 0:
+        score_to_medal[unique_scores[0]] = 'gold'
+    if len(unique_scores) > 1:
+        score_to_medal[unique_scores[1]] = 'silver'
+    if len(unique_scores) > 2:
+        score_to_medal[unique_scores[2]] = 'bronze'
+
+    # Assign medals to users based on their score
+    for user in user_stats:
+        user['medal'] = score_to_medal.get(user['score'], '')
+
+
+
+    months = range(1, 13)  # 1 to 12
+
+    current_year = datetime.date.today().year
+    years = range(current_year-1, current_year+2)
+
 
 
     context = {
@@ -109,5 +146,7 @@ def stats_dashboard(request):
         "matches_with_attendance": matches_with_attendance,
         "avg_attendance_percent": round(avg_attendance_percent, 2),
         "user_stats": user_stats,
+        "months": months,
+        "years": years,
     }
     return render(request, "stats/dashboard.html", context)
