@@ -26,7 +26,7 @@ class Match(models.Model):
     def spots_left(self):
         """Calculate remaining spots based on current participation"""
         current_count = Participation.objects.filter(
-            match=self, status='joined', removed=False
+            match=self, status='joined', removed=False, is_no_show=False
         ).count()
         return max(0, self.max_players - current_count)
     

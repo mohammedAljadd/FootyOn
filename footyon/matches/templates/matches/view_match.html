@@ -25,13 +25,13 @@
     <div class="col-12 col-md-6">
         <ul class="list-group mb-4">
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <strong>Date:</strong> <span class="text-muted">{{ match.date }}</span>
+                <strong>Date:</strong> <span class="text-muted">{{ match.date|date:"Y/m/d" }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <strong>Day:</strong> <span class="text-muted">{{ match.day_of_week }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <strong>Time:</strong> <span class="text-muted">{{ match.time }}</span>
+                <strong>Time:</strong> <span class="text-muted">{{ match.time|date:"H:i" }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <strong>Location:</strong> <span class="text-muted">{{ match.location_name }}</span>
@@ -72,7 +72,7 @@
                         <td>
                             <span class="badge bg-success">{{ p.status }}</span>
                         </td>
-                        <td><span class="badge bg-primary">{{ p.status_time }}</span></td>
+                        <td><span class="badge bg-primary">{{ p.status_time|date:"Y/m/d H:i" }}</span></td>
 
                         {% if user.is_superuser %}
                         <td>
@@ -146,7 +146,7 @@
                         <th>Username</th>
                         <th>Status</th>
                         <th>Time</th>
-                        <th>Removed/Left</th>
+                        <th>Removed</th>
                         <th>No-show</th>
                         <th>Mark No-show</th>
                         <th>Add Back</th>
@@ -161,14 +161,13 @@
                                 {{ p.status|capfirst }}
                             </span>
                         </td>
-                        <td><span class="badge bg-primary">{{ p.status_time }}</span></td>
+                        <td><span class="badge bg-primary">{{ p.status_time|date:"Y/m/d H:i" }}</span></td>
+                        <!-- Removed column -->
                         <td>
                             {% if p.removed %}
-                                <span class="badge bg-danger">Removed</span>
-                            {% elif p.status == 'left' %}
-                                <span class="badge bg-warning text-dark">Left</span>
+                                <span class="badge bg-danger">Yes</span>
                             {% else %}
-                                <span class="text-muted">—</span>
+                                <span class="badge bg-success">No</span>
                             {% endif %}
                         </td>
                         <td>

@@ -1,5 +1,3 @@
-# python generate_pariticipations.py && cd footyon/ &&  python manage.py loaddata participations_fixture.json
-
 import json
 import random
 from datetime import datetime, timedelta
@@ -140,9 +138,29 @@ for match in matches_to_fill:
         is_present = user_id in present_users if is_past_match else False
         is_no_show = user_id in no_show_users if is_past_match else False
         no_show_reason = None
+        no_show_time = None
         
         if is_no_show:
             no_show_reason = random.choice(['excused', 'not_excused', 'last_minute'])
+            # No-show time: after match datetime, before today, and after status_time
+            # Admin marks no-show after the match has passed
+            earliest_no_show = max(match_datetime + timedelta(hours=1), status_time + timedelta(hours=1))
+            if earliest_no_show < today:
+                days_after_match = (today - earliest_no_show).days
+                if days_after_match > 0:
+                    no_show_time = earliest_no_show + timedelta(
+                        days=random.randint(0, min(days_after_match, 7)),
+                        hours=random.randint(0, 23),
+                        minutes=random.randint(0, 59)
+                    )
+                else:
+                    no_show_time = earliest_no_show + timedelta(hours=random.randint(1, 12))
+                
+                # Ensure no_show_time is in the past
+                if no_show_time > today:
+                    no_show_time = today - timedelta(hours=random.randint(1, 12))
+            else:
+                no_show_time = today - timedelta(hours=random.randint(1, 12))
         
         participation = {
             "model": "participation.participation",
@@ -156,6 +174,7 @@ for match in matches_to_fill:
                 "removed_time": removed_time.strftime("%Y-%m-%dT%H:%M:%S") + "Z" if removed_time else None,
                 "is_no_show": is_no_show,
                 "no_show_reason": no_show_reason,
+                "no_show_time": no_show_time.strftime("%Y-%m-%dT%H:%M:%S") + "Z" if no_show_time else None,
                 "is_present": is_present
             }
         }
@@ -198,6 +217,27 @@ for match in matches_to_fill:
         
         # For past matches with last-minute leaves, mark as no-show with last_minute reason
         is_no_show_last_minute = is_last_minute and is_past_match
+        no_show_time = None
+        
+        if is_no_show_last_minute:
+            # No-show time: after match datetime, before today, and after left_time
+            earliest_no_show = max(match_datetime + timedelta(hours=1), left_time + timedelta(hours=1))
+            if earliest_no_show < today:
+                days_after_match = (today - earliest_no_show).days
+                if days_after_match > 0:
+                    no_show_time = earliest_no_show + timedelta(
+                        days=random.randint(0, min(days_after_match, 7)),
+                        hours=random.randint(0, 23),
+                        minutes=random.randint(0, 59)
+                    )
+                else:
+                    no_show_time = earliest_no_show + timedelta(hours=random.randint(1, 12))
+                
+                # Ensure no_show_time is in the past
+                if no_show_time > today:
+                    no_show_time = today - timedelta(hours=random.randint(1, 12))
+            else:
+                no_show_time = today - timedelta(hours=random.randint(1, 12))
         
         participation = {
             "model": "participation.participation",
@@ -211,6 +251,7 @@ for match in matches_to_fill:
                 "removed_time": None,
                 "is_no_show": is_no_show_last_minute,
                 "no_show_reason": "last_minute" if is_no_show_last_minute else None,
+                "no_show_time": no_show_time.strftime("%Y-%m-%dT%H:%M:%S") + "Z" if no_show_time else None,
                 "is_present": False
             }
         }

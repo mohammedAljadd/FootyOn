@@ -27,6 +27,7 @@ class Participation(models.Model):
     no_show_reason = models.CharField(
         max_length=20, choices=NO_SHOW_REASON_CHOICES, null=True, blank=True
     )
+    no_show_time = models.DateTimeField(null=True, blank=True)
 
     # Track attendance: mark participants who actually show up to the match.
     # This makes it easy to determine no-shows without manually checking.
