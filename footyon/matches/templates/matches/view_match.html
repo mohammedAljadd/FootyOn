@@ -15,44 +15,38 @@
     </a>
 </div>
 
-
+<!-- Match details -->
 <div class="row">
     <div class="col-12">
         <h2 class="h3 mb-4">Match Details</h2>
     </div>
 </div>
-
 <div class="row">
     <div class="col-12 col-md-6">
         <ul class="list-group mb-4">
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <strong>Date:</strong> 
-                <span class="text-muted">{{ match.date }}</span>
+                <strong>Date:</strong> <span class="text-muted">{{ match.date }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <strong>Day:</strong> 
-                <span class="text-muted">{{ match.day_of_week }}</span>
+                <strong>Day:</strong> <span class="text-muted">{{ match.day_of_week }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <strong>Time:</strong> 
-                <span class="text-muted">{{ match.time }}</span>
+                <strong>Time:</strong> <span class="text-muted">{{ match.time }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <strong>Location:</strong> 
-                <span class="text-muted">{{ match.location_name }}</span>
+                <strong>Location:</strong> <span class="text-muted">{{ match.location_name }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <strong>Max Players:</strong> 
-                <span class="text-muted">{{ match.max_players }}</span>
+                <strong>Max Players:</strong> <span class="text-muted">{{ match.max_players }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <strong>Spots Left:</strong> 
-                <span class="text-muted">{{ match.spots_left }}</span>
+                <strong>Spots Left:</strong> <span class="text-muted">{{ match.spots_left }}</span>
             </li>
         </ul>
     </div>
 </div>
 
+<!-- Active participants -->
 <div class="row">
     <div class="col-12">
         <h3 class="h4 mb-3">Active Participants</h3>
@@ -63,8 +57,8 @@
                         <th>Username</th>
                         <th>Status</th>
                         <th>Time</th>
-                        <th>No-show</th>
                         {% if user.is_superuser %}
+                        <th>No-show</th>
                         <th>Mark No-show</th>
                         <th>Remove From List</th>
                         <th>Mark Present</th>
@@ -73,156 +67,78 @@
                 </thead>
                 <tbody>
                     {% for p in active_participants %}
-                        <tr>
-                            <td data-label="Username">{{ p.user.username }}</td>
-                            <td data-label="Status">
-                                <span class="badge bg-success">{{ p.status }}</span>
-                            </td>
-                            <td data-label="Time">
-                                <span class="badge bg-primary">{{ p.status_time }}</span>
-                            </td>
+                    <tr>
+                        <td data-label="Username">{{ forloop.counter }} - {{ p.user.username }}</td>
+                        <td>
+                            <span class="badge bg-success">{{ p.status }}</span>
+                        </td>
+                        <td><span class="badge bg-primary">{{ p.status_time }}</span></td>
 
-                            <td data-label="No-show">
-
-                                {% if p.is_no_show %}
-                                    {% if p.no_show_reason == 'excused' %}
-                                        <span class="badge bg-success">Yes (Excused)</span>
-                                    {% else %}
-                                        <span class="badge bg-danger">Yes ({{ p.no_show_reason|capfirst }})</span>
-                                    {% endif %}
+                        {% if user.is_superuser %}
+                        <td>
+                            {% if p.is_no_show %}
+                                {% if p.no_show_reason == 'excused' %}
+                                    <span class="badge bg-success">Yes (Excused)</span>
                                 {% else %}
-                                    <span class="badge bg-success">No</span>
+                                    <span class="badge bg-danger">Yes ({{ p.no_show_reason|capfirst }})</span>
                                 {% endif %}
-                            </td>
-                            
-                            {% if user.is_superuser %}
-                            <td>
-                                {% if p.status != 'left' %}
-                                    {% if not p.is_no_show %}
-                                        <a href="{% url 'mark_no_show' p.id %}" class="btn {% if p.is_present %}btn-secondary disabled{% else %}btn-danger{% endif %} btn-sm"
-   {% if p.is_present %}aria-disabled="true"{% endif %}
-                                            <i class="bi bi-exclamation-triangle me-1"></i> Mark No-Show
-                                        </a>
-                                    {% else %}
-                                        <a href="{% url 'remove_no_show' p.id %}" 
-   class="btn btn-warning btn-sm {% if p.is_present %}btn-secondary{% endif %}"
-   {% if p.is_present %}onclick="return false;" aria-disabled="true"{% endif %}>
-    <i class="bi bi-x-circle me-1"></i> Remove No-Show
-</a>
-
-
-                                    {% endif %}
-                                {% endif %}
-                            </td>
-
-                            <td>
-                                {% if not p.removed and p.status == 'joined' %}
-                                    <a href="{% url 'remove_participant' p.id %}" 
-                                    class="btn btn-outline-danger btn-sm"
-                                    onclick="return confirm('Are you sure you want to remove {{ p.user.username }}?');">
-                                        <i class="bi bi-person-x"></i> Remove
+                            {% else %}
+                                <span class="badge bg-success">No</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if p.status != 'left' %}
+                                {% if not p.is_no_show %}
+                                    <a href="{% url 'mark_no_show' p.id %}" class="btn btn-danger btn-sm">
+                                        <i class="bi bi-exclamation-triangle me-1"></i> Mark No-Show
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'remove_no_show' p.id %}" class="btn btn-warning btn-sm">
+                                        <i class="bi bi-x-circle me-1"></i> Remove No-Show
                                     </a>
                                 {% endif %}
-                            </td>
-
-                            <td>
-                                {% if user.is_superuser %}
-                                    {% if not p.is_present %}
-                                        <a href="{% url 'mark_present' p.id %}" class="btn {% if p.is_no_show %}btn-secondary disabled{% else %}btn-success{% endif %} btn-sm"
-                                           {% if p.is_no_show %}aria-disabled="true"{% endif %}>
-                                            Mark Present
-                                        </a>
-                                    {% else %}
-                                        <a href="{% url 'remove_present' p.id %}" class="btn btn-warning btn-sm">Remove Present</a>
-                                    {% endif %}
-                                {% endif %}
-                            </td>
-
                             {% endif %}
-
-                        </tr>
+                        </td>
+                        <td>
+                            {% if not p.removed and p.status == 'joined' %}
+                                <a href="{% url 'remove_participant' p.id %}" class="btn btn-outline-danger btn-sm">
+                                    <i class="bi bi-person-x"></i> Remove
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if not p.is_present %}
+                                <a href="{% url 'mark_present' p.id %}" class="btn btn-success btn-sm">
+                                    Mark Present
+                                </a>
+                            {% else %}
+                                <a href="{% url 'remove_present' p.id %}" class="btn btn-warning btn-sm">Remove Present</a>
+                            {% endif %}
+                        </td>
+                        {% endif %}
+                    </tr>
                     {% empty %}
-                        <tr>
-                            <td colspan="6" class="text-center">No active participants yet.</td>
-                        </tr>
+                    <tr>
+                        <td colspan="6" class="text-center">No active participants yet.</td>
+                    </tr>
                     {% endfor %}
-                    
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 
+<!-- Non-active participants -->
 {% if user.is_superuser %}
 <div class="row">
     <div class="col-12">
-        <h3 class="h4 mb-3">Left Participants</h3>
-        <div class="table-responsive">
-            <table class="table table-striped mb-4">
-                <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Status</th>
-                        <th>Time</th>
-                        <th>No-show</th>
-                        <th>Mark No-show</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for p in left_participants %}
-                        <tr>
-                            <td data-label="Username">{{ p.user.username }}</td>
-                            <td data-label="Status">
-                                <span class="badge bg-secondary">{{ p.status }}</span>
-                            </td>
-                            <td data-label="Time">
-                                <span class="badge bg-primary">{{ p.status_time }}</span>
-                            </td>
-                            <td data-label="No-show">
-                                {% if p.is_no_show %}
-                                    {% if p.no_show_reason == 'excused' %}
-                                        <span class="badge bg-success">Yes (Excused)</span>
-                                    {% else %}
-                                        <span class="badge bg-danger">Yes ({{ p.no_show_reason|capfirst }})</span>
-                                    {% endif %}
-                                {% else %}
-                                    <span class="badge bg-success">No</span>
-                                {% endif %}
-                            </td>
-
-
-                            <td>
-                                {% if user.is_superuser and p.status == 'left' %}
-                                    {% if not p.is_no_show %}
-                                        <a href="{% url 'mark_no_show' p.id %}" class="btn btn-danger btn-sm">
-                                            <i class="bi bi-exclamation-triangle me-1"></i> Mark No-Show
-                                        </a>
-                                    {% else %}
-                                        <a href="{% url 'remove_no_show' p.id %}" class="btn btn-warning btn-sm">
-                                            <i class="bi bi-x-circle me-1"></i> Remove No-Show
-                                        </a>
-                                    {% endif %}
-                                {% endif %}
-                            </td>
-
-                          
-                            
-                        </tr>
-                    {% empty %}
-                        <tr>
-                            <td colspan="5" class="text-center">No participants have left yet.</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
+        <h3 class="h4 mb-3">Non-Active Participants</h3>
+        <div class="mb-2">
+    <span class="badge" style="background-color:#f8d7da; color:#842029;">Removed</span>
+    <span class="badge" style="background-color:#fff3cd; color:#664d03;">Left</span>
+    <span class="badge" style="background-color:#d1e7dd; color:#0f5132;">Normal</span>
 </div>
 
-
-<div class="row">
-    <div class="col-12">
-        <h3 class="h4 mb-3">Removed Participants</h3>
         <div class="table-responsive">
             <table class="table table-striped mb-4">
                 <thead>
@@ -230,71 +146,76 @@
                         <th>Username</th>
                         <th>Status</th>
                         <th>Time</th>
+                        <th>Removed/Left</th>
                         <th>No-show</th>
                         <th>Mark No-show</th>
-                        <th>Add Back To List</th>
+                        <th>Add Back</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for p in removed_participants %}
-                        <tr>
-                            <td data-label="Username">{{ p.user.username }}</td>
-                            <td data-label="Status">
-                                <span class="badge bg-success">{{ p.status }}</span>
-                            </td>
-                            <td data-label="Time">
-                                <span class="badge bg-primary">{{ p.status_time }}</span>
-                            </td>
-                            <td data-label="No-show">
-                                {% if p.is_no_show %}
-                                    {% if p.no_show_reason == 'excused' %}
-                                        <span class="badge bg-success">Yes (Excused)</span>
-                                    {% else %}
-                                        <span class="badge bg-danger">Yes ({{ p.no_show_reason|capfirst }})</span>
-                                    {% endif %}
+                    {% for p in non_active_participants %}
+                    <tr class="{% if p.removed %}removed-row{% elif p.status == 'left' %}left-row{% else %}normal-row{% endif %}">
+                        <td>{{ p.user.username }}</td>
+                        <td>
+                            <span class="badge {% if p.status == 'joined' %}bg-success{% else %}bg-secondary{% endif %}">
+                                {{ p.status|capfirst }}
+                            </span>
+                        </td>
+                        <td><span class="badge bg-primary">{{ p.status_time }}</span></td>
+                        <td>
+                            {% if p.removed %}
+                                <span class="badge bg-danger">Removed</span>
+                            {% elif p.status == 'left' %}
+                                <span class="badge bg-warning text-dark">Left</span>
+                            {% else %}
+                                <span class="text-muted">—</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if p.is_no_show %}
+                                {% if p.no_show_reason == 'excused' %}
+                                    <span class="badge bg-success">Yes (Excused)</span>
                                 {% else %}
-                                    <span class="badge bg-success">No</span>
+                                    <span class="badge bg-danger">Yes ({{ p.no_show_reason|capfirst }})</span>
                                 {% endif %}
-                            </td>
-
-
-                            <td>
-                                {% if user.is_superuser %}
-                                    {% if not p.is_no_show %}
-                                        <a href="{% url 'mark_no_show' p.id %}" class="btn btn-danger btn-sm">
-                                            <i class="bi bi-exclamation-triangle me-1"></i> Mark No-Show
-                                        </a>
-                                    {% else %}
-                                        <a href="{% url 'remove_no_show' p.id %}" class="btn btn-warning btn-sm">
-                                            <i class="bi bi-x-circle me-1"></i> Remove No-Show
-                                        </a>
-                                    {% endif %}
-                                {% endif %}
-                            </td>
-                            
-                            <td>
-                                <a href="{% url 'restore_participant' p.id %}" 
-                                class="btn btn-outline-success btn-sm"
-                                onclick="return confirm('Add back {{ p.user.username }}?');">
+                            {% else %}
+                                <span class="badge bg-success">No</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if not p.is_no_show %}
+                                <a href="{% url 'mark_no_show' p.id %}" class="btn btn-danger btn-sm">
+                                    <i class="bi bi-exclamation-triangle me-1"></i> Mark No-Show
+                                </a>
+                            {% else %}
+                                <a href="{% url 'remove_no_show' p.id %}" class="btn btn-warning btn-sm">
+                                    <i class="bi bi-x-circle me-1"></i> Remove No-Show
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if p.removed %}
+                                <a href="{% url 'restore_participant' p.id %}" class="btn btn-outline-success btn-sm">
                                     <i class="bi bi-person-check"></i> Add Back
                                 </a>
-                            </td>
-
-                            
-                        </tr>
+                            {% else %}
+                                <span class="text-muted">—</span>
+                            {% endif %}
+                        </td>
+                    </tr>
                     {% empty %}
-                        <tr>
-                            <td colspan="6" class="text-center">No participants have left yet.</td>
-                        </tr>
+                    <tr>
+                        <td colspan="7" class="text-center">No non-active participants.</td>
+                    </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
 {% endif %}
 
+<!-- Map -->
 {% if match.location_google_maps_embed_url %}
 <div class="row">
     <div class="col-12">
@@ -308,6 +229,7 @@
 </div>
 {% endif %}
 
+<!-- Back button -->
 <div class="row">
     <div class="col-12 text-center">
         <a href="{{ previous_url|default:default_home }}" class="btn btn-secondary btn-lg">
@@ -316,80 +238,17 @@
     </div>
 </div>
 
+<!-- Custom CSS -->
 <style>
-    /* Map container styles */
-    .map-container {
-        position: relative;
-        width: 100%;
-        margin-bottom: 2rem;
-    }
-    
-    .map-wrapper {
-        position: relative;
-        width: 100%;
-        height: 0;
-        padding-bottom: 56.25%; /* 16:9 aspect ratio */
-        overflow: hidden;
-        border-radius: 0.5rem;
-        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    }
-    
-    .map-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-        border-radius: 0.5rem;
-    }
-    
-    /* Mobile-specific styles */
-    @media (max-width: 768px) {
-        .list-group-item {
-            padding: 0.75rem;
-            font-size: 0.95rem;
-        }
-        
-        .table-responsive {
-            border: none;
-        }
-        
-        .table th,
-        .table td {
-            padding: 0.5rem 0.25rem;
-            font-size: 0.9rem;
-        }
-        
-        .table th {
-            font-size: 0.8rem;
-        }
-        
-        .badge {
-            font-size: 0.75rem;
-        }
-        
-        /* Adjust map height for mobile */
-        .map-wrapper {
-            padding-bottom: 75%; /* Taller aspect ratio for mobile */
-        }
-    }
-    
-    @media (max-width: 576px) {
-        .list-group-item {
-            padding: 0.5rem;
-            font-size: 0.9rem;
-        }
-        
-        .btn-lg {
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-        }
-        
-        .map-wrapper {
-            padding-bottom: 100%; /* Even taller for very small screens */
-        }
-    }
+/* Non-active row overrides: must target cells, not just <tr> */
+tr.removed-row > td, tr.removed-row > th {
+    background-color: #f8d7da !important;  /* light red */
+}
+tr.left-row > td, tr.left-row > th {
+    background-color: #fff3cd !important;  /* light yellow */
+}
+tr.normal-row > td, tr.normal-row > th {
+    background-color: #d1e7dd !important;  /* light green */
+}
 </style>
-
 {% endblock %}
