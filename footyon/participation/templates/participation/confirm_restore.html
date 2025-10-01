@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Restore - Confirm{% endblock %}
+
+{% block content %}
+<h3>Restore {{ participation.user.username }}?</h3>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" name="confirm" value="yes" class="btn btn-success">Yes, Add Back</button>
+    <a href="{% url 'matches:view_match' match.id %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

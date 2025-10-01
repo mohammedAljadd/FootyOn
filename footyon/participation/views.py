@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import user_passes_test
 from accounts.decorators import active_user_required
-
+from django.utils import timezone
 
 @login_required
 @active_user_required
@@ -53,6 +53,7 @@ def mark_no_show(request, participation_id):
         form = NoShowForm(request.POST, instance=participation)
         if form.is_valid():
             participation.is_no_show = True
+            participation.no_show_time = timezone.now()
             form.save()
             return redirect('matches:view_match', match_id=participation.match.id)
     else:
@@ -66,21 +67,46 @@ def mark_no_show(request, participation_id):
 @user_passes_test(lambda u: u.is_superuser)
 def remove_no_show(request, participation_id):
     participation = get_object_or_404(Participation, id=participation_id)
-    
-    if not participation.is_no_show:
-        messages.warning(request, f"{participation.user.username} is not marked as no-show.")
-    else:
-        participation.is_no_show = False
-        participation.no_show_reason = None
-        participation.save()
-        messages.success(request, f"No-show removed for {participation.user.username}.")
+    match = participation.match
 
-    # Redirect back to the match view
-    return redirect('matches:view_match', match_id=participation.match.id)
+    if request.method == "POST":
+        # Step 1: Check if form already confirmed
+        if 'confirm' in request.POST and request.POST['confirm'] == 'yes':
+            
+            if match.spots_left > 0:
+                
+                # Admin confirmed → remove no-show
+                participation.is_no_show = False
+                participation.no_show_reason = None
+                participation.no_show_time = None
+                participation.save()
+                messages.success(request, f"No-show removed for {participation.user.username}.")
+                return redirect('matches:view_match', match_id=match.id)
+            
+            if new_capacity := request.POST.get('new_capacity'):
+                new_capacity = int(new_capacity)
+                match.max_players = new_capacity
+                match.save()
+                participation.is_no_show = False
+                participation.no_show_reason = None
+                participation.save()
+                messages.success(request, f"No-show removed for {participation.user.username} with new capacity {new_capacity}.")
+                return redirect('matches:view_match', match_id=match.id)
+
+            return render(request, 'participation/increase_capacity.html', {'participation': participation, 'match': match})
+        
+        # Step 2: Show confirmation page first
+        return render(request, 'participation/confirm_remove_no_show.html', {
+            'participation': participation,
+            'match': match
+        })
+
+    # GET request → redirect back
+    return redirect('matches:view_match', match_id=match.id)
 
 
-from django.utils import timezone
-from django.contrib import messages
+
+
 
 @login_required
 @user_passes_test(lambda u: u.is_superuser)  # Only admin
@@ -98,17 +124,36 @@ def remove_participant(request, participation_id):
 @user_passes_test(lambda u: u.is_superuser)  # Only admin
 def restore_participant(request, participation_id):
     participation = get_object_or_404(Participation, id=participation_id)
+    match = participation.match
 
-    if not request.user.is_superuser:
-        messages.error(request, "You don’t have permission to restore participants.")
-        return redirect('matches:view_match', match_id=participation.match.id)
+    if request.method == "POST":
+        # Step 1: Capacity increase form submitted
+        if 'new_capacity' in request.POST:
+            new_capacity = int(request.POST['new_capacity'])
+            match.max_players = new_capacity
+            match.save()
+            participation.removed = False
+            participation.save()
+            messages.success(request, f"{participation.user.username} added back with new capacity {new_capacity}.")
+            return redirect('matches:view_match', match_id=match.id)
 
-    participation.removed = False
-    participation.removed_time = None
-    participation.save()
+        # Step 2: Initial confirm restore
+        if 'confirm' not in request.POST or request.POST['confirm'] == 'no':
+            return render(request, 'participation/confirm_restore.html', {'participation': participation, 'match': match})
 
-    messages.success(request, f"{participation.user.username} was added back to the match.")
-    return redirect('matches:view_match', match_id=participation.match.id)
+        # Step 3: Enough spots: restore directly
+        if match.spots_left > 0:
+            participation.removed = False
+            participation.save()
+            messages.success(request, f"{participation.user.username} added back.")
+            return redirect('matches:view_match', match_id=match.id)
+
+        # Step 4: No spots left → show capacity increase form
+        return render(request, 'participation/increase_capacity.html', {'participation': participation, 'match': match})
+
+    # GET → redirect back
+    return redirect('matches:view_match', match_id=match.id)
+
 
 
 @login_required

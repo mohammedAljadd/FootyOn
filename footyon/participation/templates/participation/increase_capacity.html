@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Restore - Add{% endblock %}
+
+{% block content %}
+<h3>No spots left for {{ match }}.</h3>
+<p>Do you want to increase capacity to add {{ participation.user.username }}?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <label>New max players: <input type="number" name="new_capacity" value="{{ match.max_players|add:1 }}"></label>
+    <button type="submit" name="confirm" value="yes" class="btn btn-success">Increase & Add</button>
+    <a href="{% url 'matches:view_match' match.id %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
