@@ -1,6 +1,9 @@
 from django.db import models
 from participation.models import Participation
 import calendar
+from django.utils import timezone
+from datetime import timedelta
+from datetime import datetime
 
 class Match(models.Model):
     date = models.DateField()
@@ -32,3 +35,23 @@ class Match(models.Model):
     @property
     def is_full(self):
         return self.spots_left <= 0
+    
+
+    @property
+    def is_past(self):
+        
+        """Check if the match date and time is in the past"""
+        if self.date < timezone.now().date():
+            return True
+        elif self.date == timezone.now().date() and self.time:
+            match_datetime = datetime.combine(self.date, self.time)
+            return match_datetime < timezone.now()
+        return False
+    
+    @property
+    def can_edit_attendance(self):
+        if not self.time:
+            return False  # No time set, cannot edit
+        match_datetime = datetime.combine(self.date, self.time)
+        match_datetime = timezone.make_aware(match_datetime)  # ensure timezone-aware
+        return timezone.now() <= match_datetime + timedelta(hours=24)

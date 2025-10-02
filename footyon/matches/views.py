@@ -24,11 +24,6 @@ def manage_matches(request):
     """
     matches = Match.objects.all().order_by('-date', '-time')  # latest first
 
-    # Annotate matches with an is_past flag
-    today = date.today()
-    for m in matches:
-        m.is_past = m.date < today
-
     return render(request, 'matches/manage_matches.html', {'matches': matches})
 
 @user_passes_test(is_admin)

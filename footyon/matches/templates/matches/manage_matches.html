@@ -37,9 +37,9 @@
                 <tbody>
                     {% for match in matches %}
                         <tr>
-                            <td data-label="Date">{{ match.date }}</td>
+                            <td data-label="Date">{{ match.date|date:"Y-m-d"  }}</td>
                             <td data-label="Day">{{ match.day_of_week }}</td>
-                            <td data-label="Time">{{ match.time }}</td>
+                            <td data-label="Time">{{ match.time|date:"H:i"  }}</td>
                             <td data-label="Location">{{ match.location_name }}</td>
                             <td data-label="Max Players">{{ match.max_players }}</td>
                             <td data-label="Spots Left">{{ match.spots_left }}</td>
