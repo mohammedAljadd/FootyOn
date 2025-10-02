@@ -23,6 +23,7 @@ def join_match(request, match_id):
     # If participation existed but status was 'left', update it
     if not created and participation.status != 'joined':
         participation.status = 'joined'
+        participation.status_time = timezone.now()
         participation.save()
 
     return redirect('home')  # back to home page
@@ -35,6 +36,7 @@ def leave_match(request, match_id):
     try:
         participation = Participation.objects.get(user=request.user, match=match)
         participation.status = 'left'
+        participation.status_time = timezone.now()
         participation.save()
     except Participation.DoesNotExist:
         # User never joined, ignore
