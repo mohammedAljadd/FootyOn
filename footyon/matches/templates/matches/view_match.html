@@ -62,6 +62,7 @@
                         <th>Mark No-show</th>
                         <th>Remove From List</th>
                         <th>Mark Present</th>
+                        <th>Danger Zone</th>
                         {% endif %}
                     </tr>
                 </thead>
@@ -109,6 +110,13 @@
                                 <a href="{% url 'remove_present' p.id %}" class="btn btn-warning btn-sm">Remove Present</a>
                             {% endif %}
                         </td>
+
+                        <td>
+                        <a href="{% url 'delete_participation' p.id %}" class="btn btn-outline-danger btn-sm">
+                            <i class="bi bi-trash"></i> Delete Participation
+                        </a>
+                        </td>
+
                         {% endif %}
                     </tr>
                     {% empty %}
@@ -144,6 +152,7 @@
                         <th>No-show</th>
                         <th>Mark No-show</th>
                         <th>Add Back</th>
+                        <th>Danger Zone</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -203,6 +212,12 @@
                                 <span class="text-muted">—</span>
                             {% endif %}
                         </td>
+                        <td>
+                        <a href="{% url 'delete_participation' p.id %}" class="btn btn-outline-danger btn-sm">
+                            <i class="bi bi-trash"></i> Delete Participation
+                        </a>
+                        </td>
+
                     </tr>
                     {% empty %}
                     <tr>

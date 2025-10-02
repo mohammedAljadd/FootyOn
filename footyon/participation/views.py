@@ -175,3 +175,28 @@ def remove_present(request, participation_id):
     participation.is_present = False
     participation.save()
     return redirect('matches:view_match', match_id=participation.match.id)
+
+
+# Permanently delete a participation record
+# Differentiate from "remove_participant" which is a soft remove
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def delete_participation(request, participation_id):
+    participation = get_object_or_404(Participation, id=participation_id)
+    match = participation.match
+
+    if request.method == "POST":
+        if request.POST.get("confirm") == "yes":
+            username = participation.user.username
+            participation.delete()
+            messages.error(request, f"⚠️ {username}'s participation was permanently deleted.")
+            return redirect('matches:view_match', match_id=match.id)
+
+        # If canceled → redirect back
+        return redirect('matches:view_match', match_id=match.id)
+
+    # GET request → show confirmation page
+    return render(request, 'participation/confirm_hard_delete.html', {
+        'participation': participation,
+        'match': match
+    })

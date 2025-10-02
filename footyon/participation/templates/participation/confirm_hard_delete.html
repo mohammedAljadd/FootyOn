@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Danger Zone - Delete{% endblock %}
+
+{% block content %}
+<div class="alert alert-danger">
+  <h3>⚠️ Danger Zone</h3>
+  <p>
+    You are about to <strong>permanently delete</strong> 
+    {{ participation.user.username }}'s participation in <strong>{{ match }}</strong>.
+    <br>This action <strong>cannot be undone</strong>.
+  </p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" name="confirm" value="yes" class="btn btn-danger">
+      Permanently Delete
+    </button>
+    <a href="{% url 'matches:view_match' match.id %}" class="btn btn-secondary">
+      Cancel
+    </a>
+  </form>
+</div>
+{% endblock %}
