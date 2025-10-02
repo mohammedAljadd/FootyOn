@@ -46,13 +46,16 @@ def view_match(request, match_id):
 
 
     # Active participants for everyone
-    active_participants = Participation.objects.filter(match=match, status='joined', removed=False, is_no_show=False)
-    active_participants = active_participants.order_by("status_time")
+    active_participants_ = Participation.objects.filter(match=match, status='joined', removed=False, is_no_show=False)
+    active_participants_ = active_participants_.order_by("status_time")
 
+    active_participants = list(active_participants_)
+    while len(active_participants) < match.max_players:
+        active_participants.append(None)
 
     # Non active participants for admins only
-    non_active_participants = Participation.objects.filter(match=match).exclude(id__in=active_participants.values_list('id', flat=True)).order_by('-status_time') if request.user.is_superuser else []
-   
+    non_active_participants = Participation.objects.filter(match=match).exclude(id__in=active_participants_.values_list('id', flat=True)).order_by('-status_time') if request.user.is_superuser else []
+    
     context = {
         'match': match,
         'active_participants': active_participants,

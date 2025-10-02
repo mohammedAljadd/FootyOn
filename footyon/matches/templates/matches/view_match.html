@@ -92,24 +92,26 @@
 
                         {% if user.is_superuser %}
                         <td>
-                            {% if p.is_no_show %}
-                                {% if p.no_show_reason == 'excused' %}
-                                    <span class="badge bg-success">Yes (Excused)</span>
+                            {% if p %}
+                                {% if p.is_no_show %}
+                                    {% if p.no_show_reason == 'excused' %}
+                                        <span class="badge bg-success">Yes (Excused)</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">Yes ({{ p.no_show_reason|capfirst }})</span>
+                                    {% endif %}
                                 {% else %}
-                                    <span class="badge bg-danger">Yes ({{ p.no_show_reason|capfirst }})</span>
+                                    <span class="badge bg-success">No</span>
                                 {% endif %}
-                            {% else %}
-                                <span class="badge bg-success">No</span>
                             {% endif %}
                         </td>
 
                         {% if match.can_edit_attendance %}
                         <td>
-                         
+                            {% if p %}
                                 <a href="{% url 'mark_no_show' p.id %}" class="btn btn-danger btn-sm">
                                     <i class="bi bi-exclamation-triangle me-1"></i> Mark No-Show
                                 </a>
-                                
+                            {% endif %}    
                         </td>
 
                         {% if not match.is_past %}
@@ -123,6 +125,7 @@
                         {% endif %}
 
                         <td>
+                            {% if p %}
                             {% if not p.is_present %}
                                 <a href="{% url 'mark_present' p.id %}" class="btn btn-success btn-sm">
                                     Mark Present
@@ -130,12 +133,15 @@
                             {% else %}
                                 <a href="{% url 'remove_present' p.id %}" class="btn btn-warning btn-sm">Remove Present</a>
                             {% endif %}
+                            {% endif %}
                         </td>
 
                         <td>
-                        <a href="{% url 'delete_participation' p.id %}" class="btn btn-outline-danger btn-sm">
-                            <i class="bi bi-trash"></i> Delete Participation
-                        </a>
+                            {% if p %}
+                            <a href="{% url 'delete_participation' p.id %}" class="btn btn-outline-danger btn-sm">
+                                <i class="bi bi-trash"></i> Delete Participation
+                            </a>
+                            {% endif %}
                         </td>
                         {% endif %}
                         {% endif %}
