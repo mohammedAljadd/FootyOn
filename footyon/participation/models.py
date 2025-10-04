@@ -24,6 +24,9 @@ class Participation(models.Model):
     removed_time = models.DateTimeField(null=True, blank=True)
 
     is_no_show = models.BooleanField(default=False)
+
+    # This field stores the reason why a participant didn't show up
+    # It's optional (null=True, blank=True) because not every participant will have a no-show reason
     no_show_reason = models.CharField(
         max_length=20, choices=NO_SHOW_REASON_CHOICES, null=True, blank=True
     )

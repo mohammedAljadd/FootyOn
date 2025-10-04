@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,7 +81,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold fs-3" href="{% url 'home' %}">
-                <i class="fas fa-futbol text-warning me-2"></i>FootyOne
+                <i class="fas fa-futbol text-warning me-2"></i>FootyOn
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -111,17 +112,17 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle fw-semibold px-3 text-warning" href="#" role="button" 
                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-gear me-1"></i>Admin Panel
+                                <i class="bi bi-gear me-1"></i>{% trans "Admin Panel" %}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark bg-dark">
                                 <li>
                                     <a class="dropdown-item" href="{% url 'matches:manage' %}">
-                                        <i class="bi bi-calendar-event me-2"></i>Manage Matches
+                                        <i class="bi bi-calendar-event me-2"></i>{% trans "Manage Matches" %}
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="{% url 'manage_accounts' %}">
-                                        <i class="bi bi-people me-2"></i>Manage Accounts
+                                        <i class="bi bi-people me-2"></i>{% trans "Manage Accounts" %}
                                     </a>
                                 </li>
                                 <!-- <li><hr class="dropdown-divider"></li> -->
@@ -130,12 +131,43 @@
                     {% endif %}
                 </ul>
 
+                {% load i18n %}
+
+                <!-- language switcher (place near the header/navbar) -->
+                <form action="{% url 'set_language' %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    
+                    <!-- Hidden input to tell Django where to redirect the user after switching language -->
+                    <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                    
+                    <!-- Dropdown for language selection -->
+                    <select name="language" 
+                            class="form-select form-select-sm d-inline-block"
+                            style="width:auto; display:inline-block;"
+                            onchange="this.form.submit()"> <!-- auto-submit when user changes language -->
+
+                        <!-- English option -->
+                        <!-- The "selected" part checks if the current request language code is 'en' -->
+                        <!-- If true, this option will be selected by default -->
+                        <option value="en" {% if request.LANGUAGE_CODE == 'en' %}selected{% endif %}>
+                            English
+                        </option>
+
+                        <!-- French option -->
+                        <!-- Same logic: if current request language is 'fr', this will be pre-selected -->
+                        <option value="fr" {% if request.LANGUAGE_CODE == 'fr' %}selected{% endif %}>
+                            Français
+                        </option>
+                    </select>
+                </form>
+
+
                 <!-- User Section -->
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
                         <li class="nav-item d-flex align-items-center">
                             <span class="navbar-text bg-white bg-opacity-10 rounded-pill px-3 py-1 me-3 fw-semibold">
-                                <i class="bi bi-person-circle me-1"></i>Hello, {{ user.username }}!
+                                <i class="bi bi-person-circle me-1"></i>{% trans "Hello" %}, {{ user.username }}!
                                 {% if user.is_superuser %}
                                     <span class="badge bg-warning text-dark ms-2">Admin</span>
                                 {% endif %}
@@ -145,7 +177,7 @@
                             <form action="{% url 'logout' %}" method="post" style="display:inline;">
                                 {% csrf_token %}
                                 <button type="submit" class="nav-link btn btn-outline-warning text-dark fw-semibold px-3">
-                                    <i class="bi bi-box-arrow-right me-1"></i>Logout
+                                    <i class="bi bi-box-arrow-right me-1"></i>{% trans "Logout" %}
                                 </button>
                             </form>
                         </li>
@@ -153,12 +185,12 @@
                     {% else %}
                         <li class="nav-item me-2">
                             <a class="nav-link btn btn-warning text-dark fw-semibold px-4" href="{% url 'login' %}">
-                                <i class="bi bi-box-arrow-in-right me-1"></i>Login
+                                <i class="bi bi-box-arrow-in-right me-1"></i>{% trans "Login" %}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-outline-success text-dark fw-semibold px-4" href="{% url 'signup' %}">
-                                <i class="bi bi-person-plus me-1"></i>Sign Up
+                                <i class="bi bi-person-plus me-1"></i>{% trans "Sign Up" %}
                             </a>
                         </li>
                     {% endif %}

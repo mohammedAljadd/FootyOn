@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import user_passes_test
 from .models import User
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
-
+from django.utils.translation import gettext as _
 
 def signup(request):
     if request.method == "POST":
@@ -38,8 +38,8 @@ def toggle_account_status(request, user_id):
     user.save()
 
     if user.is_disabled:
-        messages.warning(request, f"🚫 {user.username} has been deactivated.")
+        messages.warning(request, _("🚫 %(username)s has been deactivated.") % {'username': user.username})
     else:
-        messages.success(request, f"✅ {user.username} has been activated.")
+        messages.success(request, _("✅ %(username)s has been activated.") % {'username': user.username})
 
     return redirect("manage_accounts")

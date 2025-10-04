@@ -1,0 +1,152 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-04 06:00+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\core\templates\base.html:115
+msgid "Admin Panel"
+msgstr "Panneau d'administration"
+
+#: .\core\templates\base.html:120
+msgid "Manage Matches"
+msgstr "Gérer les matchs"
+
+#: .\core\templates\base.html:125
+msgid "Manage Accounts"
+msgstr "Gérer les comptes"
+
+#: .\core\templates\base.html:170
+msgid "Hello"
+msgstr "Bonjour"
+
+#: .\core\templates\base.html:180
+msgid "Logout"
+msgstr "Se déconnecter"
+
+#: .\core\templates\base.html:188
+msgid "Login"
+msgstr "Se connecter"
+
+#: .\core\templates\base.html:193
+msgid "Sign Up"
+msgstr "S'inscrire"
+
+#: .\core\templates\home.html:8
+msgid "Welcome to Football Match Organizer"
+msgstr "Bienvenue sur Football Match Organizer"
+
+#: .\core\templates\home.html:9
+msgid "Check upcoming matches and your stats."
+msgstr "Consultez les matchs à venir et vos statistiques."
+
+#: .\core\templates\home.html:18
+msgid "Upcoming Matches"
+msgstr "Matchs à venir"
+
+#: .\core\templates\home.html:25
+msgid "Date"
+msgstr "Date"
+
+#: .\core\templates\home.html:26
+msgid "Day"
+msgstr "Jour"
+
+#: .\core\templates\home.html:27
+msgid "Time"
+msgstr "Heure"
+
+#: .\core\templates\home.html:28
+msgid "Location"
+msgstr "Lieu"
+
+#: .\core\templates\home.html:29
+msgid "Max Players"
+msgstr "Joueurs max"
+
+#: .\core\templates\home.html:30
+msgid "Spots Left"
+msgstr "Places restantes"
+
+#: .\core\templates\home.html:31
+msgid "Action"
+msgstr "Action"
+
+#: .\core\templates\home.html:46
+msgid "View"
+msgstr "Voir"
+
+#: .\core\templates\home.html:51
+msgid "Removed"
+msgstr "Supprimé"
+
+#: .\core\templates\home.html:54
+msgid "Leave"
+msgstr "Quitter"
+
+#: .\core\templates\home.html:56
+msgid "Join"
+msgstr "Rejoindre"
+
+#: .\core\templates\home.html:58
+msgid "Full"
+msgstr "Complet"
+
+#: .\core\templates\home.html:65
+msgid "No upcoming matches found."
+msgstr "Aucun match à venir trouvé."
+
+#: .\core\templates\home.html:79
+msgid "Please"
+msgstr "Veuillez"
+
+#: .\core\templates\home.html:79
+msgid "register"
+msgstr "vous inscrire"
+
+#: .\core\templates\home.html:79
+msgid "or"
+msgstr "ou"
+
+#: .\core\templates\home.html:79
+msgid "login"
+msgstr "vous connecter"
+
+#: .\core\templates\home.html:79
+msgid "to see and join upcoming matches."
+msgstr "pour voir et rejoindre les matchs à venir."
+
+#~ msgid "Monday"
+#~ msgstr "Lundi"
+
+#~ msgid "Tuesday"
+#~ msgstr "Mardi"
+
+#~ msgid "Wednesday"
+#~ msgstr "Mercredi"
+
+#~ msgid "Thursday"
+#~ msgstr "Jeudi"
+
+#~ msgid "Friday"
+#~ msgstr "Vendredi"
+
+#~ msgid "Saturday"
+#~ msgstr "Samedi"
+
+#~ msgid "Sunday"
+#~ msgstr "Dimanche"

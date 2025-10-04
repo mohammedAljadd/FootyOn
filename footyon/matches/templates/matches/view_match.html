@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
-
-{% block title %}Match Details{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Match Details" %}{% endblock %}
 
 {% block content %}
 <div class="d-flex flex-wrap gap-2 mb-3">
     <a href="{% url 'matches:share_image' match.id %}" class="btn btn-info">
-        <i class="bi bi-download me-1"></i> Download Image
+        <i class="bi bi-download me-1"></i> {% trans "Download Image" %}
     </a>
     <a href="{% url 'matches:share_image_guide' match.id %}" class="btn btn-success">
-        <i class="bi bi-whatsapp me-1"></i> Share Image on WhatsApp
+        <i class="bi bi-whatsapp me-1"></i> {% trans "Share Image on WhatsApp" %}
     </a>
     <a href="{% url 'matches:share_whatsapp' match.id %}" class="btn btn-outline-success" target="_blank">
-        <i class="bi bi-chat-text me-1"></i> Share Text Only
+        <i class="bi bi-chat-text me-1"></i> {% trans "Share Text Only" %}
     </a>
 </div>
 
@@ -21,9 +21,9 @@
         <h2 class="h3 mb-4">
             Match Details
             {% if match.is_past %}
-                <span class="badge bg-secondary ms-2">Past</span>
+                <span class="badge bg-secondary ms-2">{% trans "Past" %}</span>
             {% else %}
-                <span class="badge bg-success ms-2">Upcoming</span>
+                <span class="badge bg-success ms-2">{% trans "Upcoming" %}</span>
             {% endif %}
         </h2>
     </div>
@@ -33,22 +33,22 @@
     <div class="col-12 col-md-6">
         <ul class="list-group mb-4">
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <strong>Date:</strong> <span class="text-muted">{{ match.date|date:"Y/m/d" }}</span>
+                <strong>{% trans "Date:" %}</strong> <span class="text-muted">{{ match.date|date:"Y/m/d" }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <strong>Day:</strong> <span class="text-muted">{{ match.day_of_week }}</span>
+                <strong>{% trans "Day:" %}</strong> <span class="text-muted">{{ match.day_of_week }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <strong>Time:</strong> <span class="text-muted">{{ match.time|date:"H:i" }}</span>
+                <strong>{% trans "Time:" %}</strong> <span class="text-muted">{{ match.time|date:"H:i" }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <strong>Location:</strong> <span class="text-muted">{{ match.location_name }}</span>
+                <strong>{% trans "Location:" %}</strong> <span class="text-muted">{{ match.location_name }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <strong>Max Players:</strong> <span class="text-muted">{{ match.max_players }}</span>
+                <strong>{% trans "Max Players:" %}</strong> <span class="text-muted">{{ match.max_players }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <strong>Spots Left:</strong> <span class="text-muted">{{ match.spots_left }}</span>
+                <strong>{% trans "Spots Left:" %}</strong> <span class="text-muted">{{ match.spots_left }}</span>
             </li>
         </ul>
     </div>
@@ -57,26 +57,26 @@
 <!-- Active participants -->
 <div class="row">
     <div class="col-12">
-        <h3 class="h4 mb-3">Active Participants</h3>
+        <h3 class="h4 mb-3">{% trans "Active Participants" %}</h3>
         <div class="table-responsive">
             <table class="table table-striped mb-4">
                 <thead>
                     <tr>
-                        <th>Username</th>
-                        <th>Status</th>
-                        <th>Time</th>
+                        <th>{% trans "Username" %}</th>
+                        <th>{% trans "Status" %}</th>
+                        <th>{% trans "Time" %}</th>
                         {% if user.is_superuser %}
-                        <th>No-show</th>
+                        <th>{% trans "No-show" %}</th>
 
                         {% if match.can_edit_attendance %}
-                        <th>Mark No-show</th>
+                        <th>{% trans "Mark No-show" %}</th>
 
                         {% if not match.is_past %}
-                        <th>Remove From List</th>
+                        <th>{% trans "Exclude From List" %}</th>
                         {% endif %}
                         
-                        <th>Mark Present</th>
-                        <th>Danger Zone</th>
+                        <th>{% trans "Mark Present" %}</th>
+                        <th>{% trans "Erase Record" %}</th>
                         {% endif %}
                         {% endif %}
                     </tr>
@@ -86,7 +86,7 @@
                     <tr>
                         <td data-label="Username">{{ forloop.counter }} - {{ p.user.username }}</td>
                         <td>
-                            <span class="badge bg-success">{{ p.status }}</span>
+                            <span class="badge bg-success">{% trans p.get_status_display %}</span>
                         </td>
                         <td><span class="badge bg-primary">{{ p.status_time|date:"Y/m/d H:i" }}</span></td>
 
@@ -95,12 +95,19 @@
                             {% if p %}
                                 {% if p.is_no_show %}
                                     {% if p.no_show_reason == 'excused' %}
-                                        <span class="badge bg-success">Yes (Excused)</span>
+                                        <span class="badge bg-success">
+
+                                            <!-- get_no_show_reason_display -->
+                                            {% trans "Yes" %} ({{ p.get_no_show_reason_display|capfirst }})
+                                        </span>
                                     {% else %}
-                                        <span class="badge bg-danger">Yes ({{ p.no_show_reason|capfirst }})</span>
+                                        <span class="badge bg-danger">
+                                            {% trans "Yes" %} ({{ p.get_no_show_reason_display|capfirst }})
+                                        </span>
                                     {% endif %}
+
                                 {% else %}
-                                    <span class="badge bg-success">No</span>
+                                    <span class="badge bg-success">{% trans "No" %}</span>
                                 {% endif %}
                             {% endif %}
                         </td>
@@ -109,7 +116,7 @@
                         <td>
                             {% if p %}
                                 <a href="{% url 'mark_no_show' p.id %}" class="btn btn-danger btn-sm">
-                                    <i class="bi bi-exclamation-triangle me-1"></i> Mark No-Show
+                                    <i class="bi bi-exclamation-triangle me-1"></i> {% trans "Mark" %}
                                 </a>
                             {% endif %}    
                         </td>
@@ -118,7 +125,7 @@
                         <td>
                             {% if not p.removed and p.status == 'joined' %}
                                 <a href="{% url 'remove_participant' p.id %}" class="btn btn-outline-danger btn-sm">
-                                    <i class="bi bi-person-x"></i> Remove
+                                    <i class="bi bi-person-x"></i> {% trans "Exclude" %}
                                 </a>
                             {% endif %}
                         </td>
@@ -128,10 +135,10 @@
                             {% if p %}
                             {% if not p.is_present %}
                                 <a href="{% url 'mark_present' p.id %}" class="btn btn-success btn-sm">
-                                    Mark Present
+                                    {% trans "Mark" %}
                                 </a>
                             {% else %}
-                                <a href="{% url 'remove_present' p.id %}" class="btn btn-warning btn-sm">Remove Present</a>
+                                <a href="{% url 'remove_present' p.id %}" class="btn btn-warning btn-sm">{% trans "Undo" %}</a>
                             {% endif %}
                             {% endif %}
                         </td>
@@ -139,7 +146,7 @@
                         <td>
                             {% if p %}
                             <a href="{% url 'delete_participation' p.id %}" class="btn btn-outline-danger btn-sm">
-                                <i class="bi bi-trash"></i> Delete Participation
+                                <i class="bi bi-trash"></i> {% trans "Erase" %}
                             </a>
                             {% endif %}
                         </td>
@@ -148,7 +155,7 @@
                     </tr>
                     {% empty %}
                     <tr>
-                        <td colspan="6" class="text-center">No active participants yet.</td>
+                        <td colspan="6" class="text-center">{% trans "No active participants yet." %}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -161,26 +168,26 @@
 {% if user.is_superuser %}
 <div class="row">
     <div class="col-12">
-        <h3 class="h4 mb-3">Non-Active Participants</h3>
+        <h3 class="h4 mb-3">{% trans "Non-Active Participants" %}</h3>
         <div class="mb-2">
-    <span class="badge" style="background-color:#f8d7da; color:#842029;">Removed</span>
-    <span class="badge" style="background-color:#fff3cd; color:#664d03;">Left</span>
-    <span class="badge" style="background-color:#d1e7dd; color:#0f5132;">Normal</span>
+    <span class="badge" style="background-color:#f8d7da; color:#842029;">{% trans "Excluded" %}</span>
+    <span class="badge" style="background-color:#fff3cd; color:#664d03;">{% trans "Left" %}</span>
+    <span class="badge" style="background-color:#d1e7dd; color:#0f5132;">{% trans "Normal" %}</span>
 </div>
 
         <div class="table-responsive">
             <table class="table table-striped mb-4">
                 <thead>
                     <tr>
-                        <th>Username</th>
-                        <th>Status</th>
-                        <th>Time</th>
-                        <th>Removed</th>
-                        <th>No-show</th>
+                        <th>{% trans "Username" %}</th>
+                        <th>{% trans "Status" %}</th>
+                        <th>{% trans "Time" %}</th>
+                        <th>{% trans "Excluded" %}</th>
+                        <th>{% trans "No-show" %}</th>
                         {% if match.can_edit_attendance %}
-                        <th>Mark No-show</th>
-                        <th>Add Back</th>
-                        <th>Danger Zone</th>
+                        <th>{% trans "Exclude From List" %}</th>
+                        <th>{% trans "Add Back" %}</th>
+                        <th>{% trans "Erase Record" %}</th>
                         {% endif %}
                     </tr>
                 </thead>
@@ -190,27 +197,32 @@
                         <td>{{ p.user.username }}</td>
                         <td>
                             <span class="badge {% if p.status == 'joined' %}bg-success{% else %}bg-secondary{% endif %}">
-                                {{ p.status|capfirst }}
+                                {% trans p.get_status_display %}
                             </span>
                         </td>
                         <td><span class="badge bg-primary">{{ p.status_time|date:"Y/m/d H:i" }}</span></td>
                         <!-- Removed column -->
                         <td>
                             {% if p.removed %}
-                                <span class="badge bg-danger">Yes</span>
+                                <span class="badge bg-danger">{% trans "Yes" %}</span>
                             {% else %}
-                                <span class="badge bg-success">No</span>
+                                <span class="badge bg-success">{% trans "No" %}</span>
                             {% endif %}
                         </td>
                         <td>
                             {% if p.is_no_show %}
                                 {% if p.no_show_reason == 'excused' %}
-                                    <span class="badge bg-success">Yes (Excused)</span>
+                                    <span class="badge bg-success">
+                                        <!-- get_no_show_reason_display -->
+                                        {% trans "Yes" %} ({{ p.get_no_show_reason_display|capfirst }})
+                                    </span>
                                 {% else %}
-                                    <span class="badge bg-danger">Yes ({{ p.no_show_reason|capfirst }})</span>
+                                    <span class="badge bg-danger">
+                                        {% trans "Yes" %} ({{ p.get_no_show_reason_display|capfirst }})
+                                    </span>
                                 {% endif %}
                             {% else %}
-                                <span class="badge bg-success">No</span>
+                                <span class="badge bg-success">{% trans "No" %}</span>
                             {% endif %}
                         </td>
 
@@ -218,13 +230,13 @@
                         <td>
                             {% if not p.is_no_show %}
                                 <a href="{% url 'mark_no_show' p.id %}" class="btn btn-danger btn-sm">
-                                    <i class="bi bi-exclamation-triangle me-1"></i> Mark No-Show
+                                    <i class="bi bi-exclamation-triangle me-1"></i> {% trans "Mark" %}
                                 </a>
                             {% else %}
                                 <form method="post" action="{% url 'remove_no_show' p.id %}">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-sm" style="background-color: #ffc107; color: #000;">
-                                        Remove No-Show
+                                        {% trans "Undo" %}
                                     </button>
                                 </form>
 
@@ -235,7 +247,7 @@
                                 <form method="post" action="{% url 'restore_participant' p.id %}">
                                     {% csrf_token %}
                                     <input type="hidden" name="confirm" value="no">
-                                    <button type="submit" class="btn btn-outline-success btn-sm">Add Back</button>
+                                    <button type="submit" class="btn btn-outline-success btn-sm">{% trans "Add Back" %}</button>
                                 </form>
 
 
@@ -245,14 +257,14 @@
                         </td>
                         <td>
                         <a href="{% url 'delete_participation' p.id %}" class="btn btn-outline-danger btn-sm">
-                            <i class="bi bi-trash"></i> Delete Participation
+                            <i class="bi bi-trash"></i> {% trans "Erase" %}
                         </a>
                         </td>
                         {% endif %}
                     </tr>
                     {% empty %}
                     <tr>
-                        <td colspan="7" class="text-center">No non-active participants.</td>
+                        <td colspan="7" class="text-center">{% trans "No non-active participants." %}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -266,7 +278,7 @@
 {% if match.location_google_maps_embed_url %}
 <div class="row">
     <div class="col-12">
-        <h4 class="h5 mb-3">Location Map</h4>
+        <h4 class="h5 mb-3">{% trans "Location Map" %}</h4>
         <div class="map-container mb-4">
             <div class="map-wrapper">
                 {{ match.location_google_maps_embed_url|safe }}
@@ -280,7 +292,7 @@
 <div class="row">
     <div class="col-12 text-center">
         <a href="{{ previous_url|default:default_home }}" class="btn btn-secondary btn-lg">
-            <i class="bi bi-arrow-left me-2"></i>Back
+            <i class="bi bi-arrow-left me-2"></i>{% trans "Back" %}
         </a>
     </div>
 </div>

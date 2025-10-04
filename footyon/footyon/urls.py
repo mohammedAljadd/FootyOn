@@ -23,5 +23,6 @@ urlpatterns = [
     path('matches/', include(('matches.urls', 'matches'), namespace='matches')),
     path('participation/', include('participation.urls')),
     path('stats/', include('stats.urls')),
+    path('i18n/', include('django.conf.urls.i18n')),
 ]
 

@@ -11,6 +11,8 @@ from django.http import HttpResponse
 import io
 from accounts.decorators import *
 from django.urls import reverse
+from django.utils.translation import gettext as _
+
 
 def is_admin(user):
     return user.is_superuser
