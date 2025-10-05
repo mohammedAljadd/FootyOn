@@ -4,8 +4,15 @@
 
 {% block content %}
 <div class="container my-4">
-    <h2 class="mb-4">{% trans "Manage User Accounts" %}</h2>
+    {# Page header #}
+    <h2 class="mb-3">{% trans "Manage User Accounts" %}</h2>
 
+    {# Explanatory text above the table #}
+    <p class="text-muted mb-3">
+        {% trans "Here you can manage user accounts. Use the buttons above to navigate through the list." %}
+    </p>
+
+    {# Display Django messages (success, warning, info, etc.) #}
     {% if messages %}
         <div>
             {% for message in messages %}
@@ -14,7 +21,18 @@
         </div>
     {% endif %}
 
-    <table class="table table-bordered table-hover">
+    {# Pagination buttons placed on top of the table #}
+    <div class="d-flex justify-content-between mb-2">
+        <button class="btn btn-primary" id="prev-btn" disabled>
+            {% trans "Previous" %}
+        </button>
+        <button class="btn btn-primary" id="next-btn">
+            {% trans "Next" %}
+        </button>
+    </div>
+
+    {# Table displaying user accounts #}
+    <table class="table table-bordered table-hover" id="users-table">
         <thead class="table-dark">
             <tr>
                 <th>{% trans "Username" %}</th>
@@ -25,10 +43,12 @@
             </tr>
         </thead>
         <tbody>
-        {% for user in users %}
-            <tr>
+            {# Loop through all users passed from the view #}
+            {% for user in users %}
+            <tr class="user-row">
                 <td>{{ user.username }}</td>
                 <td>
+                    {# Display badge depending on user's status #}
                     {% if user.is_disabled %}
                         <span class="badge bg-danger">{% trans "Disabled" %}</span>
                     {% else %}
@@ -36,11 +56,13 @@
                     {% endif %}
                 </td>
                 <td>{{ user.date_joined|date:"Y-m-d" }}</td>
-                <td>...</td>
+                <td>...</td>  {# Placeholder for attendance percentage #}
                 <td>
+                    {# Only allow actions on users other than the current logged-in user #}
                     {% if user != request.user %}
                         <a href="{% url 'toggle_account_status' user.id %}"
                            class="btn {% if user.is_disabled %}btn-success{% else %}btn-danger{% endif %} btn-sm">
+                            {# Button text changes depending on current status #}
                             {% if user.is_disabled %}{% trans "Activate" %}{% else %}{% trans "Deactivate" %}{% endif %}
                         </a>
                     {% else %}
@@ -48,8 +70,56 @@
                     {% endif %}
                 </td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
+
+        {# Caption at the bottom explaining table behavior #}
+        <caption class="text-muted">
+            {% trans "Only 10 users are shown at a time. Use the buttons above to see more." %}
+        </caption>
     </table>
 </div>
+
+{# JavaScript for client-side pagination #}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Select all rows in the table
+    const rows = document.querySelectorAll("#users-table .user-row");
+    const pageSize = 10;  // Number of users to show per page
+    let currentPage = 0; // Track current page
+
+    // Function to show the correct page of rows
+    function showPage(page) {
+        rows.forEach((row, index) => {
+            // Show rows within the current page, hide others
+            row.style.display = (index >= page * pageSize && index < (page + 1) * pageSize) ? "" : "none";
+        });
+
+        // Enable/disable Previous button if on first page
+        document.getElementById("prev-btn").disabled = (page === 0);
+
+        // Enable/disable Next button if on last page
+        document.getElementById("next-btn").disabled = ((page + 1) * pageSize >= rows.length);
+    }
+
+    // Event listener for Previous button
+    document.getElementById("prev-btn").addEventListener("click", () => {
+        if (currentPage > 0) {
+            currentPage--;
+            showPage(currentPage);
+        }
+    });
+
+    // Event listener for Next button
+    document.getElementById("next-btn").addEventListener("click", () => {
+        if ((currentPage + 1) * pageSize < rows.length) {
+            currentPage++;
+            showPage(currentPage);
+        }
+    });
+
+    // Initialize first page on load
+    showPage(currentPage);
+});
+</script>
 {% endblock %}
