@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-04 06:00+0200\n"
+"POT-Creation-Date: 2025-10-05 21:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,6 +45,10 @@ msgstr "Se connecter"
 #: .\core\templates\base.html:193
 msgid "Sign Up"
 msgstr "S'inscrire"
+
+#: .\core\templates\footer.html:5
+msgid "All rights reserved."
+msgstr "Tous droits réservés."
 
 #: .\core\templates\home.html:8
 msgid "Welcome to Football Match Organizer"

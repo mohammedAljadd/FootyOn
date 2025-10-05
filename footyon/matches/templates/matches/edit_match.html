@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block title %}Edit Match{% endblock %}
 
 {% block content %}
-<h2>Edit Match: {{ match.location_name }} on {{ match.date }}</h2>
+<h2>{% trans "Edit Match" %} : {{ match.location_name }} {% trans "on" %} {{ match.date }}</h2>
 
 <!-- Show number of joined participants -->
 <p>
-    <strong>Joined Participants:</strong> {{ joined_count }}
+    <strong>{% trans "Active Participants" %} :</strong> {{ joined_count }}
 </p>
 
 <form method="post">
@@ -27,8 +27,8 @@
         </div>
     {% endfor %}
 
-    <button type="submit" class="btn btn-success">Save Changes</button>
-    <a href="{% url 'matches:manage' %}" class="btn btn-secondary">Cancel</a>
+    <button type="submit" class="btn btn-success">{% trans "Save Changes" %}</button>
+    <a href="{% url 'matches:manage' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
 </form>
 
 {% endblock %}

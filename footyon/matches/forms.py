@@ -2,6 +2,8 @@ from django import forms
 from .models import Match
 from django import forms
 from .models import Match
+from django.utils.translation import gettext_lazy as _
+
 
 class MatchForm(forms.ModelForm):
     class Meta:

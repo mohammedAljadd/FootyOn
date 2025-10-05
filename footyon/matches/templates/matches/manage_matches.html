@@ -52,16 +52,16 @@
                                 {% else %}
                                     <!-- Upcoming match: view / modify / delete -->
                                     <a href="{% url 'matches:view_match' match.id %}" class="btn btn-primary btn-sm mb-1">
-                                        <i class="bi bi-eye me-1"></i> View
+                                        <i class="bi bi-eye me-1"></i> {% trans "View" %}
                                     </a>
                                     <a href="{% url 'matches:edit_match' match.id %}" class="btn btn-warning btn-sm mb-1">
-                                        <i class="bi bi-pencil-square me-1"></i> Edit
+                                        <i class="bi bi-pencil-square me-1"></i> {% trans "Edit" %}
                                     </a>
                                     <a href="{% url 'matches:delete_match' match.id %}" class="btn btn-danger btn-sm mb-1">
-                                        <i class="bi bi-trash me-1"></i> Delete
+                                        <i class="bi bi-trash me-1"></i> {% trans "Delete" %}
                                     </a>
                                     {%if match.is_full %}
-                                        <button class="btn btn-secondary btn-sm mb-1" disabled>Full</button>
+                                        <button class="btn btn-secondary btn-sm mb-1" disabled>{% trans "Full" %}</button>
                                     {% endif %}
 
                                 {% endif %}
@@ -69,7 +69,7 @@
                         </tr>
                     {% empty %}
                         <tr>
-                            <td colspan="7" class="text-center">No matches found.</td>
+                            <td colspan="7" class="text-center">{% trans "No matches found." %}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
