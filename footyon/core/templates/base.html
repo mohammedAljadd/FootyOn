@@ -133,37 +133,8 @@
 
                 {% load i18n %}
 
-                <!-- language switcher (place near the header/navbar) -->
-                <form action="{% url 'set_language' %}" method="post" class="d-inline">
-                    {% csrf_token %}
-                    
-                    <!-- Hidden input to tell Django where to redirect the user after switching language -->
-                    <input name="next" type="hidden" value="{{ request.get_full_path }}">
-                    
-                    <!-- Dropdown for language selection -->
-                    <select name="language" 
-                            class="form-select form-select-sm d-inline-block"
-                            style="width:auto; display:inline-block;"
-                            onchange="this.form.submit()"> <!-- auto-submit when user changes language -->
-
-                        <!-- English option -->
-                        <!-- The "selected" part checks if the current request language code is 'en' -->
-                        <!-- If true, this option will be selected by default -->
-                        <option value="en" {% if request.LANGUAGE_CODE == 'en' %}selected{% endif %}>
-                            English
-                        </option>
-
-                        <!-- French option -->
-                        <!-- Same logic: if current request language is 'fr', this will be pre-selected -->
-                        <option value="fr" {% if request.LANGUAGE_CODE == 'fr' %}selected{% endif %}>
-                            Français
-                        </option>
-                    </select>
-                </form>
-
-
                 <!-- User Section -->
-                <ul class="navbar-nav">
+                <ul class="navbar-nav mx-1">
                     {% if user.is_authenticated %}
                         <li class="nav-item d-flex align-items-center">
                             <span class="navbar-text bg-white bg-opacity-10 rounded-pill px-3 py-1 me-3 fw-semibold">
@@ -196,6 +167,33 @@
                     {% endif %}
 
                 </ul>
+                
+            
+                <!-- Language Switcher -->
+                <form action="{% url 'set_language' %}" method="post" class="d-inline me-3">
+                    {% csrf_token %}
+
+                    <!-- Hidden input to tell Django where to redirect the user after switching language -->
+                    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+
+                    <!-- Button group for language selection -->
+                    <!-- Active language = highlighted (btn-warning), inactive = outline-light -->
+                    <div class="btn-group btn-group-sm" role="group">
+
+                        <!-- English button -->
+                        <button type="submit" name="language" value="en"
+                                class="btn {% if request.LANGUAGE_CODE == 'en' %}btn-warning text-dark{% else %}btn-outline-light{% endif %}">
+                            EN
+                        </button>
+
+                        <!-- French button -->
+                        <button type="submit" name="language" value="fr"
+                                class="btn {% if request.LANGUAGE_CODE == 'fr' %}btn-warning text-dark{% else %}btn-outline-light{% endif %}">
+                            FR
+                        </button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </nav>
