@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-08 04:54+0200\n"
+"POT-Creation-Date: 2025-10-08 05:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgstr "Date"
 
 #: .\matches\models.py:12 .\matches\templates\matches\manage_matches.html:30
 #: .\matches\templates\matches\view_match.html:67
-#: .\matches\templates\matches\view_match.html:184 .\matches\views.py:162
+#: .\matches\templates\matches\view_match.html:184 .\matches\views.py:165
 msgid "Time"
 msgstr "Heure"
 
@@ -33,7 +33,7 @@ msgid "Day of Week"
 msgstr ""
 
 #: .\matches\models.py:14 .\matches\templates\matches\manage_matches.html:31
-#: .\matches\views.py:163
+#: .\matches\views.py:166
 msgid "Location"
 msgstr "Lieu"
 
@@ -289,31 +289,31 @@ msgstr "Google Maps"
 msgid "Back"
 msgstr "Retour"
 
-#: .\matches\views.py:143
+#: .\matches\views.py:146
 msgid "FOOTBALL MATCH"
 msgstr "MATCH DE FOOT"
 
-#: .\matches\views.py:153
+#: .\matches\views.py:156
 msgid "MATCH DETAILS"
 msgstr "DÉTAILS DU MATCH"
 
-
-#: .\matches\views.py:165
-msgid "in total"
-msgstr "au total"
-
+#: .\matches\views.py:167
 msgid "Players"
 msgstr "Joueurs"
 
+#: .\matches\views.py:168
+msgid "in total"
+msgstr "au total"
 
+#: .\matches\views.py:169
 msgid "spots left"
 msgstr "places restantes"
 
-#: .\matches\views.py:177
+#: .\matches\views.py:180
 msgid "PARTICIPANTS"
 msgstr ""
 
-#: .\matches\views.py:197
+#: .\matches\views.py:200
 msgid "Join this match on FootyOn!"
 msgstr "Rejoignez ce match sur FootyOn!"
 

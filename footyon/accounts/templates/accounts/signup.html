@@ -1,21 +1,39 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Sign Up{% endblock %}
+{% block title %}{% trans "Sign Up" %}{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-12 col-sm-8 col-md-6 col-lg-4">
         <div class="card shadow-sm">
             <div class="card-body p-4">
-                <h2 class="h3 text-center mb-4">Sign Up</h2>
+                <h2 class="h3 text-center mb-4">{% trans "Sign Up" %}</h2>
+                
+                {# Instructions box - always visible to guide users #}
+                <div class="alert alert-info mb-4">
+                    <h6 class="alert-heading mb-2">{% trans "Registration Requirements:" %}</h6>
+                    <ul class="mb-0 small">
+                        <li>{% trans "Username: Letters followed by exactly 3 digits (e.g. alex123)" %}</li>
+                        <li>{% trans "Password: At least 8 characters" %}</li>
+                        <li>{% trans "Password cannot be too similar to your username" %}</li>
+                        <li>{% trans "Password cannot be a commonly used password" %}</li>
+                        <li>{% trans "Password cannot be entirely numeric" %}</li>
+                    </ul>
+                </div>
+                
                 <form method="post">
                     {% csrf_token %}
+                    
+                    {# Loop through each form field (username, password1, password2) #}
                     {% for field in form %}
                         <div class="mb-3">
-                            <label for="{{ field.id_for_label }}" class="form-label fw-semibold">
-                                {{ field.label }}
-                            </label>
+                            {# Render the input field directly (no label since it's empty) #}
+                            {# Placeholders are set in the UserSignupForm __init__ method #}
                             {{ field }}
+                            
+                            {# Display validation errors if any #}
+                            {# These appear when username format is wrong or passwords don't match #}
                             {% if field.errors %}
                                 <div class="text-danger small mt-1">
                                     {% for error in field.errors %}
@@ -23,17 +41,17 @@
                                     {% endfor %}
                                 </div>
                             {% endif %}
-                            {% if field.help_text %}
-                                <div class="form-text small">{{ field.help_text }}</div>
-                            {% endif %}
                         </div>
                     {% endfor %}
-                    <button type="submit" class="btn btn-primary w-100 btn-lg">Sign Up</button>
+                    
+                    {# Submit button with translation support #}
+                    <button type="submit" class="btn btn-primary w-100 btn-lg">{% trans "Sign Up" %}</button>
                 </form>
 
+                {# Link to login page for existing users #}
                 <div class="text-center mt-4">
                     <p class="mb-0">
-                        Already have an account? <a href="{% url 'login' %}" class="text-decoration-none">Login</a>
+                        {% trans "Already have an account?" %} <a href="{% url 'login' %}" class="text-decoration-none">{% trans "Login" %}</a>
                     </p>
                 </div>
             </div>
@@ -42,43 +60,57 @@
 </div>
 
 <style>
-    /* Mobile-specific styles */
+    /* ===== Mobile-specific styles ===== */
+    /* Apply these styles only on small screens (max-width: 576px) */
     @media (max-width: 576px) {
         .card {
-            margin: 1rem;
-            border-radius: 0.75rem;
+            margin: 1rem;  /* Add margin around card on mobile */
+            border-radius: 0.75rem;  /* Rounded corners */
         }
         
         .card-body {
-            padding: 1.5rem;
+            padding: 1.5rem;  /* Reduce padding on mobile for more space */
         }
         
         .btn-lg {
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
-        }
-        
-        .form-label {
-            font-size: 0.95rem;
+            padding: 0.75rem 1rem;  /* Adjust button padding for mobile */
+            font-size: 1rem;  /* Standard font size for mobile */
         }
     }
     
-    /* Form field styling */
+    /* ===== Form field styling ===== */
     .form-control {
-        border-radius: 0.5rem;
-        border: 1px solid #dee2e6;
-        padding: 0.75rem;
-        font-size: 1rem;
+        border-radius: 0.5rem;  /* Rounded input corners */
+        border: 1px solid #dee2e6;  /* Light gray border */
+        padding: 0.75rem;  /* Comfortable padding inside inputs */
+        font-size: 1rem;  /* Standard readable font size */
     }
     
+    /* Style for focused input fields */
     .form-control:focus {
-        border-color: #0d6efd;
-        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        border-color: #0d6efd;  /* Blue border on focus (matches signup button) */
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);  /* Blue shadow glow */
     }
     
+    /* ===== Card styling ===== */
     .card {
-        border: none;
-        border-radius: 1rem;
+        border: none;  /* Remove default border */
+        border-radius: 1rem;  /* More rounded corners for modern look */
+    }
+    
+    /* ===== Instructions alert box styling ===== */
+    .alert-info {
+        background-color: #e7f3ff;  /* Light blue background */
+        border-color: #b6d4fe;  /* Slightly darker blue border */
+        color: #084298;  /* Dark blue text for readability */
+    }
+    
+    .alert-info ul {
+        padding-left: 1.25rem;  /* Indent the list items */
+    }
+    
+    .alert-info li {
+        margin-bottom: 0.25rem;  /* Small spacing between requirements */
     }
 </style>
 

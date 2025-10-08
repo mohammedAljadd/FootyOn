@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-08 04:39+0200\n"
+"POT-Creation-Date: 2025-10-08 05:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,43 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\accounts\forms.py:24
+msgid "Username (e.g. alex123)"
+msgstr ""
+
+#: .\accounts\forms.py:32 .\accounts\forms.py:110
+msgid "Password"
+msgstr ""
+
+#: .\accounts\forms.py:42
+msgid "Confirm Password"
+msgstr ""
+
+#: .\accounts\forms.py:63
+msgid "Username must be letters followed by exactly 3 digits (e.g. alex123)."
+msgstr ""
+
+#: .\accounts\forms.py:102
+#: .\accounts\templates\accounts\manage_accounts.html:49
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: .\accounts\templates\accounts\login.html:31
+#: .\accounts\templates\accounts\signup.html:54
+msgid "Login"
+msgstr "Se connecter"
+
+#: .\accounts\templates\accounts\login.html:36
+msgid "Don't have an account?"
+msgstr "Vous n'avez pas de compte ?"
+
+#: .\accounts\templates\accounts\login.html:36
+#: .\accounts\templates\accounts\signup.html:4
+#: .\accounts\templates\accounts\signup.html:11
+#: .\accounts\templates\accounts\signup.html:48
+msgid "Sign Up"
+msgstr "S'inscrire"
 
 #: .\accounts\templates\accounts\manage_accounts.html:8
 msgid "Manage User Accounts"
@@ -39,10 +76,6 @@ msgstr ""
 #: .\accounts\templates\accounts\manage_accounts.html:41
 msgid "Next"
 msgstr ""
-
-#: .\accounts\templates\accounts\manage_accounts.html:49
-msgid "Username"
-msgstr "Nom d'utilisateur"
 
 #: .\accounts\templates\accounts\manage_accounts.html:50
 msgid "Status"
@@ -82,11 +115,38 @@ msgstr "Désactiver"
 
 #: .\accounts\templates\accounts\manage_accounts.html:90
 msgid "No users found."
-msgstr ""
+msgstr "Aucun utilisateur trouvé."
 
 #: .\accounts\templates\accounts\manage_accounts.html:97
 msgid "Only 10 users are shown at a time. Use the buttons above to see more."
-msgstr ""
+msgstr "Seulement 10 utilisateurs sont affichés à la fois. Utilisez les boutons ci-dessus pour en voir plus."
+
+#: .\accounts\templates\accounts\signup.html:15
+msgid "Registration Requirements:"
+msgstr "Conditions d'inscription :"
+
+#: .\accounts\templates\accounts\signup.html:17
+msgid "Username: Letters followed by exactly 3 digits (e.g. alex123)"
+msgstr "Nom d'utilisateur : Lettres suivies d'exactement 3 chiffres (ex. alex123)"
+
+#: .\accounts\templates\accounts\signup.html:18
+msgid "Password: At least 8 characters"
+msgstr "Mot de passe : Au moins 8 caractères"
+
+#: .\accounts\templates\accounts\signup.html:19
+msgid "Password cannot be too similar to your username"
+msgstr "Le mot de passe ne peut pas être trop similaire à votre nom d'utilisateur"
+
+#: .\accounts\templates\accounts\signup.html:20
+msgid "Password cannot be a commonly used password"
+msgstr "Le mot de passe ne peut pas être un mot de passe couramment utilisé"
+
+#: .\accounts\templates\accounts\signup.html:21
+msgid "Password cannot be entirely numeric"
+msgstr "Le mot de passe ne peut pas être entièrement numérique"
+#: .\accounts\templates\accounts\signup.html:54
+msgid "Already have an account?"
+msgstr "Vous avez déjà un compte ?"
 
 #: .\accounts\views.py:92
 #, python-format
