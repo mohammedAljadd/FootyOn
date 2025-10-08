@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-04 07:59+0200\n"
+"POT-Creation-Date: 2025-10-08 04:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,52 +18,85 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\accounts\templates\accounts\manage_accounts.html:7
+#: .\accounts\templates\accounts\manage_accounts.html:8
 msgid "Manage User Accounts"
 msgstr "Gérer les comptes utilisateurs"
 
-#: .\accounts\templates\accounts\manage_accounts.html:20
+#: .\accounts\templates\accounts\manage_accounts.html:12
+msgid ""
+"Here you can manage user accounts. Use the buttons above to navigate through "
+"the list."
+msgstr ""
+
+#: .\accounts\templates\accounts\manage_accounts.html:30
+msgid "Search by username..."
+msgstr ""
+
+#: .\accounts\templates\accounts\manage_accounts.html:38
+msgid "Previous"
+msgstr ""
+
+#: .\accounts\templates\accounts\manage_accounts.html:41
+msgid "Next"
+msgstr ""
+
+#: .\accounts\templates\accounts\manage_accounts.html:49
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: .\accounts\templates\accounts\manage_accounts.html:21
+#: .\accounts\templates\accounts\manage_accounts.html:50
 msgid "Status"
 msgstr "Statut"
 
-#: .\accounts\templates\accounts\manage_accounts.html:22
+#: .\accounts\templates\accounts\manage_accounts.html:51
 msgid "Joined"
 msgstr "Inscrit"
 
-#: .\accounts\templates\accounts\manage_accounts.html:23
-msgid "Attendance"
-msgstr "Présence"
+#: .\accounts\templates\accounts\manage_accounts.html:52
+msgid "Eligible matches"
+msgstr ""
 
-#: .\accounts\templates\accounts\manage_accounts.html:24
+#: .\accounts\templates\accounts\manage_accounts.html:53
+msgid "Score"
+msgstr ""
+
+#: .\accounts\templates\accounts\manage_accounts.html:54
 msgid "Action"
 msgstr "Action"
 
-#: .\accounts\templates\accounts\manage_accounts.html:33
+#: .\accounts\templates\accounts\manage_accounts.html:65
 msgid "Disabled"
 msgstr "Désactivé"
 
-#: .\accounts\templates\accounts\manage_accounts.html:35
+#: .\accounts\templates\accounts\manage_accounts.html:67
 msgid "Active"
 msgstr "Actif"
 
-#: .\accounts\templates\accounts\manage_accounts.html:44
+#: .\accounts\templates\accounts\manage_accounts.html:79
 msgid "Activate"
 msgstr "Activer"
 
-#: .\accounts\templates\accounts\manage_accounts.html:44
+#: .\accounts\templates\accounts\manage_accounts.html:79
 msgid "Deactivate"
 msgstr "Désactiver"
 
-#: .\accounts\views.py:41
+#: .\accounts\templates\accounts\manage_accounts.html:90
+msgid "No users found."
+msgstr ""
+
+#: .\accounts\templates\accounts\manage_accounts.html:97
+msgid "Only 10 users are shown at a time. Use the buttons above to see more."
+msgstr ""
+
+#: .\accounts\views.py:92
 #, python-format
 msgid "🚫 %(username)s has been deactivated."
 msgstr "🚫 %(username)s a été désactivé."
 
-#: .\accounts\views.py:43
+#: .\accounts\views.py:94
 #, python-format
 msgid "✅ %(username)s has been activated."
 msgstr "✅ %(username)s a été activé."
+
+#~ msgid "Attendance"
+#~ msgstr "Présence"

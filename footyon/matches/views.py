@@ -12,7 +12,7 @@ import io
 from accounts.decorators import *
 from django.urls import reverse
 from django.utils.translation import gettext as _
-
+from django.utils import translation
 
 def is_admin(user):
     return user.is_superuser
@@ -102,8 +102,13 @@ def delete_match(request, match_id):
 
 @active_user_required
 def download_match_image(request, match_id):
+
+    lang = getattr(request, "LANGUAGE_CODE", None)  # usually set by LocaleMiddleware
+    if lang:
+        translation.activate(lang)
+
     match = get_object_or_404(Match, id=match_id)
-    participants = match.participation_set.filter(status='joined')
+    participants = match.participation_set.filter(status='joined', removed=False, is_no_show=False)
     max_players = match.max_players
     spots_left = match.spots_left
 
@@ -135,7 +140,7 @@ def download_match_image(request, match_id):
     draw.rectangle([0, header_height, width, header_height + 2], fill='#1e7e34')  # border
     
     # Title
-    draw.text((width//2 - 150, 25), "FOOTBALL MATCH", font=title_font, fill="#ffffff")
+    draw.text((width//2 - 150, 25), _("FOOTBALL MATCH"), font=title_font, fill="#ffffff")
     
     # --- Match info section with card-like background ---
     y = header_height + 30
@@ -145,22 +150,31 @@ def download_match_image(request, match_id):
     draw.rectangle([50, y, 50 + info_width, y + 40], fill="#e9ecef")
     
     # Section title
-    draw.text((70, y + 10), "MATCH DETAILS", font=header_font, fill="#495057")
+    draw.text((70, y + 10), _("MATCH DETAILS"), font=header_font, fill="#495057")
     
     # Match info with text-based icons and better spacing
     info_y = y + 60
     draw.text((70, info_y), f"Date: {match.day_of_week}, {match.date}", font=text_font, fill="#212529")
     info_y += 35
-    draw.text((70, info_y), f"Time: {match.time or 'TBD'}", font=text_font, fill="#212529")
+
+
+    # Theses variables were created to translate words inside an f-string
+    time_str = _("Time")
+    location_str = _("Location")
+    players_str = _("Players")
+    intotal_str = _("in total")
+    spots_left_str = _("spots left")
+
+    draw.text((70, info_y), f"{time_str}: {match.time or 'TBD'}", font=text_font, fill="#212529")
     info_y += 35
-    draw.text((70, info_y), f"Location: {match.location_name}", font=text_font, fill="#212529")
+    draw.text((70, info_y), f"{location_str}: {match.location_name}", font=text_font, fill="#212529")
     info_y += 35
-    draw.text((70, info_y), f"Players: {max_players} total • {spots_left} spots left", font=text_font, fill="#28a745" if spots_left > 0 else "#dc3545")
+    draw.text((70, info_y), f"{players_str}: {max_players} {intotal_str} • {spots_left} {spots_left_str}", font=text_font, fill="#28a745" if spots_left > 0 else "#dc3545")
 
     # --- Participants section ---
     y = header_height + info_height + 50
     draw.rectangle([50, y, 50 + info_width, y + 40], fill="#e9ecef")
-    draw.text((70, y + 10), "PARTICIPANTS", font=header_font, fill="#495057")
+    draw.text((70, y + 10), _("PARTICIPANTS"), font=header_font, fill="#495057")
     
     # Participants list with alternating background
     y += 50
@@ -180,14 +194,28 @@ def download_match_image(request, match_id):
     # --- Footer ---
     footer_y = height - 40
     draw.rectangle([0, footer_y, width, height], fill="#343a40")
-    draw.text((width//2 - 100, footer_y + 10), "Join this match on FootyOn!", font=small_font, fill="#ffffff")
+    draw.text((width//2 - 100, footer_y + 10), _("Join this match on FootyOn!"), font=small_font, fill="#ffffff")
 
     # --- Return image as downloadable file ---
     buffer = io.BytesIO()
     image.save(buffer, format='PNG')
     buffer.seek(0)
     response = HttpResponse(buffer, content_type='image/png')
-    response['Content-Disposition'] = f'attachment; filename=match_{match.id}.png'
+
+
+    """ Dynamically generate filename:"""
+    # Format date
+    date_part = match.date.strftime("%d_%m_%Y")  # day_month_year
+    time_part = match.time.strftime("%Hh%M") if match.time else "TBD"
+
+    # Translate weekday
+    weekday_translated = _(match.day_of_week)  # e.g., "Wednesday" → "Mercredi"
+
+    # Build filename
+    filename = f"match_{date_part}_{weekday_translated}_{time_part}.png"
+
+    # Set Content-Disposition
+    response['Content-Disposition'] = f'attachment; filename="{filename}"'
     return response
 
 @active_user_required

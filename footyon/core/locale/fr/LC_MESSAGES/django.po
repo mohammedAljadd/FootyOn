@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-05 21:08+0200\n"
+"POT-Creation-Date: 2025-10-08 04:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,23 +30,23 @@ msgstr "Gérer les matchs"
 msgid "Manage Accounts"
 msgstr "Gérer les comptes"
 
-#: .\core\templates\base.html:170
+#: .\core\templates\base.html:141
 msgid "Hello"
 msgstr "Bonjour"
 
-#: .\core\templates\base.html:180
+#: .\core\templates\base.html:151
 msgid "Logout"
 msgstr "Se déconnecter"
 
-#: .\core\templates\base.html:188
+#: .\core\templates\base.html:159
 msgid "Login"
 msgstr "Se connecter"
 
-#: .\core\templates\base.html:193
+#: .\core\templates\base.html:164
 msgid "Sign Up"
 msgstr "S'inscrire"
 
-#: .\core\templates\footer.html:5
+#: .\core\templates\footer.html:6
 msgid "All rights reserved."
 msgstr "Tous droits réservés."
 

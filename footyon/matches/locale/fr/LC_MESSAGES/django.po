@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-05 21:07+0200\n"
+"POT-Creation-Date: 2025-10-08 04:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgstr "Date"
 
 #: .\matches\models.py:12 .\matches\templates\matches\manage_matches.html:30
 #: .\matches\templates\matches\view_match.html:67
-#: .\matches\templates\matches\view_match.html:184
+#: .\matches\templates\matches\view_match.html:184 .\matches\views.py:162
 msgid "Time"
 msgstr "Heure"
 
@@ -33,6 +33,7 @@ msgid "Day of Week"
 msgstr ""
 
 #: .\matches\models.py:14 .\matches\templates\matches\manage_matches.html:31
+#: .\matches\views.py:163
 msgid "Location"
 msgstr "Lieu"
 
@@ -80,9 +81,17 @@ msgstr "Annuler"
 msgid "Manage Matches"
 msgstr "Gérer les matchs"
 
-#: .\matches\templates\matches\manage_matches.html:16
+#: .\matches\templates\matches\manage_matches.html:13
 msgid "Create New Match"
 msgstr "Créer un nouveau match"
+
+#: .\matches\templates\matches\manage_matches.html:19
+msgid "Previous"
+msgstr ""
+
+#: .\matches\templates\matches\manage_matches.html:20
+msgid "Next"
+msgstr ""
 
 #: .\matches\templates\matches\manage_matches.html:29
 msgid "Day"
@@ -96,6 +105,7 @@ msgstr "Places restantes"
 msgid "Actions"
 msgstr "Actions"
 
+#: .\matches\templates\matches\manage_matches.html:50
 #: .\matches\templates\matches\manage_matches.html:55
 msgid "View"
 msgstr "Afficher"
@@ -112,10 +122,13 @@ msgstr "Supprimer"
 msgid "Full"
 msgstr "Complet"
 
-#: .\matches\templates\matches\manage_matches.html:72
+#: .\matches\templates\matches\manage_matches.html:71
 msgid "No matches found."
 msgstr "Aucun match trouvé."
 
+#: .\matches\templates\matches\manage_matches.html:78
+msgid "Only 10 matches are shown at a time. Use the buttons above to see more."
+msgstr ""
 
 #: .\matches\templates\matches\view_match.html:3
 msgid "Match Details"
@@ -254,8 +267,8 @@ msgid "Left"
 msgstr "A quitté"
 
 #: .\matches\templates\matches\view_match.html:175
-msgid "Normal"
-msgstr "Normal"
+msgid "Registered Only"
+msgstr ""
 
 #: .\matches\templates\matches\view_match.html:189
 #: .\matches\templates\matches\view_match.html:250
@@ -275,6 +288,37 @@ msgstr "Google Maps"
 #: .\matches\templates\matches\view_match.html:295
 msgid "Back"
 msgstr "Retour"
+
+#: .\matches\views.py:143
+msgid "FOOTBALL MATCH"
+msgstr "MATCH DE FOOT"
+
+#: .\matches\views.py:153
+msgid "MATCH DETAILS"
+msgstr "DÉTAILS DU MATCH"
+
+
+#: .\matches\views.py:165
+msgid "in total"
+msgstr "au total"
+
+msgid "Players"
+msgstr "Joueurs"
+
+
+msgid "spots left"
+msgstr "places restantes"
+
+#: .\matches\views.py:177
+msgid "PARTICIPANTS"
+msgstr ""
+
+#: .\matches\views.py:197
+msgid "Join this match on FootyOn!"
+msgstr "Rejoignez ce match sur FootyOn!"
+
+#~ msgid "Normal"
+#~ msgstr "Normal"
 
 #, fuzzy
 #~| msgid "Active Participants"

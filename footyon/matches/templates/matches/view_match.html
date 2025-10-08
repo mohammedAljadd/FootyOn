@@ -7,12 +7,12 @@
     <a href="{% url 'matches:share_image' match.id %}" class="btn btn-info">
         <i class="bi bi-download me-1"></i> {% trans "Download Image" %}
     </a>
-    <a href="{% url 'matches:share_image_guide' match.id %}" class="btn btn-success">
+   <!--  <a href="{% url 'matches:share_image_guide' match.id %}" class="btn btn-success">
         <i class="bi bi-whatsapp me-1"></i> {% trans "Share Image on WhatsApp" %}
     </a>
     <a href="{% url 'matches:share_whatsapp' match.id %}" class="btn btn-outline-success" target="_blank">
         <i class="bi bi-chat-text me-1"></i> {% trans "Share Text Only" %}
-    </a>
+    </a> -->
 </div>
 
 <!-- Match details -->
@@ -172,7 +172,7 @@
         <div class="mb-2">
     <span class="badge" style="background-color:#f8d7da; color:#842029;">{% trans "Excluded" %}</span>
     <span class="badge" style="background-color:#fff3cd; color:#664d03;">{% trans "Left" %}</span>
-    <span class="badge" style="background-color:#d1e7dd; color:#0f5132;">{% trans "Normal" %}</span>
+    <span class="badge" style="background-color:#adc9f7; color:#0766ff;">{% trans "Registered Only" %}</span>
 </div>
 
         <div class="table-responsive">
@@ -307,7 +307,7 @@ tr.left-row > td, tr.left-row > th {
     background-color: #fff3cd !important;  /* light yellow */
 }
 tr.normal-row > td, tr.normal-row > th {
-    background-color: #d1e7dd !important;  /* light green */
+    background-color: #adc9f7 !important;  /* light blue */
 }
 </style>
 {% endblock %}
