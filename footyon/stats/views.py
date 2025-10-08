@@ -6,7 +6,9 @@ from django.db.models import Count, Q, F, FloatField, ExpressionWrapper, Avg
 from matches.models import Match
 from collections import defaultdict
 import datetime
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def stats_dashboard(request):
 
     # annotate each match with attended_count
