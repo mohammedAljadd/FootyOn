@@ -4,17 +4,30 @@ import calendar
 from django.utils import timezone
 from datetime import timedelta
 from datetime import datetime
-
 from django.utils.translation import gettext_lazy as _
 
+class Stadium(models.Model):
+    name = models.CharField(max_length=100, unique=True, verbose_name=_("Stadium Name"))
+    google_maps_short_url = models.URLField(blank=True, null=True) 
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created At"))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated At"))
+
+    def __str__(self):
+        return self.name
+
+  
 class Match(models.Model):
     date = models.DateField(verbose_name=_("Date"))
     time = models.TimeField(null=True, blank=True, verbose_name=_("Time"))
     day_of_week = models.CharField(max_length=10, verbose_name=_("Day of Week"))
-    location_name = models.CharField(max_length=100, verbose_name=_("Location"))
-    location_google_maps_short_url = models.URLField(
-        blank=True, null=True, verbose_name=_("Google Maps Short URL")
+    
+    stadium = models.ForeignKey(
+        Stadium,
+        on_delete=models.PROTECT,
+        related_name='matches',
+        verbose_name=_("Stadium")
     )
+
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created At"))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated At"))
     max_players = models.PositiveIntegerField(default=12, verbose_name=_("Max Players"))
@@ -69,4 +82,5 @@ class Match(models.Model):
         match_datetime = datetime.combine(self.date, self.time)
         match_datetime = timezone.make_aware(match_datetime)
         return timezone.now() <= match_datetime + timedelta(minutes=60)
+
 

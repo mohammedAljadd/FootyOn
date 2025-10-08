@@ -60,7 +60,7 @@
                 <strong>{% trans "Time:" %}</strong> <span class="text-muted">{{ match.time|date:"H:i" }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <strong>{% trans "Location:" %}</strong> <span class="text-muted">{{ match.location_name }}</span>
+                <strong>{% trans "Location:" %}</strong> <span class="text-muted">{{ match.stadium.name }}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <strong>{% trans "Max Players:" %}</strong> <span class="text-muted">{{ match.max_players }}</span>

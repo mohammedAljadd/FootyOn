@@ -40,7 +40,7 @@
                     <td data-label="Date">{{ match.date|date:"Y-m-d" }}</td>
                     <td data-label="Day">{% trans match.day_of_week|capfirst %}</td>
                     <td data-label="Time">{{ match.time|date:"H:i" }}</td>
-                    <td data-label="Location">{{ match.location_name }}</td>
+                    <td data-label="Location">{{ match.stadium.name }}</td>
                     <td data-label="Max Players">{{ match.max_players }}</td>
                     <td data-label="Spots Left">{{ match.spots_left }}</td>
                     <td data-label="Actions">

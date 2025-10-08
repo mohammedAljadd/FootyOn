@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
-from datetime import date
+from .models import Stadium
 from .forms import MatchForm
 from django.shortcuts import render, get_object_or_404
 from .models import Match
@@ -16,6 +16,9 @@ from django.utils import translation
 from django.contrib.auth.decorators import login_required
 from .utils import convert_to_embed_url
 from .decorators import editable_match_required
+from .forms import StadiumForm
+from django.contrib import messages
+
 
 def is_admin(user):
     return user.is_superuser
@@ -68,9 +71,9 @@ def view_match(request, match_id):
     
     # Convert short URL to embed URL if available
     embed_url = None
-    if match.location_google_maps_short_url:
-        embed_url = convert_to_embed_url(match.location_google_maps_short_url)
-    
+    if match.stadium.google_maps_short_url:
+        embed_url = convert_to_embed_url(match.stadium.google_maps_short_url)
+
     context = {
         'match': match,
         'active_participants': active_participants,
@@ -83,7 +86,8 @@ def view_match(request, match_id):
 
 @user_passes_test(is_admin)
 @editable_match_required
-def edit_match(request, match_id):
+def edit_match(request, match_id=None, match=None):
+    # We did not pass the match because it will get it from the decorator
     match = get_object_or_404(Match, id=match_id)
     joined_count = Participation.objects.filter(match=match, status='joined').count()
 
@@ -273,4 +277,45 @@ def share_with_image_instructions(request, match_id):
     return render(request, 'matches/share_instructions.html', context)
 
 
+@user_passes_test(is_admin)
+def manage_stadiums(request):
+    """
+    Page for admin to manage all stadiums.
+    """
+    
+    stadiums = Stadium.objects.all().order_by('name')  # alphabetical order
+    return render(request, 'matches/manage_stadiums.html', {'stadiums': stadiums})
 
+
+
+
+@user_passes_test(is_admin)
+def add_stadium(request):
+    """
+    View to allow admin to create a new stadium.
+    """
+    if request.method == "POST":
+        form = StadiumForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("matches:manage_stadiums")  # redirect to stadium management page
+    else:
+        form = StadiumForm()
+
+    return render(request, "matches/add_stadium.html", {"form": form})
+
+
+@user_passes_test(is_admin)
+def edit_stadium(request, stadium_id):
+    stadium = get_object_or_404(Stadium, id=stadium_id)
+
+    if request.method == "POST":
+        form = StadiumForm(request.POST, instance=stadium)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("Stadium updated successfully."))
+            return redirect("matches:manage_stadiums")
+    else:
+        form = StadiumForm(instance=stadium)
+
+    return render(request, "matches/edit_stadium.html", {"form": form, "stadium": stadium})

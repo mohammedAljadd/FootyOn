@@ -112,25 +112,30 @@
 
                     <!-- Links only for admin -->
                     {% if user.is_authenticated and user.is_superuser %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle fw-semibold px-3 text-warning" href="#" role="button" 
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-gear me-1"></i>{% trans "Admin Panel" %}
+                       <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-semibold px-3 text-warning" href="#" role="button" 
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-gear me-1"></i>{% trans "Admin Panel" %}
+                        </a>
+                        <ul class="dropdown-menu bg-warning border-0 shadow">
+                            <li>
+                            <a class="dropdown-item text-black" href="{% url 'matches:manage' %}">
+                                <i class="bi bi-calendar-event me-2"></i>{% trans "Manage Matches" %}
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-dark bg-dark">
-                                <li>
-                                    <a class="dropdown-item" href="{% url 'matches:manage' %}">
-                                        <i class="bi bi-calendar-event me-2"></i>{% trans "Manage Matches" %}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="{% url 'manage_accounts' %}">
-                                        <i class="bi bi-people me-2"></i>{% trans "Manage Accounts" %}
-                                    </a>
-                                </li>
-                                <!-- <li><hr class="dropdown-divider"></li> -->
-                            </ul>
+                            </li>
+                            <li>
+                            <a class="dropdown-item text-black" href="{% url 'manage_accounts' %}">
+                                <i class="bi bi-people me-2"></i>{% trans "Manage Accounts" %}
+                            </a>
+                            </li>
+                            <li>
+                            <a class="dropdown-item text-black" href="{% url 'matches:manage_stadiums' %}">
+                                <i class="bi bi-building me-2"></i>{% trans "Manage Stadiums" %}
+                            </a>
+                            </li>
+                        </ul>
                         </li>
+
                     {% endif %}
                 </ul>
 

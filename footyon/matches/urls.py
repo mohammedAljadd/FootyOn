@@ -16,4 +16,7 @@ urlpatterns = [
     path('share_image/<int:match_id>/', views.download_match_image, name='share_image'),
     path('<int:match_id>/share_whatsapp/', views.share_on_whatsapp, name='share_whatsapp'),
     path('<int:match_id>/share_image_guide/', views.share_with_image_instructions, name='share_image_guide'),
+    path('stadiums/', views.manage_stadiums, name='manage_stadiums'),
+    path('stadiums/add/', views.add_stadium, name='add_stadium'),
+    path('stadiums/<int:stadium_id>/edit/', views.edit_stadium, name='edit_stadium'),
 ]
