@@ -1,0 +1,132 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-08 05:56+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: .\stats\templates\stats\dashboard.html:34
+msgid "Stats Dashboard"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:41
+msgid "Total Matches"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:49
+#, python-format
+msgid "Avg Attendance %%"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:60
+msgid "This table shows users' participation stats:"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:62
+#: .\stats\templates\stats\dashboard.html:109
+msgid "Username"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:63
+#: .\stats\templates\stats\dashboard.html:111
+msgid "Total Enrolled"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:64
+#: .\stats\templates\stats\dashboard.html:112
+msgid "Eligible Participations"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:65
+#: .\stats\templates\stats\dashboard.html:113
+msgid "Total Attended"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:66
+#: .\stats\templates\stats\dashboard.html:114
+msgid "Total Left"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:67
+#: .\stats\templates\stats\dashboard.html:115
+msgid "Absent (Excused)"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:68
+#: .\stats\templates\stats\dashboard.html:116
+msgid "Absent (Not Excused)"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:69
+#: .\stats\templates\stats\dashboard.html:117
+msgid "Absent (Last Minute)"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:70
+#: .\stats\templates\stats\dashboard.html:118
+#, python-format
+msgid "Score %%"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:83
+#, python-format
+msgid "Min Attendance %% (All)"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:101
+#: .\stats\templates\stats\dashboard.html:173
+msgid "Previous"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:102
+#: .\stats\templates\stats\dashboard.html:174
+msgid "Next"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:110
+msgid "Medal"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:146
+msgid "Past Matches"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:151
+msgid "All Months"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:159
+msgid "All Years"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:181
+msgid "Date"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:182
+msgid "Day"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:183
+msgid "Location"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:184
+msgid "Max Players"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:185
+msgid "Attended"
+msgstr ""

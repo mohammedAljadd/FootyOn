@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block title %}Stats Dashboard{% endblock %}
 
 {% block content %}
@@ -31,14 +31,14 @@
 </style>
 
 <div class="container my-4">
-    <h2 class="mb-4">📊 Stats Dashboard</h2>
+    <h2 class="mb-4">📊 {% trans "Stats Dashboard" %}</h2>
 
     <!-- Global Stats -->
     <div class="row mb-4">
         <div class="col-md-3">
             <div class="card shadow-sm text-center">
                 <div class="card-body">
-                    <h5 class="card-title">Total Matches</h5>
+                    <h5 class="card-title">{% trans "Total Matches" %}</h5>
                     <p class="display-6">{{ total_matches }}</p>
                 </div>
             </div>
@@ -46,7 +46,7 @@
         <div class="col-md-3">
             <div class="card shadow-sm text-center">
                 <div class="card-body">
-                    <h5 class="card-title">Avg Attendance %</h5>
+                    <h5 class="card-title">{% trans "Avg Attendance %" %}</h5>
                     <p class="display-6">{{ avg_attendance_percent }}%</p>
                 </div>
             </div>
@@ -57,17 +57,17 @@
     <!-- Per User Stats -->
     <h3>User Stats</h3>
     <div class="mb-2">
-        <p>This table shows users' participation stats:</p>
+        <p>{% trans "This table shows users' participation stats:" %}</p>
         <ul>
-            <li><strong>Username</strong>: The user's name or identifier.</li>
-            <li><strong>Total Enrolled</strong>: All matches the user signed up for.</li>
-            <li><strong>Eligible Participations</strong>: Matches that count towards the score (excludes excused or early leaves without no-show).</li>
-            <li><strong>Total Attended</strong>: Matches where the user actually joined.</li>
-            <li><strong>Total Left</strong>: Matches the user left early.</li>
-            <li><strong>Absent (Excused)</strong>: Missed matches with approved excuses.</li>
-            <li><strong>Absent (Not Excused)</strong>: Missed matches without valid excuse.</li>
-            <li><strong>Absent (Last Minute)</strong>: Missed matches at the last minute.</li>
-            <li><strong>Score %</strong>: Attendance rate relative to eligible participations.</li>
+            <li><strong>{% trans "Username" %}</strong>: The user's name or identifier.</li>
+            <li><strong>{% trans "Total Enrolled" %}</strong>: All matches the user signed up for.</li>
+            <li><strong>{% trans "Eligible Participations" %}</strong>: Matches that count towards the score (excludes excused or early leaves without no-show).</li>
+            <li><strong>{% trans "Total Attended" %}</strong>: Matches where the user actually joined.</li>
+            <li><strong>{% trans "Total Left" %}</strong>: Matches the user left early.</li>
+            <li><strong>{% trans "Absent (Excused)" %}</strong>: Missed matches with approved excuses.</li>
+            <li><strong>{% trans "Absent (Not Excused)" %}</strong>: Missed matches without valid excuse.</li>
+            <li><strong>{% trans "Absent (Last Minute)" %}</strong>: Missed matches at the last minute.</li>
+            <li><strong>{% trans "Score %" %}</strong>: Attendance rate relative to eligible participations.</li>
         </ul>
     </div>
 
@@ -80,7 +80,7 @@
             </div>
             <div class="col-md-6 mb-2">
                 <select id="attendanceFilter" class="form-select">
-                    <option value="0">Min Attendance % (All)</option>
+                    <option value="0">{% trans "Min Attendance % (All)" %}</option>
                     <option value="10">10%</option>
                     <option value="20">20%</option>
                     <option value="30">30%</option>
@@ -98,24 +98,24 @@
 
     <!-- Pagination above User Table -->
     <div class="d-flex justify-content-between mb-2">
-        <button class="btn btn-sm btn-secondary" id="userPrev">Previous</button>
-        <button class="btn btn-sm btn-secondary" id="userNext">Next</button>
+        <button class="btn btn-sm btn-secondary" id="userPrev">{% trans "Previous" %}</button>
+        <button class="btn btn-sm btn-secondary" id="userNext">{% trans "Next" %}</button>
     </div>
 
     <div class="table-responsive mb-5">
         <table class="table table-hover" id="userTable">
             <thead class="table-dark">
                 <tr>
-                    <th>Username</th>
-                    <th>Medal</th>
-                    <th>Total Enrolled</th>
-                    <th>Eligible Participations</th>
-                    <th>Total Attended</th>
-                    <th>Total Left</th>
-                    <th>Absent (Excused)</th>
-                    <th>Absent (Not Excused)</th>
-                    <th>Absent (Last Minute)</th>
-                    <th>Score %</th>
+                    <th>{% trans "Username" %}</th>
+                    <th>{% trans "Medal" %}</th>
+                    <th>{% trans "Total Enrolled" %}</th>
+                    <th>{% trans "Eligible Participations" %}</th>
+                    <th>{% trans "Total Attended" %}</th>
+                    <th>{% trans "Total Left" %}</th>
+                    <th>{% trans "Absent (Excused)" %}</th>
+                    <th>{% trans "Absent (Not Excused)" %}</th>
+                    <th>{% trans "Absent (Last Minute)" %}</th>
+                    <th>{% trans "Score %" %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -143,12 +143,12 @@
     </div>
 
     <!-- Match Filters -->
-    <h3>Past Matches</h3>
+    <h3>{% trans "Past Matches" %}</h3>
     <div class="mb-3">
         <div class="row">
             <div class="col-md-4 mb-2">
                 <select id="monthFilter" class="form-select">
-                    <option value="">All Months</option>
+                    <option value="">{% trans "All Months" %}</option>
                     {% for m in months %}
                         <option value="{{ m }}">{{ m }}</option>
                     {% endfor %}
@@ -156,7 +156,7 @@
             </div>
             <div class="col-md-4 mb-2">
                 <select id="yearFilter" class="form-select">
-                    <option value="">All Years</option>
+                    <option value="">{% trans "All Years" %}</option>
                     {% for y in years %}
                         <option value="{{ y }}">{{ y }}</option>
                     {% endfor %}
@@ -170,19 +170,19 @@
 
     <!-- Pagination above Matches Table -->
     <div class="d-flex justify-content-between mb-2">
-        <button class="btn btn-sm btn-secondary" id="matchPrev">Previous</button>
-        <button class="btn btn-sm btn-secondary" id="matchNext">Next</button>
+        <button class="btn btn-sm btn-secondary" id="matchPrev">{% trans "Previous" %}</button>
+        <button class="btn btn-sm btn-secondary" id="matchNext">{% trans "Next" %}</button>
     </div>
 
     <div class="table-responsive">
         <table class="table table-striped table-hover" id="matchTable">
             <thead class="table-dark">
                 <tr>
-                    <th>Date</th>
-                    <th>Day</th>
-                    <th>Location</th>
-                    <th>Max Players</th>
-                    <th>Attended</th>
+                    <th>{% trans "Date" %}</th>
+                    <th>{% trans "Day" %}</th>
+                    <th>{% trans "Location" %}</th>
+                    <th>{% trans "Max Players" %}</th>
+                    <th>{% trans "Attended" %}</th>
                 </tr>
             </thead>
             <tbody>
