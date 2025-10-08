@@ -13,6 +13,7 @@ from accounts.decorators import *
 from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.utils import translation
+from django.contrib.auth.decorators import login_required
 
 def is_admin(user):
     return user.is_superuser
@@ -40,10 +41,9 @@ def create_match(request):
 
     return render(request, "matches/create_match.html", {"form": form})
 
-from django.contrib.auth.decorators import login_required
+
 
 @active_user_required
-
 @login_required
 def view_match(request, match_id):
     match = get_object_or_404(Match, id=match_id)

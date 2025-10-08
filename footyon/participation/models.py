@@ -39,3 +39,9 @@ class Participation(models.Model):
 
     def __str__(self):
         return f"{self.user} - {self.match} ({self.status})"
+    
+
+    # Helper method to check if the participant is active (joined and not removed or no-show)
+    # better than checking multiple fields in views or serializers
+    def is_active_participant(self):
+        return self.status == 'joined' and not self.removed and not self.is_no_show

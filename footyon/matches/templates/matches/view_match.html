@@ -243,7 +243,7 @@
                             {% endif %}
                         </td>
                         <td>
-                            {% if p.removed %}
+                            {% if not p.is_active_participant %}
                                 <form method="post" action="{% url 'restore_participant' p.id %}">
                                     {% csrf_token %}
                                     <input type="hidden" name="confirm" value="no">

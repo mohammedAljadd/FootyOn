@@ -72,8 +72,25 @@ class Match(models.Model):
 
     @property
     def can_edit_attendance(self):
+        """
+        Check if attendance can still be edited (within 24 hours after match time) 
+        Used to disable "Mark No-Show" button in templates if time exceeded
+        """
         if not self.time:
             return False  # No time set, cannot edit
         match_datetime = datetime.combine(self.date, self.time)
         match_datetime = timezone.make_aware(match_datetime)  # ensure timezone-aware
         return timezone.now() <= match_datetime + timedelta(hours=24)
+    
+
+    # edit match up to 1 hour after match time due to possible delays
+    @property
+    def can_edit_match(self):
+        """
+        Check if match details can still be edited (up to 1 hour after match time)
+        """
+        if not self.time:
+            return False  # No time set, cannot edit
+        match_datetime = datetime.combine(self.date, self.time)
+        match_datetime = timezone.make_aware(match_datetime)  # ensure timezone-aware
+        return timezone.now() <= match_datetime + timedelta(minutes=60)

@@ -135,6 +135,12 @@ def restore_participant(request, participation_id):
             match.max_players = new_capacity
             match.save()
             participation.removed = False
+            participation.removed_time = None
+            participation.status = 'joined'
+            participation.status_time = timezone.now()
+            participation.is_no_show = False
+            participation.no_show_reason = None
+            participation.no_show_time = None
             participation.save()
             messages.success(request, f"{participation.user.username} added back with new capacity {new_capacity}.")
             return redirect('matches:view_match', match_id=match.id)
@@ -146,6 +152,12 @@ def restore_participant(request, participation_id):
         # Step 3: Enough spots: restore directly
         if match.spots_left > 0:
             participation.removed = False
+            participation.removed_time = None
+            participation.status = 'joined'
+            participation.status_time = timezone.now()
+            participation.is_no_show = False
+            participation.no_show_reason = None
+            participation.no_show_time = None
             participation.save()
             messages.success(request, f"{participation.user.username} added back.")
             return redirect('matches:view_match', match_id=match.id)
