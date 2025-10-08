@@ -14,6 +14,7 @@ from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.utils import translation
 from django.contrib.auth.decorators import login_required
+from .utils import convert_to_embed_url
 
 def is_admin(user):
     return user.is_superuser
@@ -49,9 +50,10 @@ def view_match(request, match_id):
     match = get_object_or_404(Match, id=match_id)
     previous_url = request.META.get('HTTP_REFERER', None)
 
-
     # Active participants for everyone
-    active_participants_ = Participation.objects.filter(match=match, status='joined', removed=False, is_no_show=False)
+    active_participants_ = Participation.objects.filter(
+        match=match, status='joined', removed=False, is_no_show=False
+    )
     active_participants_ = active_participants_.order_by("status_time")
 
     active_participants = list(active_participants_)
@@ -59,7 +61,14 @@ def view_match(request, match_id):
         active_participants.append(None)
 
     # Non active participants for admins only
-    non_active_participants = Participation.objects.filter(match=match).exclude(id__in=active_participants_.values_list('id', flat=True)).order_by('-status_time') if request.user.is_superuser else []
+    non_active_participants = Participation.objects.filter(match=match).exclude(
+        id__in=active_participants_.values_list('id', flat=True)
+    ).order_by('-status_time') if request.user.is_superuser else []
+    
+    # Convert short URL to embed URL if available
+    embed_url = None
+    if match.location_google_maps_short_url:
+        embed_url = convert_to_embed_url(match.location_google_maps_short_url)
     
     context = {
         'match': match,
@@ -67,6 +76,7 @@ def view_match(request, match_id):
         'non_active_participants': non_active_participants,
         'previous_url': previous_url,
         'default_home': reverse('home'),
+        'embed_url': embed_url,
     }
     return render(request, 'matches/view_match.html', context)
 

@@ -5,19 +5,23 @@ import random
 # Current date as reference
 today = datetime.now()
 
-# Location data
+# Location data - WITH REAL SHORT URLS
 locations = [
     {
         "name": "Stade de l'Ouest",
-        "embed_url": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.754568025031!2d7.2023399756581945!3d43.67152195124643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd10c3345b9bd%3A0x8a5dc01882b070a3!2sStade%20de%20l%27Ouest!5e0!3m2!1sen!2sfr!4v1759203079254!5m2!1sen!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+        "short_url": "https://maps.app.goo.gl/EgACLTbrG48rnAJ3A"
     },
     {
         "name": "Stade Méarelli",
-        "embed_url": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5771.776071542516!2d7.210152075658169!3d43.671298351260845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd1050d36302b%3A0x9fcb72d4a4778b66!2sStade%20M%C3%A9arelli!5e0!3m2!1sen!2sfr!4v1759203141389!5m2!1sen!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+        "short_url": "https://maps.app.goo.gl/B1ZWYDjT83m2mAeH8"
     },
     {
         "name": "Sports Field",
-        "embed_url": '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10493.898219650906!2d7.200583880764323!3d43.67280736030106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12cdd17585555555%3A0xadcff84be77756f5!2sSports%20Field!5e0!3m2!1sen!2sfr!4v1759203167192!5m2!1sen!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+        "short_url": "https://maps.app.goo.gl/1cys5tWqXG81J6oH7"
+    },
+    {
+        "name": "Stade Léon Chabert",
+        "short_url": "https://maps.app.goo.gl/26ZftP76XgL6LVyq5"
     }
 ]
 
@@ -36,7 +40,6 @@ matches = []
 past_dates = []
 for i in range(60, 0, -1):
     date = today - timedelta(days=i)
-    # Only include dates, we'll select 25 random ones
     past_dates.append(date)
 
 # Randomly select 25 dates from the past
@@ -84,8 +87,7 @@ for idx, match_date in enumerate(all_dates, start=1):
             "time": time,
             "day_of_week": day_name,
             "location_name": location["name"],
-            "location_google_maps_url": location["embed_url"],
-            "location_google_maps_embed_url": location["embed_url"],
+            "location_google_maps_short_url": location["short_url"],
             "created_at": created_at.strftime("%Y-%m-%dT%H:%M:%S") + "Z",
             "updated_at": updated_at.strftime("%Y-%m-%dT%H:%M:%S") + "Z",
             "max_players": max_players

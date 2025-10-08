@@ -12,8 +12,8 @@ class Match(models.Model):
     time = models.TimeField(null=True, blank=True, verbose_name=_("Time"))
     day_of_week = models.CharField(max_length=10, verbose_name=_("Day of Week"))
     location_name = models.CharField(max_length=100, verbose_name=_("Location"))
-    location_google_maps_embed_url = models.TextField(
-        blank=True, null=True, verbose_name=_("Google Maps Embed URL")
+    location_google_maps_short_url = models.URLField(
+        blank=True, null=True, verbose_name=_("Google Maps Short URL")
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created At"))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated At"))
@@ -28,7 +28,7 @@ class Match(models.Model):
             self.day_of_week = calendar.day_name[self.date.weekday()]
         super().save(*args, **kwargs)
 
-    @property  # without it : match.spots_left, Django is not executing the method. It either treats it as a string or nothing
+    @property
     def spots_left(self):
         """Calculate remaining spots based on current participation"""
         current_count = Participation.objects.filter(
@@ -40,57 +40,33 @@ class Match(models.Model):
     def is_full(self):
         return self.spots_left <= 0
     
-
     @property
     def is_past(self):
-        """
-        Check if the match date and time is in the past.
-        Works with self.date (DateField) and self.time (TimeField).
-        """
-
-        # Get the current time with timezone awareness (Django handles this in UTC or your set TZ)
+        """Check if the match date and time is in the past."""
         now = timezone.now()
-
-        # Case 1: The match date is before today → already in the past
         if self.date < now.date():
             return True
-
-        # Case 2: The match is today and a time is set
         elif self.date == now.date() and self.time:
-            # Combine date and time into a datetime object (naive by default, no timezone info)
             match_datetime = datetime.combine(self.date, self.time)
-
-            # Convert the naive datetime into a timezone-aware one
-            # using the project's current timezone (important if USE_TZ=True in settings.py)
             match_datetime = timezone.make_aware(match_datetime, timezone.get_current_timezone())
-
-            # Compare the match datetime with the current datetime
             return match_datetime < now
-
-        # Case 3: Match is in the future (either later today or on a future date)
         return False
 
     @property
     def can_edit_attendance(self):
-        """
-        Check if attendance can still be edited (within 24 hours after match time) 
-        Used to disable "Mark No-Show" button in templates if time exceeded
-        """
+        """Check if attendance can still be edited (within 24 hours after match time)"""
         if not self.time:
-            return False  # No time set, cannot edit
+            return False
         match_datetime = datetime.combine(self.date, self.time)
-        match_datetime = timezone.make_aware(match_datetime)  # ensure timezone-aware
+        match_datetime = timezone.make_aware(match_datetime)
         return timezone.now() <= match_datetime + timedelta(hours=24)
     
-
-    # edit match up to 1 hour after match time due to possible delays
     @property
     def can_edit_match(self):
-        """
-        Check if match details can still be edited (up to 1 hour after match time)
-        """
+        """Check if match details can still be edited (up to 1 hour after match time)"""
         if not self.time:
-            return False  # No time set, cannot edit
+            return False
         match_datetime = datetime.combine(self.date, self.time)
-        match_datetime = timezone.make_aware(match_datetime)  # ensure timezone-aware
+        match_datetime = timezone.make_aware(match_datetime)
         return timezone.now() <= match_datetime + timedelta(minutes=60)
+

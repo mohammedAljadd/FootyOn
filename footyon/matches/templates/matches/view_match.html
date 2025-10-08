@@ -275,13 +275,13 @@
 {% endif %}
 
 <!-- Map -->
-{% if match.location_google_maps_embed_url %}
+{% if embed_url %}
 <div class="row">
     <div class="col-12">
         <h4 class="h5 mb-3">{% trans "Location Map" %}</h4>
         <div class="map-container mb-4">
             <div class="map-wrapper">
-                {{ match.location_google_maps_embed_url|safe }}
+                {{ embed_url|safe }}
             </div>
         </div>
     </div>
