@@ -94,7 +94,16 @@ def stats_dashboard(request):
             p for p in participations 
             if not (p.no_show_reason == 'excused' or (p.is_no_show == False and p.status == 'left'))
         ]
-        score = (attended / len(eligible_participations) * 100) if total_enrolled else 0
+        
+        score = (attended / len(eligible_participations) * 100) if len(eligible_participations) else 0
+        
+        if(score):
+            score = round(score, 2)
+            if(int(score) == 100):
+                score = 100 
+        else:
+            score = None
+
 
         user_stats.append({
             'username': user.username,
@@ -110,14 +119,20 @@ def stats_dashboard(request):
             'perc_absent_excused': round(perc_absent_excused, 2),
             'perc_absent_not_excused': round(perc_absent_not_excused, 2),
             'perc_absent_last_minute' : round(perc_absent_last_minute, 2), 
-            'score': 100 if int(round(score, 2)) == 100 else round(score, 2),
+            'score': score,
         })
 
     # Sort users by score descending
-    user_stats = sorted(user_stats, key=lambda x: x['score'], reverse=True)
-
+    user_stats = sorted(
+        user_stats,
+        key=lambda x: (x['score'] is None, -(x['score'] or 0))
+    )
+    
     # Get unique scores in descending order
-    unique_scores = sorted({u['score'] for u in user_stats}, reverse=True)
+    unique_scores = sorted(
+        {u['score'] for u in user_stats if u['score'] is not None},
+        reverse=True
+    )
 
     # Map scores to medals
     score_to_medal = {}

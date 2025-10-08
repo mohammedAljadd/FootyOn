@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
+from participation.models import Participation
 from .forms import UserSignupForm
 from django.contrib.auth.decorators import user_passes_test
 from .models import User
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext as _
+from collections import defaultdict
 
 def signup(request):
     if request.method == "POST":
@@ -22,7 +24,56 @@ def is_admin(user):
 
 @user_passes_test(is_admin)
 def manage_accounts(request):
+
+    # 1️⃣ Fetch all Participation objects in a single query
+    #    - select_related("user", "match") prefetches related user and match objects
+    #      to avoid additional database hits when accessing p.user or p.match later
+    all_participations = Participation.objects.select_related("user", "match").all()
+
+    # 2️⃣ Group participations by user_id
+    #    - defaultdict(list) automatically creates an empty list for a new key
+    #    - Each user's participations will be stored in a list under their user_id
+    user_participations = defaultdict(list)
+    for p in all_participations:
+        user_participations[p.user_id].append(p)
+
+    # 3️⃣ Fetch all users ordered by username
     users = User.objects.all().order_by("username")
+
+    # 4️⃣ Loop through each user and calculate stats
+    for user in users:
+        # Get all participations for this user; default to empty list if none
+        participations = user_participations.get(user.id, [])
+
+        # 5️⃣ Count attended participations
+        #    - status="joined" means the user signed up and joined
+        #    - not removed ensures we ignore participations that were deleted/removed
+        #    - not is_no_show ensures we ignore no-show participations
+        attended = sum(
+            1 for p in participations if p.status == "joined" and not p.removed and not p.is_no_show
+        )
+
+        # 6️⃣ Determine eligible participations for score calculation
+        #    - Exclude participations with no_show_reason="excused"
+        #    - Exclude participations where the user left early (status="left") but is_no_show is False
+        eligible_participations = [
+            p for p in participations
+            if not (p.no_show_reason == "excused" or (p.is_no_show is False and p.status == "left"))
+        ]
+
+        # 7️⃣ Compute score safely
+        #    - Avoid division by zero if user has no eligible participations
+        #    - Multiply by 100 to get percentage
+        score = (attended / len(eligible_participations) * 100) if eligible_participations else None
+
+        # 8️⃣ Dynamically attach the score to the user object
+        #    - This makes it easy to access in templates like {{ user.score }}
+        if(score):
+            user.score = round(score, 2)
+        else:
+            user.score = None
+        user.total_eligible = len(eligible_participations)
+
     return render(request, "accounts/manage_accounts.html", {"users": users})
 
 @user_passes_test(is_admin)

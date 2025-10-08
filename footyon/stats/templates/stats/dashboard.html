@@ -53,9 +53,27 @@
         </div>
     </div>
 
+
+    <!-- Per User Stats -->
+    <h3>User Stats</h3>
+    <div class="mb-2">
+        <p>This table shows users' participation stats:</p>
+        <ul>
+            <li><strong>Username</strong>: The user's name or identifier.</li>
+            <li><strong>Total Enrolled</strong>: All matches the user signed up for.</li>
+            <li><strong>Eligible Participations</strong>: Matches that count towards the score (excludes excused or early leaves without no-show).</li>
+            <li><strong>Total Attended</strong>: Matches where the user actually joined.</li>
+            <li><strong>Total Left</strong>: Matches the user left early.</li>
+            <li><strong>Absent (Excused)</strong>: Missed matches with approved excuses.</li>
+            <li><strong>Absent (Not Excused)</strong>: Missed matches without valid excuse.</li>
+            <li><strong>Absent (Last Minute)</strong>: Missed matches at the last minute.</li>
+            <li><strong>Score %</strong>: Attendance rate relative to eligible participations.</li>
+        </ul>
+    </div>
+
     <!-- User Filters -->
     <div class="mb-4">
-        <h4>Filter Users</h4>
+        <h5>Filter Users</h5>
         <div class="row">
             <div class="col-md-6 mb-2">
                 <input type="text" id="userFilter" class="form-control" placeholder="Search by username...">
@@ -78,21 +96,10 @@
         </div>
     </div>
 
-    <!-- Per User Stats -->
-    <h3>User Stats</h3>
-    <div class="mb-2">
-        <p>This table shows users' participation stats:</p>
-        <ul>
-            <li><strong>Username</strong>: The user's name or identifier.</li>
-            <li><strong>Total Enrolled</strong>: All matches the user signed up for.</li>
-            <li><strong>Eligible Participations</strong>: Matches that count towards the score (excludes excused or early leaves without no-show).</li>
-            <li><strong>Total Attended</strong>: Matches where the user actually joined.</li>
-            <li><strong>Total Left</strong>: Matches the user left early.</li>
-            <li><strong>Absent (Excused)</strong>: Missed matches with approved excuses.</li>
-            <li><strong>Absent (Not Excused)</strong>: Missed matches without valid excuse.</li>
-            <li><strong>Absent (Last Minute)</strong>: Missed matches at the last minute.</li>
-            <li><strong>Score %</strong>: Attendance rate relative to eligible participations.</li>
-        </ul>
+    <!-- Pagination above User Table -->
+    <div class="d-flex justify-content-between mb-2">
+        <button class="btn btn-sm btn-secondary" id="userPrev">Previous</button>
+        <button class="btn btn-sm btn-secondary" id="userNext">Next</button>
     </div>
 
     <div class="table-responsive mb-5">
@@ -161,7 +168,12 @@
         </div>
     </div>
 
-    <!-- Past Matches Stats -->
+    <!-- Pagination above Matches Table -->
+    <div class="d-flex justify-content-between mb-2">
+        <button class="btn btn-sm btn-secondary" id="matchPrev">Previous</button>
+        <button class="btn btn-sm btn-secondary" id="matchNext">Next</button>
+    </div>
+
     <div class="table-responsive">
         <table class="table table-striped table-hover" id="matchTable">
             <thead class="table-dark">
@@ -188,7 +200,7 @@
     </div>
 </div>
 
-<!-- JS Filtering -->
+<!-- JS Filtering + Pagination -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     // --- USER FILTERS ---
@@ -234,6 +246,39 @@ document.addEventListener("DOMContentLoaded", function() {
     monthFilter.addEventListener("change", filterMatches);
     yearFilter.addEventListener("change", filterMatches);
     locationFilter.addEventListener("keyup", filterMatches);
+
+    // --- PAGINATION FUNCTION ---
+    function setupPagination(tableId, prevBtnId, nextBtnId, rowsPerPage=10) {
+        const table = document.getElementById(tableId);
+        const rows = table.querySelectorAll("tbody tr");
+        let currentPage = 0;
+
+        function showPage(page) {
+            rows.forEach((row, i) => {
+                row.style.display = (i >= page * rowsPerPage && i < (page+1)*rowsPerPage) ? "" : "none";
+            });
+        }
+
+        document.getElementById(prevBtnId).addEventListener("click", function() {
+            if (currentPage > 0) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        });
+
+        document.getElementById(nextBtnId).addEventListener("click", function() {
+            if ((currentPage+1) * rowsPerPage < rows.length) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        });
+
+        // init
+        showPage(currentPage);
+    }
+
+    setupPagination("userTable", "userPrev", "userNext");
+    setupPagination("matchTable", "matchPrev", "matchNext");
 });
 </script>
 {% endblock %}
