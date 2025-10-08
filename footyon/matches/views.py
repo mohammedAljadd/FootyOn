@@ -15,6 +15,7 @@ from django.utils.translation import gettext as _
 from django.utils import translation
 from django.contrib.auth.decorators import login_required
 from .utils import convert_to_embed_url
+from .decorators import editable_match_required
 
 def is_admin(user):
     return user.is_superuser
@@ -81,6 +82,7 @@ def view_match(request, match_id):
     return render(request, 'matches/view_match.html', context)
 
 @user_passes_test(is_admin)
+@editable_match_required
 def edit_match(request, match_id):
     match = get_object_or_404(Match, id=match_id)
     joined_count = Participation.objects.filter(match=match, status='joined').count()

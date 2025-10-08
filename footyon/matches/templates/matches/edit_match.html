@@ -18,7 +18,11 @@
             <i class="bi bi-info-circle me-2"></i>
             <strong>{% trans "Active Participants" %} :</strong> {{ joined_count }}
             <br>
+            {% if joined_count > 1 %}
             <small>{% trans "You cannot reduce max players below this number." %}</small>
+            {% else %}
+            <small>{% trans "You can reduce max players below the number of active participants." %}</small>
+            {% endif %}
         </div>
         
         <div class="card shadow-sm">
