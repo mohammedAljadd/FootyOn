@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-08 05:24+0200\n"
+"POT-Creation-Date: 2025-10-08 09:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: .\matches\forms.py:24
+msgid "Name of the stadium or location"
+msgstr ""
+
+#: .\matches\forms.py:25
+msgid "Google Maps Link"
+msgstr ""
+
+#: .\matches\forms.py:26
+msgid "Paste the short Google Maps link (e.g., https://maps.app.goo.gl/...)"
+msgstr ""
+
+#: .\matches\forms.py:39
+msgid ""
+"Please enter a valid Google Maps URL (maps.app.goo.gl or google.com/maps)"
+msgstr ""
+
+#: .\matches\forms.py:55
+#, python-format
+msgid "Cannot set max players below current joined count (%(count)d)."
+msgstr ""
+
 #: .\matches\models.py:11 .\matches\templates\matches\manage_matches.html:28
 msgid "Date"
 msgstr "Date"
 
 #: .\matches\models.py:12 .\matches\templates\matches\manage_matches.html:30
-#: .\matches\templates\matches\view_match.html:67
-#: .\matches\templates\matches\view_match.html:184 .\matches\views.py:165
+#: .\matches\templates\matches\view_match.html:85
+#: .\matches\templates\matches\view_match.html:202 .\matches\views.py:177
 msgid "Time"
 msgstr "Heure"
 
@@ -33,12 +55,12 @@ msgid "Day of Week"
 msgstr ""
 
 #: .\matches\models.py:14 .\matches\templates\matches\manage_matches.html:31
-#: .\matches\views.py:166
+#: .\matches\views.py:178
 msgid "Location"
 msgstr "Lieu"
 
 #: .\matches\models.py:16
-msgid "Google Maps Embed URL"
+msgid "Google Maps Short URL"
 msgstr ""
 
 #: .\matches\models.py:18
@@ -55,35 +77,93 @@ msgstr ""
 msgid "Max Players"
 msgstr "Nombre max de joueurs"
 
-#: .\matches\templates\matches\edit_match.html:6
+#: .\matches\templates\matches\create_match.html:4
+#, fuzzy
+#| msgid "Create New Match"
+msgid "Create Match"
+msgstr "Créer un nouveau match"
+
+#: .\matches\templates\matches\create_match.html:9
+#: .\matches\templates\matches\manage_matches.html:13
+msgid "Create New Match"
+msgstr "Créer un nouveau match"
+
+#: .\matches\templates\matches\create_match.html:33
+msgid "How to get Google Maps link:"
+msgstr ""
+
+#: .\matches\templates\matches\create_match.html:34
+#: .\matches\templates\matches\edit_match.html:47
+msgid "Open Google Maps and search for the location"
+msgstr ""
+
+#: .\matches\templates\matches\create_match.html:35
+#: .\matches\templates\matches\edit_match.html:48
+msgid "Click 'Share' button"
+msgstr ""
+
+#: .\matches\templates\matches\create_match.html:36
+#: .\matches\templates\matches\edit_match.html:49
+msgid "Copy the short link"
+msgstr ""
+
+#: .\matches\templates\matches\create_match.html:37
+msgid "Paste it here"
+msgstr ""
+
+#: .\matches\templates\matches\create_match.html:60
+#: .\matches\templates\matches\edit_match.html:74
+msgid "Cancel"
+msgstr "Annuler"
+
+#: .\matches\templates\matches\create_match.html:63
+#, fuzzy
+#| msgid "Manage Matches"
+msgid "Save Match"
+msgstr "Gérer les matchs"
+
+#: .\matches\templates\matches\edit_match.html:3
+#: .\matches\templates\matches\edit_match.html:9
 msgid "Edit Match"
 msgstr "Modifier le match"
 
-#: .\matches\templates\matches\edit_match.html:6
+#: .\matches\templates\matches\edit_match.html:9
 msgid "on"
 msgstr "le"
 
-#: .\matches\templates\matches\edit_match.html:10
-#: .\matches\templates\matches\view_match.html:60
+#: .\matches\templates\matches\edit_match.html:19
+#: .\matches\templates\matches\view_match.html:78
 msgid "Active Participants"
 msgstr "Participants actifs"
 
-#: .\matches\templates\matches\edit_match.html:30
+#: .\matches\templates\matches\edit_match.html:22
+msgid "You cannot reduce max players below this number."
+msgstr ""
+
+#: .\matches\templates\matches\edit_match.html:24
+msgid "You can reduce max players below the number of active participants."
+msgstr ""
+
+#: .\matches\templates\matches\edit_match.html:46
+msgid "How to update Google Maps link:"
+msgstr ""
+
+#: .\matches\templates\matches\edit_match.html:50
+msgid "Paste it here to update the map"
+msgstr ""
+
+#: .\matches\templates\matches\edit_match.html:51
+msgid "Leave empty to keep current map"
+msgstr ""
+
+#: .\matches\templates\matches\edit_match.html:77
 msgid "Save Changes"
 msgstr "Enregistrer les modifications"
-
-#: .\matches\templates\matches\edit_match.html:31
-msgid "Cancel"
-msgstr "Annuler"
 
 #: .\matches\templates\matches\manage_matches.html:3
 #: .\matches\templates\matches\manage_matches.html:8
 msgid "Manage Matches"
 msgstr "Gérer les matchs"
-
-#: .\matches\templates\matches\manage_matches.html:13
-msgid "Create New Match"
-msgstr "Créer un nouveau match"
 
 #: .\matches\templates\matches\manage_matches.html:19
 msgid "Previous"
@@ -154,166 +234,166 @@ msgstr "Passé"
 msgid "Upcoming"
 msgstr "À venir"
 
-#: .\matches\templates\matches\view_match.html:36
+#: .\matches\templates\matches\view_match.html:54
 msgid "Date:"
 msgstr "Date :"
 
-#: .\matches\templates\matches\view_match.html:39
+#: .\matches\templates\matches\view_match.html:57
 msgid "Day:"
 msgstr "Jour :"
 
-#: .\matches\templates\matches\view_match.html:42
+#: .\matches\templates\matches\view_match.html:60
 msgid "Time:"
 msgstr "Heure :"
 
-#: .\matches\templates\matches\view_match.html:45
+#: .\matches\templates\matches\view_match.html:63
 msgid "Location:"
 msgstr "Lieu :"
 
-#: .\matches\templates\matches\view_match.html:48
+#: .\matches\templates\matches\view_match.html:66
 msgid "Max Players:"
 msgstr "Nombre max de joueurs :"
 
-#: .\matches\templates\matches\view_match.html:51
+#: .\matches\templates\matches\view_match.html:69
 msgid "Spots Left:"
 msgstr "Places restantes :"
 
-#: .\matches\templates\matches\view_match.html:65
-#: .\matches\templates\matches\view_match.html:182
+#: .\matches\templates\matches\view_match.html:83
+#: .\matches\templates\matches\view_match.html:200
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: .\matches\templates\matches\view_match.html:66
-#: .\matches\templates\matches\view_match.html:183
+#: .\matches\templates\matches\view_match.html:84
+#: .\matches\templates\matches\view_match.html:201
 msgid "Status"
 msgstr "Statut"
 
-#: .\matches\templates\matches\view_match.html:69
-#: .\matches\templates\matches\view_match.html:186
+#: .\matches\templates\matches\view_match.html:87
+#: .\matches\templates\matches\view_match.html:204
 msgid "No-show"
 msgstr "Absent"
 
-#: .\matches\templates\matches\view_match.html:72
+#: .\matches\templates\matches\view_match.html:90
 msgid "Mark No-show"
 msgstr "Marquer comme absent"
 
-#: .\matches\templates\matches\view_match.html:75
-#: .\matches\templates\matches\view_match.html:188
+#: .\matches\templates\matches\view_match.html:93
+#: .\matches\templates\matches\view_match.html:206
 #, fuzzy
 #| msgid "Remove From List"
 msgid "Exclude From List"
 msgstr "Exclure de la liste"
 
-#: .\matches\templates\matches\view_match.html:78
+#: .\matches\templates\matches\view_match.html:96
 msgid "Mark Present"
 msgstr "Marquer comme présent"
 
-#: .\matches\templates\matches\view_match.html:79
-#: .\matches\templates\matches\view_match.html:190
+#: .\matches\templates\matches\view_match.html:97
+#: .\matches\templates\matches\view_match.html:208
 msgid "Erase Record"
 msgstr "Supprimer le record"
 
-#: .\matches\templates\matches\view_match.html:101
-#: .\matches\templates\matches\view_match.html:105
-#: .\matches\templates\matches\view_match.html:207
-#: .\matches\templates\matches\view_match.html:217
-#: .\matches\templates\matches\view_match.html:221
+#: .\matches\templates\matches\view_match.html:119
+#: .\matches\templates\matches\view_match.html:123
+#: .\matches\templates\matches\view_match.html:225
+#: .\matches\templates\matches\view_match.html:235
+#: .\matches\templates\matches\view_match.html:239
 msgid "Yes"
 msgstr "Oui"
 
-#: .\matches\templates\matches\view_match.html:110
-#: .\matches\templates\matches\view_match.html:209
-#: .\matches\templates\matches\view_match.html:225
+#: .\matches\templates\matches\view_match.html:128
+#: .\matches\templates\matches\view_match.html:227
+#: .\matches\templates\matches\view_match.html:243
 msgid "No"
 msgstr "Non"
 
-#: .\matches\templates\matches\view_match.html:119
-#: .\matches\templates\matches\view_match.html:138
-#: .\matches\templates\matches\view_match.html:233
+#: .\matches\templates\matches\view_match.html:137
+#: .\matches\templates\matches\view_match.html:156
+#: .\matches\templates\matches\view_match.html:251
 msgid "Mark"
 msgstr "Marquer"
 
-#: .\matches\templates\matches\view_match.html:128
+#: .\matches\templates\matches\view_match.html:146
 msgid "Exclude"
 msgstr "Exclure"
 
-#: .\matches\templates\matches\view_match.html:141
-#: .\matches\templates\matches\view_match.html:239
+#: .\matches\templates\matches\view_match.html:159
+#: .\matches\templates\matches\view_match.html:257
 msgid "Undo"
 msgstr "Annuler"
 
-#: .\matches\templates\matches\view_match.html:149
-#: .\matches\templates\matches\view_match.html:260
+#: .\matches\templates\matches\view_match.html:167
+#: .\matches\templates\matches\view_match.html:278
 msgid "Erase"
 msgstr "Supprimer"
 
-#: .\matches\templates\matches\view_match.html:158
+#: .\matches\templates\matches\view_match.html:176
 #, fuzzy
 #| msgid "Non-active participants"
 msgid "No active participants yet."
 msgstr "Participants non-actifs"
 
-#: .\matches\templates\matches\view_match.html:171
+#: .\matches\templates\matches\view_match.html:189
 msgid "Non-active participants"
 msgstr "Participants non-actifs"
 
-#: .\matches\templates\matches\view_match.html:173
-#: .\matches\templates\matches\view_match.html:185
+#: .\matches\templates\matches\view_match.html:191
+#: .\matches\templates\matches\view_match.html:203
 msgid "Excluded"
 msgstr "Exclu"
 
-#: .\matches\templates\matches\view_match.html:174
+#: .\matches\templates\matches\view_match.html:192
 msgid "Left"
 msgstr "A quitté"
 
-#: .\matches\templates\matches\view_match.html:175
+#: .\matches\templates\matches\view_match.html:193
 msgid "Registered Only"
 msgstr ""
 
-#: .\matches\templates\matches\view_match.html:189
-#: .\matches\templates\matches\view_match.html:250
+#: .\matches\templates\matches\view_match.html:207
+#: .\matches\templates\matches\view_match.html:268
 msgid "Add Back"
 msgstr "Réintégrer"
 
-#: .\matches\templates\matches\view_match.html:267
+#: .\matches\templates\matches\view_match.html:285
 #, fuzzy
 #| msgid "No non-active participants"
 msgid "No non-active participants."
 msgstr "Pas de participants non-actifs"
 
-#: .\matches\templates\matches\view_match.html:281
+#: .\matches\templates\matches\view_match.html:299
 msgid "Location Map"
 msgstr "Google Maps"
 
-#: .\matches\templates\matches\view_match.html:295
+#: .\matches\templates\matches\view_match.html:313
 msgid "Back"
 msgstr "Retour"
 
-#: .\matches\views.py:146
+#: .\matches\views.py:158
 msgid "FOOTBALL MATCH"
 msgstr "MATCH DE FOOT"
 
-#: .\matches\views.py:156
+#: .\matches\views.py:168
 msgid "MATCH DETAILS"
 msgstr "DÉTAILS DU MATCH"
 
-#: .\matches\views.py:167
+#: .\matches\views.py:179
 msgid "Players"
 msgstr "Joueurs"
 
-#: .\matches\views.py:168
+#: .\matches\views.py:180
 msgid "in total"
 msgstr "au total"
 
-#: .\matches\views.py:169
+#: .\matches\views.py:181
 msgid "spots left"
 msgstr "places restantes"
 
-#: .\matches\views.py:180
+#: .\matches\views.py:192
 msgid "PARTICIPANTS"
 msgstr ""
 
-#: .\matches\views.py:200
+#: .\matches\views.py:212
 msgid "Join this match on FootyOn!"
 msgstr "Rejoignez ce match sur FootyOn!"
 
