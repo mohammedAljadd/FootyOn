@@ -10,11 +10,12 @@ locations = [
     {"name": "Stade de l'Ouest", "short_url": "https://maps.app.goo.gl/EgACLTbrG48rnAJ3A"},
     {"name": "Stade Méarelli", "short_url": "https://maps.app.goo.gl/B1ZWYDjT83m2mAeH8"},
     {"name": "Sports Field", "short_url": "https://maps.app.goo.gl/1cys5tWqXG81J6oH7"},
-    {"name": "Stade Léon Chabert", "short_url": "https://maps.app.goo.gl/26ZftP76XgL6LVyq5"}
+    {"name": "Stade Léon Chabert", "short_url": "https://maps.app.goo.gl/26ZftP76XgL6LVyq5"},
+    {"name": "Stade du Ray ", "short_url": "https://maps.app.goo.gl/9mvKTt7HohyBTj4c8"},
 ]
 
 # Possible times for matches
-match_times = ["18:00:00", "19:00:00", "20:00:00", "21:00:00"]
+match_times = ["08:00:00", "17:00:00", "17:30:00", "18:00:00", "10:00:00"]
 
 # Possible max players
 max_players_options = [10, 12, 14, 16]
@@ -51,13 +52,13 @@ print(f"Generated {len(stadiums_fixture)} stadiums")
 
 matches_fixture = []
 
-# Generate 25 past matches (from 60 days ago to yesterday)
-past_dates = [today - timedelta(days=i) for i in range(60, 0, -1)]
-selected_past_dates = sorted(random.sample(past_dates, 25))
+# Generate 60 past matches (from 120 days ago to yesterday)
+past_dates = [today - timedelta(days=i) for i in range(120, 0, -1)]
+selected_past_dates = sorted(random.sample(past_dates, 60))
 
-# Generate 5 future matches (from tomorrow to 30 days ahead)
+# Generate 7 future matches (from tomorrow to 30 days ahead)
 future_dates = [today + timedelta(days=i) for i in range(1, 31)]
-selected_future_dates = sorted(random.sample(future_dates, 5))
+selected_future_dates = sorted(random.sample(future_dates, 7))
 
 # Combine all dates
 all_dates = selected_past_dates + selected_future_dates
@@ -101,8 +102,8 @@ with open('footyon/matches/fixtures/matches_fixture.json', 'w', encoding='utf-8'
     json.dump(matches_fixture, f, ensure_ascii=False, indent=2)
 
 print(f"Generated {len(matches_fixture)} matches")
-print(f"- 25 past matches (oldest: {selected_past_dates[0].strftime('%Y-%m-%d')}, newest: {selected_past_dates[-1].strftime('%Y-%m-%d')})")
-print(f"- 5 future matches (nearest: {selected_future_dates[0].strftime('%Y-%m-%d')}, farthest: {selected_future_dates[-1].strftime('%Y-%m-%d')})")
+print(f"- 60 past matches (oldest: {selected_past_dates[0].strftime('%Y-%m-%d')}, newest: {selected_past_dates[-1].strftime('%Y-%m-%d')})")
+print(f"- 7 future matches (nearest: {selected_future_dates[0].strftime('%Y-%m-%d')}, farthest: {selected_future_dates[-1].strftime('%Y-%m-%d')})")
 print(f"Reference date: {today.strftime('%Y-%m-%d')}")
 print("\nTo load into Django:")
 print("python manage.py loaddata stadiums_fixture.json")

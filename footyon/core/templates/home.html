@@ -37,7 +37,11 @@
                                 <td data-label="Date">{{ match.date|date:"Y/m/d" }}</td>
                                 <td data-label="Day">{% trans match.day_of_week %}</td>
                                 <td data-label="Time">{{ match.time|date:"H:i" }}</td>
-                                <td data-label="Location">{{ match.location_name }}</td>
+                                <td data-label="Location">
+                                    <a href="{{ match.stadium.google_maps_short_url }}" target="_blank">
+                                        {{ match.stadium.name }}
+                                    </a>
+                                </td>
                                 <td data-label="Max Players">{{ match.max_players }}</td>
                                 <td data-label="Spots Left">{{ match.spots_left }}</td>
                                 <td data-label="Action">

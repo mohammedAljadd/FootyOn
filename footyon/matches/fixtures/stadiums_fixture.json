@@ -5,8 +5,8 @@
     "fields": {
       "name": "Stade de l'Ouest",
       "google_maps_embed_url": "https://maps.app.goo.gl/EgACLTbrG48rnAJ3A",
-      "created_at": "2025-10-08T10:43:58Z",
-      "updated_at": "2025-10-08T10:43:58Z"
+      "created_at": "2025-10-09T09:31:18Z",
+      "updated_at": "2025-10-09T09:31:18Z"
     }
   },
   {
@@ -15,8 +15,8 @@
     "fields": {
       "name": "Stade Méarelli",
       "google_maps_embed_url": "https://maps.app.goo.gl/B1ZWYDjT83m2mAeH8",
-      "created_at": "2025-10-08T10:43:58Z",
-      "updated_at": "2025-10-08T10:43:58Z"
+      "created_at": "2025-10-09T09:31:18Z",
+      "updated_at": "2025-10-09T09:31:18Z"
     }
   },
   {
@@ -25,8 +25,8 @@
     "fields": {
       "name": "Sports Field",
       "google_maps_embed_url": "https://maps.app.goo.gl/1cys5tWqXG81J6oH7",
-      "created_at": "2025-10-08T10:43:58Z",
-      "updated_at": "2025-10-08T10:43:58Z"
+      "created_at": "2025-10-09T09:31:18Z",
+      "updated_at": "2025-10-09T09:31:18Z"
     }
   },
   {
@@ -35,8 +35,18 @@
     "fields": {
       "name": "Stade Léon Chabert",
       "google_maps_embed_url": "https://maps.app.goo.gl/26ZftP76XgL6LVyq5",
-      "created_at": "2025-10-08T10:43:58Z",
-      "updated_at": "2025-10-08T10:43:58Z"
+      "created_at": "2025-10-09T09:31:18Z",
+      "updated_at": "2025-10-09T09:31:18Z"
+    }
+  },
+  {
+    "model": "matches.stadium",
+    "pk": 5,
+    "fields": {
+      "name": "Stade du Ray ",
+      "google_maps_embed_url": "https://maps.app.goo.gl/9mvKTt7HohyBTj4c8",
+      "created_at": "2025-10-09T09:31:18Z",
+      "updated_at": "2025-10-09T09:31:18Z"
     }
   }
 ]
