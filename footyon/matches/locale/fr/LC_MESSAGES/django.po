@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-08 09:20+0200\n"
+"POT-Creation-Date: 2025-10-09 04:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,64 +18,108 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\matches\forms.py:24
-msgid "Name of the stadium or location"
+#: .\matches\forms.py:13 .\matches\models.py:28
+msgid "Stadium"
 msgstr ""
 
-#: .\matches\forms.py:25
-msgid "Google Maps Link"
+#: .\matches\forms.py:15
+msgid "Select a stadium"
 msgstr ""
 
-#: .\matches\forms.py:26
-msgid "Paste the short Google Maps link (e.g., https://maps.app.goo.gl/...)"
-msgstr ""
-
-#: .\matches\forms.py:39
-msgid ""
-"Please enter a valid Google Maps URL (maps.app.goo.gl or google.com/maps)"
-msgstr ""
-
-#: .\matches\forms.py:55
+#: .\matches\forms.py:36
 #, python-format
 msgid "Cannot set max players below current joined count (%(count)d)."
 msgstr ""
 
-#: .\matches\models.py:11 .\matches\templates\matches\manage_matches.html:28
-msgid "Date"
-msgstr "Date"
-
-#: .\matches\models.py:12 .\matches\templates\matches\manage_matches.html:30
-#: .\matches\templates\matches\view_match.html:85
-#: .\matches\templates\matches\view_match.html:202 .\matches\views.py:177
-msgid "Time"
-msgstr "Heure"
-
-#: .\matches\models.py:13
-msgid "Day of Week"
+#: .\matches\forms.py:43
+msgid "Google Maps Link"
 msgstr ""
 
-#: .\matches\models.py:14 .\matches\templates\matches\manage_matches.html:31
-#: .\matches\views.py:178
-msgid "Location"
-msgstr "Lieu"
-
-#: .\matches\models.py:16
-msgid "Google Maps Short URL"
+#: .\matches\forms.py:44
+msgid "Paste the short Google Maps link (e.g., https://maps.app.goo.gl/...)"
 msgstr ""
 
-#: .\matches\models.py:18
+#: .\matches\models.py:10
+msgid "Stadium Name"
+msgstr ""
+
+#: .\matches\models.py:12 .\matches\models.py:31
+#: .\matches\templates\matches\manage_stadiums.html:24
 #, fuzzy
 #| msgid "Create New Match"
 msgid "Created At"
 msgstr "Créer un nouveau match"
 
-#: .\matches\models.py:19
+#: .\matches\models.py:13 .\matches\models.py:32
+#: .\matches\templates\matches\manage_stadiums.html:25
 msgid "Updated At"
 msgstr ""
 
-#: .\matches\models.py:20 .\matches\templates\matches\manage_matches.html:32
+#: .\matches\models.py:20 .\matches\templates\matches\manage_matches.html:28
+msgid "Date"
+msgstr "Date"
+
+#: .\matches\models.py:21 .\matches\templates\matches\manage_matches.html:30
+#: .\matches\templates\matches\view_match.html:85
+#: .\matches\templates\matches\view_match.html:202 .\matches\views.py:181
+msgid "Time"
+msgstr "Heure"
+
+#: .\matches\models.py:22
+msgid "Day of Week"
+msgstr ""
+
+#: .\matches\models.py:33 .\matches\templates\matches\manage_matches.html:32
 msgid "Max Players"
 msgstr "Nombre max de joueurs"
+
+#: .\matches\templates\matches\add_stadium.html:4
+msgid "Add Stadium"
+msgstr ""
+
+#: .\matches\templates\matches\add_stadium.html:9
+#: .\matches\templates\matches\manage_stadiums.html:11
+msgid "Add New Stadium"
+msgstr ""
+
+#: .\matches\templates\matches\add_stadium.html:32
+#: .\matches\templates\matches\create_match.html:33
+msgid "How to get Google Maps link:"
+msgstr ""
+
+#: .\matches\templates\matches\add_stadium.html:33
+#: .\matches\templates\matches\create_match.html:34
+#: .\matches\templates\matches\edit_match.html:47
+msgid "Open Google Maps and search for the location"
+msgstr ""
+
+#: .\matches\templates\matches\add_stadium.html:34
+#: .\matches\templates\matches\create_match.html:35
+#: .\matches\templates\matches\edit_match.html:48
+msgid "Click 'Share' button"
+msgstr ""
+
+#: .\matches\templates\matches\add_stadium.html:35
+#: .\matches\templates\matches\create_match.html:36
+#: .\matches\templates\matches\edit_match.html:49
+msgid "Copy the short link"
+msgstr ""
+
+#: .\matches\templates\matches\add_stadium.html:36
+#: .\matches\templates\matches\create_match.html:37
+msgid "Paste it here"
+msgstr ""
+
+#: .\matches\templates\matches\add_stadium.html:59
+#: .\matches\templates\matches\create_match.html:60
+#: .\matches\templates\matches\edit_match.html:74
+#: .\matches\templates\matches\edit_stadium.html:37
+msgid "Cancel"
+msgstr "Annuler"
+
+#: .\matches\templates\matches\add_stadium.html:62
+msgid "Save Stadium"
+msgstr ""
 
 #: .\matches\templates\matches\create_match.html:4
 #, fuzzy
@@ -87,34 +131,6 @@ msgstr "Créer un nouveau match"
 #: .\matches\templates\matches\manage_matches.html:13
 msgid "Create New Match"
 msgstr "Créer un nouveau match"
-
-#: .\matches\templates\matches\create_match.html:33
-msgid "How to get Google Maps link:"
-msgstr ""
-
-#: .\matches\templates\matches\create_match.html:34
-#: .\matches\templates\matches\edit_match.html:47
-msgid "Open Google Maps and search for the location"
-msgstr ""
-
-#: .\matches\templates\matches\create_match.html:35
-#: .\matches\templates\matches\edit_match.html:48
-msgid "Click 'Share' button"
-msgstr ""
-
-#: .\matches\templates\matches\create_match.html:36
-#: .\matches\templates\matches\edit_match.html:49
-msgid "Copy the short link"
-msgstr ""
-
-#: .\matches\templates\matches\create_match.html:37
-msgid "Paste it here"
-msgstr ""
-
-#: .\matches\templates\matches\create_match.html:60
-#: .\matches\templates\matches\edit_match.html:74
-msgid "Cancel"
-msgstr "Annuler"
 
 #: .\matches\templates\matches\create_match.html:63
 #, fuzzy
@@ -157,8 +173,14 @@ msgid "Leave empty to keep current map"
 msgstr ""
 
 #: .\matches\templates\matches\edit_match.html:77
+#: .\matches\templates\matches\edit_stadium.html:40
 msgid "Save Changes"
 msgstr "Enregistrer les modifications"
+
+#: .\matches\templates\matches\edit_stadium.html:4
+#: .\matches\templates\matches\edit_stadium.html:9
+msgid "Edit Stadium"
+msgstr ""
 
 #: .\matches\templates\matches\manage_matches.html:3
 #: .\matches\templates\matches\manage_matches.html:8
@@ -177,11 +199,16 @@ msgstr ""
 msgid "Day"
 msgstr "Jour"
 
+#: .\matches\templates\matches\manage_matches.html:31 .\matches\views.py:182
+msgid "Location"
+msgstr "Lieu"
+
 #: .\matches\templates\matches\manage_matches.html:33
 msgid "Spots Left"
 msgstr "Places restantes"
 
 #: .\matches\templates\matches\manage_matches.html:34
+#: .\matches\templates\matches\manage_stadiums.html:26
 msgid "Actions"
 msgstr "Actions"
 
@@ -191,6 +218,7 @@ msgid "View"
 msgstr "Afficher"
 
 #: .\matches\templates\matches\manage_matches.html:58
+#: .\matches\templates\matches\manage_stadiums.html:46
 msgid "Edit"
 msgstr "Modifier"
 
@@ -209,6 +237,37 @@ msgstr "Aucun match trouvé."
 #: .\matches\templates\matches\manage_matches.html:78
 msgid "Only 10 matches are shown at a time. Use the buttons above to see more."
 msgstr ""
+
+#: .\matches\templates\matches\manage_stadiums.html:4
+#: .\matches\templates\matches\manage_stadiums.html:9
+#, fuzzy
+#| msgid "Manage Matches"
+msgid "Manage Stadiums"
+msgstr "Gérer les matchs"
+
+#: .\matches\templates\matches\manage_stadiums.html:22
+msgid "Name"
+msgstr ""
+
+#: .\matches\templates\matches\manage_stadiums.html:23
+msgid "Google Maps"
+msgstr ""
+
+#: .\matches\templates\matches\manage_stadiums.html:36
+#, fuzzy
+#| msgid "View"
+msgid "View Map"
+msgstr "Afficher"
+
+#: .\matches\templates\matches\manage_stadiums.html:39
+msgid "N/A"
+msgstr ""
+
+#: .\matches\templates\matches\manage_stadiums.html:53
+#, fuzzy
+#| msgid "No matches found."
+msgid "No stadiums found."
+msgstr "Aucun match trouvé."
 
 #: .\matches\templates\matches\view_match.html:3
 msgid "Match Details"
@@ -369,33 +428,37 @@ msgstr "Google Maps"
 msgid "Back"
 msgstr "Retour"
 
-#: .\matches\views.py:158
+#: .\matches\views.py:162
 msgid "FOOTBALL MATCH"
 msgstr "MATCH DE FOOT"
 
-#: .\matches\views.py:168
+#: .\matches\views.py:172
 msgid "MATCH DETAILS"
 msgstr "DÉTAILS DU MATCH"
 
-#: .\matches\views.py:179
+#: .\matches\views.py:183
 msgid "Players"
 msgstr "Joueurs"
 
-#: .\matches\views.py:180
+#: .\matches\views.py:184
 msgid "in total"
 msgstr "au total"
 
-#: .\matches\views.py:181
+#: .\matches\views.py:185
 msgid "spots left"
 msgstr "places restantes"
 
-#: .\matches\views.py:192
+#: .\matches\views.py:196
 msgid "PARTICIPANTS"
 msgstr ""
 
-#: .\matches\views.py:212
+#: .\matches\views.py:216
 msgid "Join this match on FootyOn!"
 msgstr "Rejoignez ce match sur FootyOn!"
+
+#: .\matches\views.py:316
+msgid "Stadium updated successfully."
+msgstr ""
 
 #~ msgid "Normal"
 #~ msgstr "Normal"

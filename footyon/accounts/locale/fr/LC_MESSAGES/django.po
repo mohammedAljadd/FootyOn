@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-08 09:20+0200\n"
+"POT-Creation-Date: 2025-10-09 04:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,7 @@ msgid "Username must be letters followed by exactly 3 digits (e.g. alex123)."
 msgstr ""
 
 #: .\accounts\forms.py:102
-#: .\accounts\templates\accounts\manage_accounts.html:49
+#: .\accounts\templates\accounts\manage_accounts.html:52
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
@@ -45,15 +45,20 @@ msgstr "Nom d'utilisateur"
 msgid "Account Deactivated"
 msgstr "Compte désactivé"
 
+#: .\accounts\templates\accounts\disabled_user.html:11
 msgid "Your account has been deactivated by the administrator."
 msgstr "Votre compte a été désactivé par l’administrateur."
 
+#: .\accounts\templates\accounts\disabled_user.html:12
 msgid "You will not be able to see upcoming matches or join any events."
-msgstr "Vous ne pourrez pas voir les prochains matchs ni participer à des événements."
+msgstr ""
+"Vous ne pourrez pas voir les prochains matchs ni participer à des événements."
 
+#: .\accounts\templates\accounts\disabled_user.html:15
 msgid "If you believe this is a mistake, please contact the administrator."
-msgstr "Si vous pensez qu’il s’agit d’une erreur, veuillez contacter l’administrateur."
-
+msgstr ""
+"Si vous pensez qu’il s’agit d’une erreur, veuillez contacter "
+"l’administrateur."
 
 #: .\accounts\templates\accounts\disabled_user.html:20
 msgid "Logout"
@@ -84,6 +89,8 @@ msgid ""
 "Here you can manage user accounts. Use the buttons above to navigate through "
 "the list."
 msgstr ""
+"Ici, vous pouvez gérer les comptes utilisateurs. Utilisez les boutons ci-"
+"dessus pour parcourir la liste."
 
 #: .\accounts\templates\accounts\manage_accounts.html:30
 msgid "Search by username..."
@@ -97,47 +104,74 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: .\accounts\templates\accounts\manage_accounts.html:50
+#: .\accounts\templates\accounts\manage_accounts.html:48
+msgid "Last"
+msgstr ""
+
+#: .\accounts\templates\accounts\manage_accounts.html:48
+msgid "(oldest → newest)"
+msgstr "(plus ancien → plus récent)"
+
+#: .\accounts\templates\accounts\manage_accounts.html:48
+#, fuzzy
+#| msgid "Attendance"
+msgid "Attended"
+msgstr "Présence"
+
+#: .\accounts\templates\accounts\manage_accounts.html:48
+msgid "Excused"
+msgstr "Excusé"
+
+#: .\accounts\templates\accounts\manage_accounts.html:48
+msgid "Not excused"
+msgstr "Non excusé"
+
+#: .\accounts\templates\accounts\manage_accounts.html:53
 msgid "Status"
 msgstr "Statut"
 
-#: .\accounts\templates\accounts\manage_accounts.html:51
+#: .\accounts\templates\accounts\manage_accounts.html:54
 msgid "Joined"
 msgstr "Inscrit"
 
-#: .\accounts\templates\accounts\manage_accounts.html:52
+#: .\accounts\templates\accounts\manage_accounts.html:55
 msgid "Eligible matches"
-msgstr ""
+msgstr "Matchs éligibles"
 
-#: .\accounts\templates\accounts\manage_accounts.html:53
+#: .\accounts\templates\accounts\manage_accounts.html:56
 msgid "Score"
 msgstr ""
 
-#: .\accounts\templates\accounts\manage_accounts.html:54
+#: .\accounts\templates\accounts\manage_accounts.html:58
+#, python-format
+msgid "Last %(last_n)s matches"
+msgstr "Les %(last_n)s derniers matchs"
+
+#: .\accounts\templates\accounts\manage_accounts.html:60
 msgid "Action"
 msgstr "Action"
 
-#: .\accounts\templates\accounts\manage_accounts.html:65
+#: .\accounts\templates\accounts\manage_accounts.html:71
 msgid "Disabled"
 msgstr "Désactivé"
 
-#: .\accounts\templates\accounts\manage_accounts.html:67
+#: .\accounts\templates\accounts\manage_accounts.html:73
 msgid "Active"
 msgstr "Actif"
 
-#: .\accounts\templates\accounts\manage_accounts.html:79
+#: .\accounts\templates\accounts\manage_accounts.html:86
 msgid "Activate"
 msgstr "Activer"
 
-#: .\accounts\templates\accounts\manage_accounts.html:79
+#: .\accounts\templates\accounts\manage_accounts.html:86
 msgid "Deactivate"
 msgstr "Désactiver"
 
-#: .\accounts\templates\accounts\manage_accounts.html:90
+#: .\accounts\templates\accounts\manage_accounts.html:97
 msgid "No users found."
 msgstr "Aucun utilisateur trouvé."
 
-#: .\accounts\templates\accounts\manage_accounts.html:97
+#: .\accounts\templates\accounts\manage_accounts.html:104
 msgid "Only 10 users are shown at a time. Use the buttons above to see more."
 msgstr ""
 "Seulement 10 utilisateurs sont affichés à la fois. Utilisez les boutons ci-"
@@ -173,15 +207,12 @@ msgstr "Le mot de passe ne peut pas être entièrement numérique"
 msgid "Already have an account?"
 msgstr "Vous avez déjà un compte ?"
 
-#: .\accounts\views.py:92
+#: .\accounts\views.py:109
 #, python-format
 msgid "🚫 %(username)s has been deactivated."
 msgstr "🚫 %(username)s a été désactivé."
 
-#: .\accounts\views.py:94
+#: .\accounts\views.py:111
 #, python-format
 msgid "✅ %(username)s has been activated."
 msgstr "✅ %(username)s a été activé."
-
-#~ msgid "Attendance"
-#~ msgstr "Présence"

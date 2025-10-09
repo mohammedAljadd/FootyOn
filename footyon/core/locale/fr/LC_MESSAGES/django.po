@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-08 04:39+0200\n"
+"POT-Creation-Date: 2025-10-09 04:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,31 +18,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\core\templates\base.html:115
+#: .\core\templates\base.html:118
 msgid "Admin Panel"
 msgstr "Panneau d'administration"
 
-#: .\core\templates\base.html:120
+#: .\core\templates\base.html:123
 msgid "Manage Matches"
 msgstr "Gérer les matchs"
 
-#: .\core\templates\base.html:125
+#: .\core\templates\base.html:128
 msgid "Manage Accounts"
 msgstr "Gérer les comptes"
 
-#: .\core\templates\base.html:141
+#: .\core\templates\base.html:133
+#, fuzzy
+#| msgid "Manage Matches"
+msgid "Manage Stadiums"
+msgstr "Gérer les matchs"
+
+#: .\core\templates\base.html:149
 msgid "Hello"
 msgstr "Bonjour"
 
-#: .\core\templates\base.html:151
+#: .\core\templates\base.html:159
 msgid "Logout"
 msgstr "Se déconnecter"
 
-#: .\core\templates\base.html:159
+#: .\core\templates\base.html:167
 msgid "Login"
 msgstr "Se connecter"
 
-#: .\core\templates\base.html:164
+#: .\core\templates\base.html:172
 msgid "Sign Up"
 msgstr "S'inscrire"
 

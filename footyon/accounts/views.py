@@ -74,7 +74,24 @@ def manage_accounts(request):
             user.score = None
         user.total_eligible = len(eligible_participations)
 
-    return render(request, "accounts/manage_accounts.html", {"users": users})
+
+        # We will add last 7 participations to user object
+        last_n = 7
+        last_participations = sorted([p for p in participations if not p.match.can_edit_attendance], key=lambda p: p.match.date, reverse=True)[:last_n]
+        last_participations = sorted(last_participations, key=lambda p: p.match.date)
+   
+   
+        icons = []
+        for p in last_participations:
+            if p.is_active_participant():
+                icons.append("✅")
+            elif p.no_show_reason == "excused":
+                icons.append("⚪")
+            else :
+                icons.append("❌")
+
+        user.last_five_icons = " ".join(icons)
+    return render(request, "accounts/manage_accounts.html", {"users": users, "last_n": last_n})
 
 @user_passes_test(is_admin)
 def toggle_account_status(request, user_id):

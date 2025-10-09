@@ -33,7 +33,7 @@ class Match(models.Model):
     max_players = models.PositiveIntegerField(default=12, verbose_name=_("Max Players"))
     
     def __str__(self):
-        return f"{self.location_name} on {self.date}"
+        return f"{self.stadium.name} on {self.date}"
     
     def save(self, *args, **kwargs):
         # Automatically set the day of the week from the date

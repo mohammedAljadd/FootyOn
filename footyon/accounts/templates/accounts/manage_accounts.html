@@ -3,6 +3,16 @@
 {% block title %}Manage Accounts{% endblock %}
 
 {% block content %}
+<style>
+.tr-active td{
+    background-color: rgb(228, 255, 234); /* light green */
+}
+.tr-inactive td{
+    background-color: #cecece; /* light gray */
+}
+</style>
+
+
 <div class="container my-4">
     {# Page header #}
     <h2 class="mb-3">{% trans "Manage User Accounts" %}</h2>
@@ -44,6 +54,9 @@
 
     {# Table displaying user accounts #}
     <table class="table table-bordered table-hover" id="users-table">
+        <caption class="text-muted">
+            <small>{% trans "Last" %} {{ last_n }} {% trans "(oldest → newest)" %}: ✅ = {% trans "Attended" %}, ⚪ = {% trans "Excused" %}, ❌ = {% trans "Not excused" %}</small>
+        </caption>
         <thead class="table-dark">
             <tr>
                 <th>{% trans "Username" %}</th>
@@ -51,13 +64,16 @@
                 <th>{% trans "Joined" %}</th>
                 <th>{% trans "Eligible matches" %}</th>
                 <th>{% trans "Score" %} %</th>
+                <th>
+                    {% blocktrans with last_n=last_n %}Last {{ last_n }} matches{% endblocktrans %}
+                </th>
                 <th>{% trans "Action" %}</th>
             </tr>
         </thead>
         <tbody>
             {# Loop through all users passed from the view #}
             {% for user in users %}
-            <tr class="user-row" data-username="{{ user.username|lower }}">
+            <tr class="user-row {% if not user.is_disabled %}tr-active{% else %}tr-inactive{% endif %}" data-username="{{ user.username|lower }}">
                 <td>{{ user.username }}</td>
                 <td>
                     {# Display badge depending on user's status #}
@@ -70,6 +86,7 @@
                 <td>{{ user.date_joined|date:"Y-m-d" }}</td>
                 <td>{{ user.total_eligible }}</td>
                 <td>{{ user.score }}</td>
+                <td>{{ user.last_five_icons }}</td>
                 <td>
                     {# Only allow actions on users other than the current logged-in user #}
                     {% if user != request.user %}
