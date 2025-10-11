@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-09 04:32+0200\n"
+"POT-Creation-Date: 2025-10-09 13:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,47 +96,51 @@ msgstr "Places restantes"
 msgid "Action"
 msgstr "Action"
 
-#: .\core\templates\home.html:46
+#: .\core\templates\home.html:50
 msgid "View"
 msgstr "Voir"
 
-#: .\core\templates\home.html:51
+#: .\core\templates\home.html:55
 msgid "Removed"
 msgstr "Supprimé"
 
-#: .\core\templates\home.html:54
+#: .\core\templates\home.html:58
+msgid "No Show"
+msgstr ""
+
+#: .\core\templates\home.html:61
 msgid "Leave"
 msgstr "Quitter"
 
-#: .\core\templates\home.html:56
+#: .\core\templates\home.html:63
 msgid "Join"
 msgstr "Rejoindre"
 
-#: .\core\templates\home.html:58
+#: .\core\templates\home.html:65
 msgid "Full"
 msgstr "Complet"
 
-#: .\core\templates\home.html:65
+#: .\core\templates\home.html:72
 msgid "No upcoming matches found."
 msgstr "Aucun match à venir trouvé."
 
-#: .\core\templates\home.html:79
+#: .\core\templates\home.html:86
 msgid "Please"
 msgstr "Veuillez"
 
-#: .\core\templates\home.html:79
+#: .\core\templates\home.html:86
 msgid "register"
 msgstr "vous inscrire"
 
-#: .\core\templates\home.html:79
+#: .\core\templates\home.html:86
 msgid "or"
 msgstr "ou"
 
-#: .\core\templates\home.html:79
+#: .\core\templates\home.html:86
 msgid "login"
 msgstr "vous connecter"
 
-#: .\core\templates\home.html:79
+#: .\core\templates\home.html:86
 msgid "to see and join upcoming matches."
 msgstr "pour voir et rejoindre les matchs à venir."
 

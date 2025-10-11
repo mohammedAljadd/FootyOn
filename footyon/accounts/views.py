@@ -1,3 +1,4 @@
+from time import timezone
 from django.shortcuts import render, redirect
 from participation.models import Participation
 from .forms import UserSignupForm
@@ -62,9 +63,25 @@ def manage_accounts(request):
         ]
 
         # 7️⃣ Compute score safely
-        #    - Avoid division by zero if user has no eligible participations
-        #    - Multiply by 100 to get percentage
-        score = (attended / len(eligible_participations) * 100) if eligible_participations else None
+        attendance_score = (attended / len(eligible_participations)) if eligible_participations else 0
+        points_ratio = user.points / 15
+
+        if user.is_suspended and user.suspension_until:
+            total_suspension_seconds = (timezone.timedelta(days=15)).total_seconds()
+            remaining_seconds = (user.suspension_until - timezone.now()).total_seconds()
+            suspension_penalty = max(0, min(1, remaining_seconds / total_suspension_seconds))
+        else:
+            suspension_penalty = 0
+
+        past_suspension_penalty = min(0.1, 0.02 * user.suspension_count)  # 2% penalty per past suspension, max 10%
+
+        score = (attendance_score * 0.7 + points_ratio * 0.3) * 100
+        score = score * (1 - suspension_penalty) * (1 - past_suspension_penalty)
+
+
+
+   
+
 
         # 8️⃣ Dynamically attach the score to the user object
         #    - This makes it easy to access in templates like {{ user.score }}
@@ -91,6 +108,8 @@ def manage_accounts(request):
                 icons.append("❌")
 
         user.last_five_icons = " ".join(icons)
+
+
     return render(request, "accounts/manage_accounts.html", {"users": users, "last_n": last_n})
 
 @user_passes_test(is_admin)

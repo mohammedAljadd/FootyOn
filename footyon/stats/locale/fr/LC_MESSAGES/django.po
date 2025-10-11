@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-08 06:01+0200\n"
+"POT-Creation-Date: 2025-10-11 07:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,157 +18,296 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\stats\templates\stats\dashboard.html:34
+#: .\stats\templates\stats\dashboard.html:52
 msgid "Stats Dashboard"
 msgstr "Tableau de bord des statistiques"
 
-#: .\stats\templates\stats\dashboard.html:41
+#: .\stats\templates\stats\dashboard.html:59
 msgid "Total Matches"
 msgstr "Nombre total de matchs"
 
-#: .\stats\templates\stats\dashboard.html:49
+#: .\stats\templates\stats\dashboard.html:67
 #, python-format
 msgid "Avg Attendance %%"
 msgstr "Présence moyenne %%"
 
-#: .\stats\templates\stats\dashboard.html:60
+#: .\stats\templates\stats\dashboard.html:78
 msgid "This table shows users' participation stats:"
 msgstr ""
 "Ce tableau affiche les statistiques de participation des utilisateurs :"
 
-#: .\stats\templates\stats\dashboard.html:62
-#: .\stats\templates\stats\dashboard.html:109
-msgid "Username"
-msgstr "Nom d'utilisateur"
-
-#: .\stats\templates\stats\dashboard.html:62
+#: .\stats\templates\stats\dashboard.html:80
 msgid "The user's name or identifier."
 msgstr "Le nom ou l'identifiant de l'utilisateur."
 
-#: .\stats\templates\stats\dashboard.html:63
-#: .\stats\templates\stats\dashboard.html:111
-msgid "Total Enrolled"
-msgstr "Total inscrit"
+#: .\stats\templates\stats\dashboard.html:81
+msgid "Award or recognition based on attendance or performance."
+msgstr "Reconnaissance basée sur la présence ou la performance."
 
-#: .\stats\templates\stats\dashboard.html:63
-msgid "All matches the user signed up for."
-msgstr "Tous les matchs auxquels l'utilisateur s'est inscrit."
+#: .\stats\templates\stats\dashboard.html:82
+#: .\stats\templates\stats\dashboard.html:148
+msgid "EP"
+msgstr "PE"
 
-#: .\stats\templates\stats\dashboard.html:64
-#: .\stats\templates\stats\dashboard.html:112
+#: .\stats\templates\stats\dashboard.html:82
 msgid "Eligible Participations"
 msgstr "Participations éligibles"
 
-#: .\stats\templates\stats\dashboard.html:64
+#: .\stats\templates\stats\dashboard.html:82
+#, fuzzy
+#| msgid ""
+#| "Matches that count towards the score (excludes excused or early leaves "
+#| "without no-show)."
 msgid ""
-"Matches that count towards the score (excludes excused or early leaves "
-"without no-show)."
+"Matches that count towards the score (excludes excused absences or early "
+"leaves without no-show)."
 msgstr ""
 "Matchs comptant pour le score (exclut les absences justifiées ou les départs "
 "anticipés sans absence)."
 
-#: .\stats\templates\stats\dashboard.html:65
-#: .\stats\templates\stats\dashboard.html:113
+#: .\stats\templates\stats\dashboard.html:83
+#: .\stats\templates\stats\dashboard.html:149
+msgid "TA"
+msgstr "TP"
+
+#: .\stats\templates\stats\dashboard.html:83
 msgid "Total Attended"
 msgstr "Total présent"
 
-#: .\stats\templates\stats\dashboard.html:65
+#: .\stats\templates\stats\dashboard.html:83
 msgid "Matches where the user actually joined."
 msgstr "Matchs auxquels l'utilisateur a effectivement participé."
 
-#: .\stats\templates\stats\dashboard.html:66
-#: .\stats\templates\stats\dashboard.html:114
-msgid "Total Left"
-msgstr "Total parti"
+#: .\stats\templates\stats\dashboard.html:84
+#: .\stats\templates\stats\dashboard.html:150
+msgid "A"
+msgstr "A"
 
-#: .\stats\templates\stats\dashboard.html:66
-msgid "Matches the user left early."
-msgstr "Matchs que l'utilisateur a quittés en avance."
-
-#: .\stats\templates\stats\dashboard.html:67
-#: .\stats\templates\stats\dashboard.html:115
-msgid "Absent (Excused)"
+#: .\stats\templates\stats\dashboard.html:84
+#, fuzzy
+#| msgid "Absent (Excused)"
+msgid "Absence"
 msgstr "Absent (Justifié)"
 
-#: .\stats\templates\stats\dashboard.html:67
-msgid "Missed matches with approved excuses."
-msgstr "Matchs manqués avec justification approuvée."
+#: .\stats\templates\stats\dashboard.html:84
+msgid ""
+"Number of missed matches in the format Excused / Not Excused / Last Minute "
+"(e.g., 3 / 1 / 0)."
+msgstr ""
+"Nombre de matchs manqués au format Excusé / Non excusé / Dernière minute "
+"(par ex., 3 / 1 / 0)."
 
-#: .\stats\templates\stats\dashboard.html:68
-#: .\stats\templates\stats\dashboard.html:116
-msgid "Absent (Not Excused)"
-msgstr "Absent (Non justifié)"
+#: .\stats\templates\stats\dashboard.html:85
+#: .\stats\templates\stats\dashboard.html:151
+msgid "TS"
+msgstr "NS"
 
-#: .\stats\templates\stats\dashboard.html:68
-msgid "Missed matches without valid excuse."
-msgstr "Matchs manqués sans justification valable."
+#: .\stats\templates\stats\dashboard.html:85
+msgid "Times Suspended"
+msgstr "Nombre de suspensions"
 
-#: .\stats\templates\stats\dashboard.html:69
-#: .\stats\templates\stats\dashboard.html:117
-msgid "Absent (Last Minute)"
-msgstr "Absent (Dernière minute)"
+#: .\stats\templates\stats\dashboard.html:85
+msgid "Number of times the user was temporarily suspended due to low points."
+msgstr ""
+"Nombre de fois que l'utilisateur a été suspendu temporairement en raison "
+"d'un faible nombre de points."
 
-#: .\stats\templates\stats\dashboard.html:69
-msgid "Missed matches at the last minute."
-msgstr "Matchs manqués à la dernière minute."
+#: .\stats\templates\stats\dashboard.html:86
+#: .\stats\templates\stats\dashboard.html:152
+msgid "P"
+msgstr ""
 
-#: .\stats\templates\stats\dashboard.html:70
-#: .\stats\templates\stats\dashboard.html:118
+#: .\stats\templates\stats\dashboard.html:86
+msgid "Points"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:86
+msgid "Current points out of maximum 15, used to track attendance reliability."
+msgstr ""
+"Points actuels sur un maximum de 15, utilisés pour suivre la fiabilité de la "
+"présence."
+
+#: .\stats\templates\stats\dashboard.html:87
+#: .\stats\templates\stats\dashboard.html:153
+#, python-format
+msgid "S %%"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:87
 #, python-format
 msgid "Score %%"
 msgstr "Score %%"
 
-#: .\stats\templates\stats\dashboard.html:70
-msgid "Attendance rate relative to eligible participations."
-msgstr "Taux de présence par rapport aux participations éligibles."
+#: .\stats\templates\stats\dashboard.html:87
+msgid ""
+"Overall score calculated from attendance, points, and any active suspensions."
+msgstr ""
+"Score global calculé à partir de la présence, des points et de toute "
+"suspension active."
 
-#: .\stats\templates\stats\dashboard.html:83
+#: .\stats\templates\stats\dashboard.html:89
+msgid "Last"
+msgstr "Derniers"
+
+#: .\stats\templates\stats\dashboard.html:89
+msgid "Matches"
+msgstr "Matchs"
+
+#: .\stats\templates\stats\dashboard.html:90
+msgid "Visual summary of attendance for the last"
+msgstr "Résumé visuel de la présence pour les"
+
+#: .\stats\templates\stats\dashboard.html:91
+msgid "matches (oldest → newest)"
+msgstr "derniers matchs (le plus ancien → le plus récent)"
+
+#: .\stats\templates\stats\dashboard.html:92
+#: .\stats\templates\stats\dashboard.html:228
+msgid "Attended"
+msgstr "Présent"
+
+#: .\stats\templates\stats\dashboard.html:93
+msgid "Excused"
+msgstr "Excusé"
+
+#: .\stats\templates\stats\dashboard.html:94
+msgid "Not excused"
+msgstr "Non excusé"
+
+#: .\stats\templates\stats\dashboard.html:112
 #, python-format
 msgid "Min Attendance %% (All)"
 msgstr "Présence min %% (Tous)"
 
-#: .\stats\templates\stats\dashboard.html:101
-#: .\stats\templates\stats\dashboard.html:173
+#: .\stats\templates\stats\dashboard.html:130
+#: .\stats\templates\stats\dashboard.html:216
 msgid "Previous"
 msgstr "Précédent"
 
-#: .\stats\templates\stats\dashboard.html:102
-#: .\stats\templates\stats\dashboard.html:174
+#: .\stats\templates\stats\dashboard.html:131
+#: .\stats\templates\stats\dashboard.html:217
 msgid "Next"
 msgstr "Suivant"
 
-#: .\stats\templates\stats\dashboard.html:110
+#: .\stats\templates\stats\dashboard.html:137
+msgid "Color Legend"
+msgstr "Légende des couleurs"
+
+#: .\stats\templates\stats\dashboard.html:138
+msgid "Gold"
+msgstr "Or"
+
+#: .\stats\templates\stats\dashboard.html:138
+msgid "Top performers"
+msgstr "Meilleurs performeurs"
+
+#: .\stats\templates\stats\dashboard.html:139
+msgid "Silver"
+msgstr "Argent"
+
+#: .\stats\templates\stats\dashboard.html:139
+msgid "2nd place"
+msgstr "2ᵉ place"
+
+#: .\stats\templates\stats\dashboard.html:140
+msgid "Bronze"
+msgstr "Bronze"
+
+#: .\stats\templates\stats\dashboard.html:140
+msgid "3rd place"
+msgstr "3ᵉ place"
+
+#: .\stats\templates\stats\dashboard.html:141
+msgid "Light Red"
+msgstr "Rouge clair"
+
+#: .\stats\templates\stats\dashboard.html:141
+msgid "Disabled (cannot participate)"
+msgstr "Désactivé (ne peut pas participer)"
+
+#: .\stats\templates\stats\dashboard.html:142
+msgid "Red"
+msgstr "Rouge"
+
+#: .\stats\templates\stats\dashboard.html:142
+msgid "Suspended (temporary ban)"
+msgstr "Suspendu (interdiction temporaire)"
+
+
+#: .\stats\templates\stats\dashboard.html:146
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: .\stats\templates\stats\dashboard.html:147
 msgid "Medal"
 msgstr "Médaille"
 
-#: .\stats\templates\stats\dashboard.html:146
+#: .\stats\templates\stats\dashboard.html:155
+#, python-format
+msgid "Last %(last_n)s matches"
+msgstr ""
+
+#: .\stats\templates\stats\dashboard.html:189
 msgid "Past Matches"
 msgstr "Matchs passés"
 
-#: .\stats\templates\stats\dashboard.html:151
+#: .\stats\templates\stats\dashboard.html:194
 msgid "All Months"
 msgstr "Tous les mois"
 
-#: .\stats\templates\stats\dashboard.html:159
+#: .\stats\templates\stats\dashboard.html:202
 msgid "All Years"
 msgstr "Toutes les années"
 
-#: .\stats\templates\stats\dashboard.html:181
+#: .\stats\templates\stats\dashboard.html:224
 msgid "Date"
 msgstr "Date"
 
-#: .\stats\templates\stats\dashboard.html:182
+#: .\stats\templates\stats\dashboard.html:225
 msgid "Day"
 msgstr "Jour"
 
-#: .\stats\templates\stats\dashboard.html:183
+#: .\stats\templates\stats\dashboard.html:226
 msgid "Location"
 msgstr "Lieu"
 
-#: .\stats\templates\stats\dashboard.html:184
+#: .\stats\templates\stats\dashboard.html:227
 msgid "Max Players"
 msgstr "Nombre max de joueurs"
 
-#: .\stats\templates\stats\dashboard.html:185
-msgid "Attended"
-msgstr "Présent"
+#, python-format
+#~ msgid ""
+#~ "Last %(last_n)s (Matches): Visual summary of attendance for the last "
+#~ "%(last_n)s matches (oldest → newest): ✅ = Attended, ⚪ = Excused, ❌ = "
+#~ "Not excused"
+#~ msgstr ""
+#~ "Les %(last_n)s derniers (Matchs) : Résumé visuel de la présence pour les "
+#~ "%(last_n)s derniers matchs (du plus ancien au plus récent) : ✅ = "
+#~ "Présent, ⚪ = Excusé, ❌ = Non excusé"
+
+#~ msgid "Total Enrolled"
+#~ msgstr "Total inscrit"
+
+#~ msgid "All matches the user signed up for."
+#~ msgstr "Tous les matchs auxquels l'utilisateur s'est inscrit."
+
+#~ msgid "Total Left"
+#~ msgstr "Total parti"
+
+#~ msgid "Matches the user left early."
+#~ msgstr "Matchs que l'utilisateur a quittés en avance."
+
+#~ msgid "Missed matches with approved excuses."
+#~ msgstr "Matchs manqués avec justification approuvée."
+
+#~ msgid "Missed matches without valid excuse."
+#~ msgstr "Matchs manqués sans justification valable."
+
+#~ msgid "Absent (Last Minute)"
+#~ msgstr "Absent (Dernière minute)"
+
+#~ msgid "Missed matches at the last minute."
+#~ msgstr "Matchs manqués à la dernière minute."
+
+#~ msgid "Attendance rate relative to eligible participations."
+#~ msgstr "Taux de présence par rapport aux participations éligibles."

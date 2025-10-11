@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-09 04:37+0200\n"
+"POT-Creation-Date: 2025-10-09 13:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,7 @@ msgid "Username must be letters followed by exactly 3 digits (e.g. alex123)."
 msgstr ""
 
 #: .\accounts\forms.py:102
-#: .\accounts\templates\accounts\manage_accounts.html:52
+#: .\accounts\templates\accounts\manage_accounts.html:62
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
@@ -55,12 +55,14 @@ msgstr ""
 "Vous ne pourrez pas voir les prochains matchs ni participer à des événements."
 
 #: .\accounts\templates\accounts\disabled_user.html:15
+#: .\accounts\templates\accounts\suspended_user.html:21
 msgid "If you believe this is a mistake, please contact the administrator."
 msgstr ""
 "Si vous pensez qu’il s’agit d’une erreur, veuillez contacter "
 "l’administrateur."
 
 #: .\accounts\templates\accounts\disabled_user.html:20
+#: .\accounts\templates\accounts\suspended_user.html:26
 msgid "Logout"
 msgstr ""
 
@@ -80,11 +82,11 @@ msgstr "Vous n'avez pas de compte ?"
 msgid "Sign Up"
 msgstr "S'inscrire"
 
-#: .\accounts\templates\accounts\manage_accounts.html:8
+#: .\accounts\templates\accounts\manage_accounts.html:18
 msgid "Manage User Accounts"
 msgstr "Gérer les comptes utilisateurs"
 
-#: .\accounts\templates\accounts\manage_accounts.html:12
+#: .\accounts\templates\accounts\manage_accounts.html:22
 msgid ""
 "Here you can manage user accounts. Use the buttons above to navigate through "
 "the list."
@@ -92,86 +94,86 @@ msgstr ""
 "Ici, vous pouvez gérer les comptes utilisateurs. Utilisez les boutons ci-"
 "dessus pour parcourir la liste."
 
-#: .\accounts\templates\accounts\manage_accounts.html:30
+#: .\accounts\templates\accounts\manage_accounts.html:40
 msgid "Search by username..."
 msgstr ""
 
-#: .\accounts\templates\accounts\manage_accounts.html:38
+#: .\accounts\templates\accounts\manage_accounts.html:48
 msgid "Previous"
 msgstr ""
 
-#: .\accounts\templates\accounts\manage_accounts.html:41
+#: .\accounts\templates\accounts\manage_accounts.html:51
 msgid "Next"
 msgstr ""
 
-#: .\accounts\templates\accounts\manage_accounts.html:48
+#: .\accounts\templates\accounts\manage_accounts.html:58
 msgid "Last"
 msgstr ""
 
-#: .\accounts\templates\accounts\manage_accounts.html:48
+#: .\accounts\templates\accounts\manage_accounts.html:58
 msgid "(oldest → newest)"
 msgstr "(plus ancien → plus récent)"
 
-#: .\accounts\templates\accounts\manage_accounts.html:48
+#: .\accounts\templates\accounts\manage_accounts.html:58
 #, fuzzy
 #| msgid "Attendance"
 msgid "Attended"
 msgstr "Présence"
 
-#: .\accounts\templates\accounts\manage_accounts.html:48
+#: .\accounts\templates\accounts\manage_accounts.html:58
 msgid "Excused"
 msgstr "Excusé"
 
-#: .\accounts\templates\accounts\manage_accounts.html:48
+#: .\accounts\templates\accounts\manage_accounts.html:58
 msgid "Not excused"
 msgstr "Non excusé"
 
-#: .\accounts\templates\accounts\manage_accounts.html:53
+#: .\accounts\templates\accounts\manage_accounts.html:63
 msgid "Status"
 msgstr "Statut"
 
-#: .\accounts\templates\accounts\manage_accounts.html:54
+#: .\accounts\templates\accounts\manage_accounts.html:64
 msgid "Joined"
 msgstr "Inscrit"
 
-#: .\accounts\templates\accounts\manage_accounts.html:55
-msgid "Eligible matches"
-msgstr "Matchs éligibles"
-
-#: .\accounts\templates\accounts\manage_accounts.html:56
-msgid "Score"
+#: .\accounts\templates\accounts\manage_accounts.html:65
+msgid "Times Suspended"
 msgstr ""
 
-#: .\accounts\templates\accounts\manage_accounts.html:58
+#: .\accounts\templates\accounts\manage_accounts.html:66
+msgid "Points"
+msgstr ""
+
+#: .\accounts\templates\accounts\manage_accounts.html:68
 #, python-format
 msgid "Last %(last_n)s matches"
 msgstr "Les %(last_n)s derniers matchs"
 
-#: .\accounts\templates\accounts\manage_accounts.html:60
+#: .\accounts\templates\accounts\manage_accounts.html:70
 msgid "Action"
 msgstr "Action"
 
-#: .\accounts\templates\accounts\manage_accounts.html:71
+#: .\accounts\templates\accounts\manage_accounts.html:81
 msgid "Disabled"
 msgstr "Désactivé"
 
-#: .\accounts\templates\accounts\manage_accounts.html:73
+#: .\accounts\templates\accounts\manage_accounts.html:83
 msgid "Active"
 msgstr "Actif"
 
-#: .\accounts\templates\accounts\manage_accounts.html:86
+#: .\accounts\templates\accounts\manage_accounts.html:96
 msgid "Activate"
 msgstr "Activer"
 
-#: .\accounts\templates\accounts\manage_accounts.html:86
+#: .\accounts\templates\accounts\manage_accounts.html:96
 msgid "Deactivate"
 msgstr "Désactiver"
 
-#: .\accounts\templates\accounts\manage_accounts.html:97
+#: .\accounts\templates\accounts\manage_accounts.html:107
 msgid "No users found."
 msgstr "Aucun utilisateur trouvé."
 
-#: .\accounts\templates\accounts\manage_accounts.html:104
+#: .\accounts\templates\accounts\manage_accounts.html:114
 msgid "Only 10 users are shown at a time. Use the buttons above to see more."
 msgstr ""
 "Seulement 10 utilisateurs sont affichés à la fois. Utilisez les boutons ci-"
@@ -207,12 +209,31 @@ msgstr "Le mot de passe ne peut pas être entièrement numérique"
 msgid "Already have an account?"
 msgstr "Vous avez déjà un compte ?"
 
-#: .\accounts\views.py:109
+#: .\accounts\templates\accounts\suspended_user.html:10
+#, fuzzy
+#| msgid "Deactivate"
+msgid "Account Suspended"
+msgstr "Compte désactivé"
+
+#: .\accounts\templates\accounts\suspended_user.html:12
+msgid ""
+"Your account has been temporarily suspended due to missed matches or no-"
+"shows."
+msgstr ""
+
+#: .\accounts\templates\accounts\suspended_user.html:16
+msgid "You will regain access in"
+msgstr ""
+
+#: .\accounts\views.py:128
 #, python-format
 msgid "🚫 %(username)s has been deactivated."
 msgstr "🚫 %(username)s a été désactivé."
 
-#: .\accounts\views.py:111
+#: .\accounts\views.py:130
 #, python-format
 msgid "✅ %(username)s has been activated."
 msgstr "✅ %(username)s a été activé."
+
+#~ msgid "Eligible matches"
+#~ msgstr "Matchs éligibles"

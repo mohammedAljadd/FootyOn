@@ -9,7 +9,7 @@
 .table tbody tr.medal-gold > td,
 .table-hover tbody tr.medal-gold:hover,
 .table-hover tbody tr.medal-gold:hover > td {
-    background-color: #ffd700 !important;
+    background-color: #ffd700 !important; /* gold */
     color: #000 !important;
 }
 
@@ -17,7 +17,7 @@
 .table tbody tr.medal-silver > td,
 .table-hover tbody tr.medal-silver:hover,
 .table-hover tbody tr.medal-silver:hover > td {
-    background-color: #c0c0c0 !important;
+    background-color: #c0c0c0 !important; /* silver */
     color: #000 !important;
 }
 
@@ -25,10 +25,28 @@
 .table tbody tr.medal-bronze > td,
 .table-hover tbody tr.medal-bronze:hover,
 .table-hover tbody tr.medal-bronze:hover > td {
-    background-color: #cd7f32 !important;
+    background-color: #cd7f32 !important; /* bronze */
     color: #fff !important;
 }
+
+/* Status row colors */
+.table tbody tr.row-disabled,
+.table tbody tr.row-disabled > td,
+.table-hover tbody tr.row-disabled:hover,
+.table-hover tbody tr.row-disabled:hover > td {
+    background-color: #f8d7da !important; /* dark red (disabled) */
+    /* color: #721c24 !important; */
+}
+
+.table tbody tr.row-suspended,
+.table tbody tr.row-suspended > td,
+.table-hover tbody tr.row-suspended:hover,
+.table-hover tbody tr.row-suspended:hover > td {
+    background-color: #e96d6d !important; /* light red/pink (suspended) */
+    /* color: #8b0000 !important; */
+}
 </style>
+
 
 <div class="container my-4">
     <h2 class="mb-4">📊 {% trans "Stats Dashboard" %}</h2>
@@ -59,16 +77,27 @@
     <div class="mb-2">
         <p>{% trans "This table shows users' participation stats:" %}</p>
         <ul>
-            <li><strong>{% trans "Username" %}</strong>: {% trans "The user's name or identifier." %}</li>
-            <li><strong>{% trans "Total Enrolled" %}</strong>: {% trans "All matches the user signed up for." %}</li>
-            <li><strong>{% trans "Eligible Participations" %}</strong>: {% trans "Matches that count towards the score (excludes excused or early leaves without no-show)." %}</li>
-            <li><strong>{% trans "Total Attended" %}</strong>: {% trans "Matches where the user actually joined." %}</li>
-            <li><strong>{% trans "Total Left" %}</strong>: {% trans "Matches the user left early." %}</li>
-            <li><strong>{% trans "Absent (Excused)" %}</strong>: {% trans "Missed matches with approved excuses." %}</li>
-            <li><strong>{% trans "Absent (Not Excused)" %}</strong>: {% trans "Missed matches without valid excuse." %}</li>
-            <li><strong>{% trans "Absent (Last Minute)" %}</strong>: {% trans "Missed matches at the last minute." %}</li>
-            <li><strong>{% trans "Score %" %}</strong>: {% trans "Attendance rate relative to eligible participations." %}</li>
+            <li><strong>Username</strong>: {% trans "The user's name or identifier." %}</li>
+            <li><strong>Medal</strong>: {% trans "Award or recognition based on attendance or performance." %}</li>
+            <li><strong>{% trans "EP" %}</strong> ({% trans "Eligible Participations" %}): {% trans "Matches that count towards the score (excludes excused absences or early leaves without no-show)." %}</li>
+            <li><strong>{% trans "TA" %}</strong> ({% trans "Total Attended" %}): {% trans "Matches where the user actually joined." %}</li>
+            <li><strong>{% trans "A" %}</strong> ({% trans "Absence" %}): {% trans "Number of missed matches in the format Excused / Not Excused / Last Minute (e.g., 3 / 1 / 0)." %}</li>
+            <li><strong>{% trans "TS" %}</strong> ({% trans "Times Suspended" %}): {% trans "Number of times the user was temporarily suspended due to low points." %}</li>
+            <li><strong>{% trans "P" %}</strong> ({% trans "Points" %}): {% trans "Current points out of maximum 15, used to track attendance reliability." %}</li>
+            <li><strong>{% trans "S %" %}</strong> ({% trans "Score %" %}): {% trans "Overall score calculated from attendance, points, and any active suspensions." %}</li>
+            <li>
+                <strong>{% trans "Last" %} {{ last_n }} ({% trans "Matches" %}):</strong>
+                {% trans "Visual summary of attendance for the last" %} {{ last_n }} 
+                {% trans "matches (oldest → newest)" %}: 
+                ✅ = {% trans "Attended" %}, 
+                ⚪ = {% trans "Excused" %}, 
+                ❌ = {% trans "Not excused" %}
+            </li>
+
         </ul>
+        
+
+
     </div>
 
     <!-- User Filters -->
@@ -104,23 +133,38 @@
 
     <div class="table-responsive mb-5">
         <table class="table table-hover" id="userTable">
+            <caption class="text-start text-muted small">
+                <strong>{% trans "Color Legend" %}:</strong>
+                <span style="background-color:#ffd700; color:#000; padding:2px 6px; border-radius:4px;">{% trans "Gold" %}</span> – {% trans "Top performers" %},
+                <span style="background-color:#c0c0c0; color:#000; padding:2px 6px; border-radius:4px;">{% trans "Silver" %}</span> – {% trans "2nd place" %},
+                <span style="background-color:#cd7f32; color:#fff; padding:2px 6px; border-radius:4px;">{% trans "Bronze" %}</span> – {% trans "3rd place" %},
+                <span style="background-color:#f8d7da; padding:2px 6px; border-radius:4px;">{% trans "Light Red" %}</span> – {% trans "Disabled (cannot participate)" %},
+                <span style="background-color:#e96d6d; padding:2px 6px; border-radius:4px;">{% trans "Red" %}</span> – {% trans "Suspended (temporary ban)" %}
+            </caption>
             <thead class="table-dark">
                 <tr>
                     <th>{% trans "Username" %}</th>
                     <th>{% trans "Medal" %}</th>
-                    <th>{% trans "Total Enrolled" %}</th>
-                    <th>{% trans "Eligible Participations" %}</th>
-                    <th>{% trans "Total Attended" %}</th>
-                    <th>{% trans "Total Left" %}</th>
-                    <th>{% trans "Absent (Excused)" %}</th>
-                    <th>{% trans "Absent (Not Excused)" %}</th>
-                    <th>{% trans "Absent (Last Minute)" %}</th>
-                    <th>{% trans "Score %" %}</th>
+                    <th>{% trans "EP" %}</th>
+                    <th>{% trans "TA" %}</th>
+                    <th>{% trans "A" %}</th>
+                    <th>{% trans "TS" %}</th>
+                    <th>{% trans "P" %}</th>
+                    <th>{% trans "S %" %}</th>
+                    <th>
+                        {% blocktrans with last_n=last_n %}Last {{ last_n }} matches{% endblocktrans %}
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 {% for stat in user_stats %}
-                <tr class="{% if stat.medal %}medal-{{ stat.medal }}{% endif %}">
+                {% with can_play=stat.can_participate.0 reason=stat.can_participate.1 %}
+                <tr class="{% if stat.medal %}medal-{{ stat.medal }}{% endif %}
+                    {% if reason == 'disabled' %}row-disabled
+                    {% elif reason == 'suspended' %}row-suspended
+                    {% else %}tr-active{% endif %}">
+            {% endwith %}
+
                     <td>{{ stat.username }}</td>
                     <td>
                         {% if stat.medal == 'gold' %} 🥇
@@ -128,14 +172,13 @@
                         {% elif stat.medal == 'bronze' %} 🥉
                         {% endif %}
                     </td>
-                    <td>{{ stat.total_enrolled }}</td>
                     <td>{{ stat.eligible_participations }}</td>
                     <td>{{ stat.attended }}</td>
-                    <td>{{ stat.total_left }}</td>
-                    <td>{{ stat.total_absent_excused }}</td>
-                    <td>{{ stat.total_absent_not_excused }}</td>
-                    <td>{{ stat.total_absent_last_minute }}</td>
+                    <td>{{ stat.total_absent_excused }} / {{ stat.total_absent_not_excused }} / {{ stat.total_absent_last_minute }}</td>
+                    <td>{{ stat.times_suspended }}</td>
+                    <td>{{ stat.points }}</td>
                     <td class="attendance-rate">{{ stat.score }}</td>
+                    <td>{{ stat.last_five_icons }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-09 04:32+0200\n"
+"POT-Creation-Date: 2025-10-09 13:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -212,29 +212,29 @@ msgstr "Places restantes"
 msgid "Actions"
 msgstr "Actions"
 
-#: .\matches\templates\matches\manage_matches.html:50
-#: .\matches\templates\matches\manage_matches.html:55
+#: .\matches\templates\matches\manage_matches.html:54
+#: .\matches\templates\matches\manage_matches.html:59
 msgid "View"
 msgstr "Afficher"
 
-#: .\matches\templates\matches\manage_matches.html:58
+#: .\matches\templates\matches\manage_matches.html:62
 #: .\matches\templates\matches\manage_stadiums.html:46
 msgid "Edit"
 msgstr "Modifier"
 
-#: .\matches\templates\matches\manage_matches.html:61
+#: .\matches\templates\matches\manage_matches.html:65
 msgid "Delete"
 msgstr "Supprimer"
 
-#: .\matches\templates\matches\manage_matches.html:64
+#: .\matches\templates\matches\manage_matches.html:68
 msgid "Full"
 msgstr "Complet"
 
-#: .\matches\templates\matches\manage_matches.html:71
+#: .\matches\templates\matches\manage_matches.html:75
 msgid "No matches found."
 msgstr "Aucun match trouvé."
 
-#: .\matches\templates\matches\manage_matches.html:78
+#: .\matches\templates\matches\manage_matches.html:82
 msgid "Only 10 matches are shown at a time. Use the buttons above to see more."
 msgstr ""
 

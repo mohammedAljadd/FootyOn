@@ -56,6 +56,8 @@ def mark_no_show(request, participation_id):
         if form.is_valid():
             participation.is_no_show = True
             participation.no_show_time = timezone.now()
+            # we did not do participation.no_show_reason because it's come from the form
+            participation.user.update_suspension_status(participation.no_show_reason)
             form.save()
             return redirect('matches:view_match', match_id=participation.match.id)
     else:
@@ -78,9 +80,11 @@ def remove_no_show(request, participation_id):
             if match.spots_left > 0:
                 
                 # Admin confirmed → remove no-show
+                no_show_reason = participation.no_show_reason  # store reason before clearing, for getting back points
                 participation.is_no_show = False
                 participation.no_show_reason = None
                 participation.no_show_time = None
+                participation.user.update_suspension_status(no_show_reason, reverse=True)
                 participation.save()
                 messages.success(request, f"No-show removed for {participation.user.username}.")
                 return redirect('matches:view_match', match_id=match.id)

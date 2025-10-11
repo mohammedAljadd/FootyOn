@@ -2,6 +2,7 @@ from django.shortcuts import render
 from accounts.models import User
 from matches.models import Match, Participation
 from django.utils.timezone import now
+from django.utils import timezone
 from django.db.models import Count, Q, F, FloatField, ExpressionWrapper, Avg
 from matches.models import Match
 from collections import defaultdict
@@ -97,7 +98,21 @@ def stats_dashboard(request):
             if not (p.no_show_reason == 'excused' or (p.is_no_show == False and p.status == 'left'))
         ]
         
-        score = (attended / len(eligible_participations) * 100) if len(eligible_participations) else 0
+        # 7️⃣ Compute score safely
+        attendance_score = (attended / len(eligible_participations)) if eligible_participations else 0
+        points_ratio = user.points / 15
+
+        if user.is_suspended and user.suspension_until:
+            total_suspension_seconds = datetime.timedelta(days=15).total_seconds()
+            remaining_seconds = (user.suspension_until - timezone.now()).total_seconds()
+            suspension_penalty = max(0, min(1, remaining_seconds / total_suspension_seconds))
+        else:
+            suspension_penalty = 0
+
+        past_suspension_penalty = min(0.1, 0.02 * user.suspension_count)  # 2% penalty per past suspension, max 10%
+
+        score = (attendance_score * 0.7 + points_ratio * 0.3) * 100
+        score = score * (1 - suspension_penalty) * (1 - past_suspension_penalty)
         
         if(score):
             score = round(score, 2)
@@ -105,6 +120,24 @@ def stats_dashboard(request):
                 score = 100 
         else:
             score = None
+
+
+        # We will add last 5 participations to user object
+        last_n = 5
+        last_participations = sorted([p for p in participations if not p.match.can_edit_attendance], key=lambda p: p.match.date, reverse=True)[:last_n]
+        last_participations = sorted(last_participations, key=lambda p: p.match.date)
+   
+   
+        icons = []
+        for p in last_participations:
+            if p.is_active_participant():
+                icons.append("✅")
+            elif p.no_show_reason == "excused":
+                icons.append("⚪")
+            else :
+                icons.append("❌")
+
+        last_five_icons = " ".join(icons)
 
 
         user_stats.append({
@@ -121,7 +154,11 @@ def stats_dashboard(request):
             'perc_absent_excused': round(perc_absent_excused, 2),
             'perc_absent_not_excused': round(perc_absent_not_excused, 2),
             'perc_absent_last_minute' : round(perc_absent_last_minute, 2), 
+            'times_suspended': user.suspension_count,
+            'points': user.points,
             'score': score,
+            'last_five_icons': last_five_icons,
+            'can_participate': user.can_participate(),
         })
 
     # Sort users by score descending
@@ -130,27 +167,29 @@ def stats_dashboard(request):
         key=lambda x: (x['score'] is None, -(x['score'] or 0))
     )
     
-    # Get unique scores in descending order
-    unique_scores = sorted(
-        {u['score'] for u in user_stats if u['score'] is not None},
+    # Get unique scores only from eligible users
+    eligible_scores = sorted(
+        {u['score'] for u in user_stats if u['score'] is not None and u['can_participate'][0]},
         reverse=True
     )
 
+    
     # Map scores to medals
     score_to_medal = {}
-    if len(unique_scores) > 0:
-        score_to_medal[unique_scores[0]] = 'gold'
-    if len(unique_scores) > 1:
-        score_to_medal[unique_scores[1]] = 'silver'
-    if len(unique_scores) > 2:
-        score_to_medal[unique_scores[2]] = 'bronze'
+    if len(eligible_scores) > 0:
+        score_to_medal[eligible_scores[0]] = 'gold'
+    if len(eligible_scores) > 1:
+        score_to_medal[eligible_scores[1]] = 'silver'
+    if len(eligible_scores) > 2:
+        score_to_medal[eligible_scores[2]] = 'bronze'
 
     # Assign medals to users based on their score
     for user in user_stats:
-        user['medal'] = score_to_medal.get(user['score'], '')
-
-
-
+        can_play, reason = user['can_participate']
+        if can_play:
+            user['medal'] = score_to_medal.get(user['score'], '')
+        else:
+            user['medal'] = ''
     months = range(1, 13)  # 1 to 12
 
     current_year = datetime.date.today().year
@@ -165,5 +204,6 @@ def stats_dashboard(request):
         "user_stats": user_stats,
         "months": months,
         "years": years,
+        "last_n": last_n,
     }
     return render(request, "stats/dashboard.html", context)

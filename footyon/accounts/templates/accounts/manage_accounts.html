@@ -62,8 +62,8 @@
                 <th>{% trans "Username" %}</th>
                 <th>{% trans "Status" %}</th>
                 <th>{% trans "Joined" %}</th>
-                <th>{% trans "Eligible matches" %}</th>
-                <th>{% trans "Score" %} %</th>
+                <th>{% trans "Times Suspended" %}</th>
+                <th>{% trans "Points" %}</th>
                 <th>
                     {% blocktrans with last_n=last_n %}Last {{ last_n }} matches{% endblocktrans %}
                 </th>
@@ -84,8 +84,8 @@
                     {% endif %}
                 </td>
                 <td>{{ user.date_joined|date:"Y-m-d" }}</td>
-                <td>{{ user.total_eligible }}</td>
-                <td>{{ user.score }}</td>
+                <td>{{ user.suspension_count }}</td>
+                <td>{{ user.points }}</td>
                 <td>{{ user.last_five_icons }}</td>
                 <td>
                     {# Only allow actions on users other than the current logged-in user #}
